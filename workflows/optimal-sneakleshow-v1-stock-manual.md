@@ -215,13 +215,14 @@ State the thesis in one sentence a viewer could repeat: direction, company, hori
 One line. The direction of the business fundamentals and what the current price appears to assume,
 plus the window in quarters and why that window (tie it to the catalyst calendar).
 
-3. THE TRIGGER AND THE OPENING
-State THE TRIGGER first: the recent, dated event that justifies making this video now.
-Then design the opening around it, framed as something at stake for a holder - not as a news read-out.
-The opening must answer, inside 20 seconds: what just happened, why it matters to someone holding this
-stock, and why the obvious reading of it is incomplete.
-Do not open with a static valuation fact, context, definitions, or the industry. A number is only an
-opening if it moved, or if something just happened to it.
+3. THE TRIGGER AND THE OPENING - TWO BEATS INSIDE {{HOOK_WORDS}} WORDS
+The scriptwriter gets {{HOOK_WORDS}} words - {{HOOK_SECONDS}} seconds at {{WPM}} wpm - before the
+viewer decides to stay. Do not hand them more than fits. Specify exactly two beats:
+  BEAT 1 - the trigger in ONE line: what just happened to this company, with its date or its number.
+  BEAT 2 - the offer: the question this video answers and what the viewer walks away knowing.
+Everything else - the business model, the segment split, who this is for, why the consensus is wrong
+- is good material that belongs AFTER the opening. Place it in the body, not the hook.
+State the word budget for each beat so the writer has a target, not a hope.
 
 4. THE ESCALATION SPINE
 3 to 5 numbered reasons, each STRICTLY something that has already happened.
@@ -438,16 +439,33 @@ Vary the SHAPE of the opening between videos. Any of these work:
 Use "dekhiye", "ab dekhiye" or "toh" mid-script if it genuinely helps the read - the ban is on opening
 with one, and on leaning on the same crutch repeatedly.
 
-THE OPENING - first 20-25 seconds
-Lead with THE TRIGGER from the architecture - the recent event that makes this video timely. Frame it
-as stakes, not as news: something has happened, and it matters to the money of anyone holding this.
-Then, still inside 25 seconds:
-- make clear who this is for: someone who holds it, or was considering it
-- signal that the obvious reading of the event is incomplete
-- promise a direction, not a tip
-Never open on a standing fact ("the stock trades at 82x"). Open on what just changed.
-Do NOT open with "In today's video", "Let's dive in", definitions, or the industry.
-Do not give away the full conclusion immediately.
+THE OPENING - TWO BEATS, {{HOOK_WORDS}} WORDS, {{HOOK_SECONDS}} SECONDS. NOT A WORD MORE.
+This is where the video is won or lost. The viewer decides inside {{HOOK_SECONDS}} seconds whether
+this is for them, and if the offer has not landed by then they are already gone. At {{WPM}} words a
+minute that budget is {{HOOK_WORDS}} WORDS. Count them.
+
+  BEAT 1 - WHAT HAPPENED. One line, one sentence. The trigger with its date or its number, and
+    nothing else. No build-up, no context, no "aaj hum baat karenge". The fact, cold.
+      "Is quarter sales pandrah percent badhi, aur margin wahi ka wahi raha."
+
+  BEAT 2 - WHAT THIS VIDEO GIVES YOU. One or two sentences naming the company and the question.
+    What does the viewer walk away knowing that they did not know before? This is the offer, and it
+    is the entire reason they stay.
+      "Aaj batata hoon ki 82 ka P/E is business se kya demand kar raha hai, market abhi tak yeh
+       price kyun de raha hai, aur agle teen quarters mein kya dekhna hai."
+
+Those two beats together are the whole opening. Nothing goes in front of beat 1 and nothing goes
+between the two.
+
+WHAT USED TO LIVE IN THE OPENING AND NOW COMES AFTER IT
+Who this is for, why the obvious reading is incomplete, the scale, the mechanism - all good, all
+AFTER the {{HOOK_WORDS}}-word mark. The opening buys you the right to say those things; it is not
+the place to say them.
+
+COUNT IT BEFORE YOU MOVE ON
+Count from the first word to the end of beat 2. Over {{HOOK_WORDS}}? Cut until it fits, and cut
+adjectives and context - never the names, never the offer. A hook that lands the offer in fifteen
+words beats a beautifully written paragraph that gets skipped at second nine.
 
 BODY - THE ESCALATION
 Deliver the approved reasons as a rising sequence. You may number them aloud if it suits the argument
@@ -632,10 +650,18 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
 9. DIRECTION CLARITY - could a viewer state which stock, which direction, over what period, and what
    would change the conclusion?
 10. NUMBER DISCIPLINE - more than ~10 spoken numbers? any unexplained or stacked together?
-11. OPENING - does the first 25 seconds establish a concrete event, who it is for, and a reason to
-    stay? FAIL if the script opens on a throat-clearing word instead of substance - "Dekhiye", "Toh",
-    "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first sentence
-    and rewrite it to open on the number, the date, the name or the contradiction.
+11. THE HOOK - HARD GATE, AND COUNT IT. Count the words from the first word up to the end of the
+    sentence that tells the viewer what this video will give them. State that number.
+    - Over {{HOOK_WORDS}} words is a FAIL. That is {{HOOK_SECONDS}} seconds at {{WPM}} wpm, and past
+      it the viewer has already decided. Cut context and adjectives to fit; never cut the names or
+      the offer. Say what the count was and what it is after your fix.
+    - FAIL if the offer never arrives at all - if the opening describes an event but never says what
+      the viewer walks away knowing.
+    - FAIL if beat 1 is longer than one sentence, or if anything sits in front of it.
+    - FAIL if the script opens on a throat-clearing word instead of substance - "Dekhiye", "Toh",
+      "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first
+      sentence and rewrite it to open on the number, the date, the name or the contradiction.
+    Judge the count, not the vibe. "It feels punchy" is not a pass.
 11b. THE VERDICT SHAPE - HARD GATE. The closing block must run conditions-first: (a) the two or three
     specific things that would change the picture and force a re-analysis, THEN (b) the directional
     call - per company where there is a cast - and (c) the one thing to watch. FAIL if the script

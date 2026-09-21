@@ -293,15 +293,16 @@ One sentence a viewer could repeat: which stocks, which direction, over what hor
 One line covering the direction of business fundamentals, what the price appears to assume, the window
 in quarters, and why that window.
 
-3. THE OPENING - THE EVENT AS HIGH STAKES
-Open ON THE EVENT, framed as something consequential that has just happened - not as a neutral news
-summary and not as policy background. The first 20 seconds must land: this happened, this is the size
-of it, and it changes the earnings of specific listed companies that people hold.
-Give the single number that conveys the scale of the event, then - still inside the first 30 seconds -
-NAME THE STOCKS THIS VIDEO WILL COVER and promise what the viewer gets: which way each one moves and
-over what period. Something in the shape of: "is rule ka asar in teen companies par sabse zyada
-padega - X, Y aur Z - aur ek naam aisa hai jise market galat samajh raha hai." The stakes come first,
-the named basket second, the mechanism after - never the other way round.
+3. THE OPENING - PLAN IT AS TWO BEATS INSIDE {{HOOK_WORDS}} WORDS
+The scriptwriter gets {{HOOK_WORDS}} words - {{HOOK_SECONDS}} seconds at {{WPM}} wpm - before the
+viewer decides to stay. Do not hand them more than fits. Specify exactly two beats:
+  BEAT 1 - the event in ONE line: the fact, with its date or its number. Give the writer that one
+    number, not three.
+  BEAT 2 - the offer: the NAMES this video judges, and what the viewer walks away knowing. Name the
+    companies here; the offer is worthless without them.
+Everything else - the scale of the event, the mechanism, who this is for, why the obvious reading is
+wrong - is good material that belongs AFTER the opening. Place it in the body, not the hook.
+State the word budget for each beat so the writer has a target, not a hope.
 
 THE BASKET MUST BE BALANCED - AT MOST ONE RULE-OUT
 A basket exists to show one event pushing a group in DIFFERENT directions. So:
@@ -589,23 +590,34 @@ Vary the SHAPE of the opening between videos. Any of these work:
 Use "dekhiye", "ab dekhiye" or "toh" mid-script if it genuinely helps the read - the ban is on opening
 with one, and on leaning on the same crutch repeatedly.
 
-THE OPENING - first 20-25 seconds - AND IT MUST NAME THE BASKET
-Lead with THE TRIGGER from the architecture - the event that makes this video timely. Frame it as
-stakes, not as news: something has happened, and it moves real money.
-Then, still inside 25-30 seconds, SAY THE NAMES OUT LOUD. The viewer must hear, in the opening,
-exactly which companies this video will judge and what they are going to get:
-- name every company in the approved cast - all of them, 3 to 5, by name
-- promise a verdict per name: which way each one moves, and over what horizon
-- flag that at least one name everyone is panicking about is actually fine - without saying which yet
-Shape of it (do not copy the words, copy the structure):
-  "...aur is ek announcement ne teen companies ka maths badal diya hai - PB Fintech, Paytm aur
-   Policybazaar ke peers. Aaj hum dekhenge kis par kitna asar padega, kis direction mein, aur kitne
-   time mein. Aur ek naam aisa bhi hai jise sab sell kar rahe hain, jabki uska exposure practically
-   zero hai."
-Never open on a standing fact ("the stock trades at 82x"). Open on what just changed.
-Never open with a single company when the architecture has a cast - the basket IS the hook.
-Do not open with a policy lecture, a definition, "In today's video", or "Let's dive in".
-Name the cast, promise the verdicts, but do not give away which way each one goes.
+THE OPENING - TWO BEATS, {{HOOK_WORDS}} WORDS, {{HOOK_SECONDS}} SECONDS. NOT A WORD MORE.
+This is where the video is won or lost. The viewer decides inside {{HOOK_SECONDS}} seconds whether
+this is for them, and if the offer has not landed by then they are already gone. At {{WPM}} words a
+minute that budget is {{HOOK_WORDS}} WORDS. Count them.
+
+  BEAT 1 - WHAT HAPPENED. One line, one sentence. The event with its date or its number, and nothing
+    else. No build-up, no context, no "aaj hum baat karenge". The fact, cold.
+      "Pandrah October se, do hazaar ke upar har UPI payment par 0.4% MDR lagega."
+
+  BEAT 2 - WHAT THIS VIDEO GIVES YOU. One or two sentences, and it MUST contain the names.
+    Which companies you are judging, and what the viewer walks away knowing. This is the offer, and
+    it is the entire reason they stay.
+      "Is ek rule ne chaar stocks ko alag-alag direction mein daal diya - Paytm, Infibeam, HDFC Bank
+       aur CAMS. Aaj batata hoon kis par kitna asar, kis direction mein, aur kaun sa naam market ne
+       bilkul galat samajh liya hai."
+
+Those two beats together are the whole opening. Nothing goes in front of beat 1 and nothing goes
+between the two.
+
+WHAT USED TO LIVE IN THE OPENING AND NOW COMES AFTER IT
+Who this is for, why the obvious reading is incomplete, the scale, the mechanism - all good, all
+AFTER the {{HOOK_WORDS}}-word mark. The opening buys you the right to say those things; it is not
+the place to say them.
+
+COUNT IT BEFORE YOU MOVE ON
+Count from the first word to the end of beat 2. Over {{HOOK_WORDS}}? Cut until it fits, and cut
+adjectives and context - never the names, never the offer. A hook that lands the offer in fifteen
+words beats a beautifully written paragraph that gets skipped at second nine.
 
 THE EVENT SECTION - KEEP IT TIGHT
 You have at most about 60 seconds to establish what happened and why it matters. Say only what the
@@ -828,10 +840,18 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
 9. DIRECTION CLARITY - could a viewer state which stock, which direction, over what period, and what
    would change the conclusion?
 10. NUMBER DISCIPLINE - more than ~10 spoken numbers? any unexplained or stacked together?
-11. OPENING - does the first 25 seconds establish a concrete event, who it is for, and a reason to
-    stay? FAIL if the script opens on a throat-clearing word instead of substance - "Dekhiye", "Toh",
-    "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first sentence
-    and rewrite it to open on the number, the date, the name or the contradiction.
+11. THE HOOK - HARD GATE, AND COUNT IT. Count the words from the first word up to the end of the
+    sentence that tells the viewer what this video will give them. State that number.
+    - Over {{HOOK_WORDS}} words is a FAIL. That is {{HOOK_SECONDS}} seconds at {{WPM}} wpm, and past
+      it the viewer has already decided. Cut context and adjectives to fit; never cut the names or
+      the offer. Say what the count was and what it is after your fix.
+    - FAIL if the offer never arrives at all - if the opening describes an event but never says what
+      the viewer walks away knowing.
+    - FAIL if beat 1 is longer than one sentence, or if anything sits in front of it.
+    - FAIL if the script opens on a throat-clearing word instead of substance - "Dekhiye", "Toh",
+      "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first
+      sentence and rewrite it to open on the number, the date, the name or the contradiction.
+    Judge the count, not the vibe. "It feels punchy" is not a pass.
 11b. THE VERDICT SHAPE - HARD GATE. The closing block must run conditions-first: (a) the two or three
     specific things that would change the picture and force a re-analysis, THEN (b) the directional
     call - per company where there is a cast - and (c) the one thing to watch. FAIL if the script

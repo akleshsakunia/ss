@@ -98,6 +98,7 @@ function lengthTargets() {
   const wpm = +($('wpm').value) || 135, mins = +($('mins').value) || 6;
   const words = Math.round(wpm * mins / 10) * 10;
   return { WPM: String(wpm), VIDEO_MINUTES: String(mins), TARGET_WORDS: String(words),
+           HOOK_SECONDS: '20', HOOK_WORDS: String(Math.round(wpm / 3)),
            TARGET_MIN: String(Math.round(words * 0.92 / 10) * 10),
            TARGET_MAX: String(Math.round(words * 1.08 / 10) * 10) };
 }
