@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#0e1013"/>
+<meta name="description" content="Turn an idea into a stock-analysis script, one prompt at a time, in any chatbot."/>
+<title>Script Studio</title>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%237c6cf6'/><path d='M9 10h14M9 16h14M9 22h8' stroke='%23fff' stroke-width='2.4' stroke-linecap='round'/></svg>"/>
+<style>
+  /* Same tooling palette as the server app - this is the same product, just the manual half of it
+     running with no backend. Mobile-first: these are the phone rules, wider screens only add. */
+  :root{
+    --bg:#0e1013; --panel:#16191f; --panel2:#1c2027; --line:#272c35; --line2:#323947;
+    --text:#e8eaed; --muted:#9aa3b2; --accent:#7c6cf6; --accent2:#22d3ee;
+    --ok:#34d399; --warn:#fbbf24; --err:#f87171;
+    --r-sm:8px; --r-md:10px; --r-lg:14px; --r-pill:99px;
+    --s1:6px; --s2:10px; --s3:14px; --s4:18px;
+    --ui:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  ::selection{background:rgba(124,108,246,.35);color:#fff}
+  :root{accent-color:var(--accent);caret-color:var(--accent2);scrollbar-color:var(--line2) transparent}
+  *{scrollbar-width:thin}
+  *::-webkit-scrollbar{width:10px;height:10px}
+  *::-webkit-scrollbar-thumb{background:var(--line2);border-radius:var(--r-pill);
+        border:3px solid transparent;background-clip:content-box}
+  :focus-visible{outline:2px solid var(--accent2);outline-offset:2px;border-radius:4px}
+  .pill,.lenbox,.muted,.pip{font-variant-numeric:tabular-nums}
+
+  body{margin:0;background:var(--bg);color:var(--text);font:14px/1.55 var(--ui);
+       -webkit-font-smoothing:antialiased;padding-bottom:calc(env(safe-area-inset-bottom) + 20px)}
+
+  header{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;
+         padding:calc(env(safe-area-inset-top) + 10px) var(--s3) 10px;
+         border-bottom:1px solid var(--line);background:rgba(22,25,31,.94);
+         -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20}
+  header h1{font-size:15px;margin:0;font-weight:700;letter-spacing:-.01em;flex:1 1 auto;white-space:nowrap}
+  .lenbox{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--muted);
+        background:var(--panel2);border:1px solid var(--line);border-radius:var(--r-pill);padding:3px 10px}
+  .lenbox input{width:34px;padding:1px 2px;border:0;background:transparent;font-size:11px;
+        color:var(--text);text-align:right;-moz-appearance:textfield;min-height:0}
+  .lenbox input::-webkit-outer-spin-button,.lenbox input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .lenbox b{color:var(--accent2);font-weight:600}
+
+  select,input,textarea{font:inherit;color:var(--text);background:var(--panel2);
+        border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 11px;outline:none;
+        width:100%;max-width:100%;min-height:44px}
+  select:focus,input:focus,textarea:focus{border-color:var(--accent)}
+  textarea{resize:vertical;min-height:110px;line-height:1.55}
+  textarea.mono{font:12px/1.6 var(--mono);min-height:180px}
+  button{font:inherit;font-size:13px;cursor:pointer;color:var(--text);background:var(--panel2);
+        border:1px solid var(--line);border-radius:var(--r-sm);padding:10px 14px;min-height:44px;
+        transition:border-color .12s,background .12s,transform .08s}
+  button:active:not(:disabled){transform:scale(.98)}
+  button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+  button:disabled{opacity:.45;cursor:default}
+  @media (hover:hover){
+    button:hover:not(:disabled){border-color:var(--accent)}
+    button.primary:hover:not(:disabled){background:#8b7bff}
+    .opt:hover{border-color:var(--accent)}
+  }
+  a.ext{color:var(--accent2);font-size:12px;text-decoration:none;padding:6px 2px}
+
+  .wrap{padding:var(--s3);max-width:1100px;margin:0 auto}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);
+        padding:var(--s4);margin-bottom:var(--s3)}
+  .card h3{margin:0 0 var(--s2);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  label{display:block;font-size:12px;color:var(--muted);margin:var(--s3) 0 5px}
+  .req{color:var(--accent2)}
+  .muted{color:var(--muted);font-size:12px}
+  .row{display:flex;gap:var(--s1);align-items:center;flex-wrap:wrap}
+  .hide{display:none!important}
+  .empty{color:var(--muted);font-size:12.5px;padding:var(--s2) 0;line-height:1.6}
+  #note{background:#2a2410;border:1px solid #4a3f14;color:var(--warn);border-radius:var(--r-md);
+        padding:var(--s2) var(--s3);margin-bottom:var(--s3);font-size:13px}
+
+  /* step progress: small enough to sit in the header area on a phone */
+  .pips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:var(--s3)}
+  .pip{width:22px;height:22px;border-radius:var(--r-pill);display:grid;place-items:center;
+       font-size:10px;font-weight:700;background:var(--panel2);border:1px solid var(--line);color:var(--muted)}
+  .pip.done{background:var(--ok);border-color:var(--ok);color:#04231a}
+  .pip.now{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  .steptop{display:flex;align-items:baseline;gap:var(--s2);flex-wrap:wrap;margin-bottom:var(--s1)}
+  .steptop .n{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent2)}
+  .steptop .t{font-size:17px;font-weight:600}
+
+  details.fold > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--s1);
+        padding:var(--s2) 0}
+  details.fold > summary::-webkit-details-marker{display:none}
+  details.fold > summary h3{margin:0;flex:1 1 auto}
+  details.fold > summary::after{content:"";width:7px;height:7px;border-right:1.5px solid var(--muted);
+        border-bottom:1.5px solid var(--muted);transform:rotate(45deg) translate(-2px,-2px);transition:transform .16s}
+  details.fold[open] > summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+
+  .opt{display:flex;gap:var(--s2);padding:var(--s2);border:1px solid var(--line);
+       border-radius:var(--r-md);margin:var(--s1) 0;background:var(--panel2);cursor:pointer}
+  .opt:has(input:checked){border-color:var(--accent);background:#1e1b33}
+  .opt input{margin-top:3px;width:auto;min-width:18px;min-height:0}
+  .opt .lab{font-weight:600}
+  .opt .det{font-size:12px;color:var(--muted);margin-top:2px}
+
+  .topic{display:flex;justify-content:space-between;gap:var(--s1);align-items:center;
+         padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}
+  .topic:last-child{border-bottom:none}
+  .topic a{color:var(--accent2);text-decoration:none;cursor:pointer}
+  .topic button.icon{min-height:32px;min-width:32px;padding:0;display:grid;place-items:center;
+        background:none;border:0;color:var(--muted);border-radius:var(--r-pill)}
+
+  #donecard{border-color:#2b4a3d;
+        background:linear-gradient(180deg,rgba(52,211,153,.05),transparent 120px),var(--panel);
+        animation:arrive .6s cubic-bezier(.16,1,.3,1) both}
+  #donecard h3{color:var(--ok)}
+  @keyframes arrive{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .md{font-size:15px;line-height:1.75;max-width:70ch}
+  .md p{margin:0 0 var(--s3)}
+  .md h1,.md h2,.md h3{font-size:11px;text-transform:uppercase;letter-spacing:.09em;
+        color:var(--accent2);margin:var(--s4) 0 var(--s1)}
+  .md ul,.md ol{margin:0 0 var(--s3);padding-left:20px}
+  .md strong{color:#fff;font-weight:600}
+  .md code{background:var(--panel2);padding:1px 5px;border-radius:4px;font:12.5px var(--mono)}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  }
+  @media (min-width:700px){
+    .wrap{padding:var(--s4)}
+    button{min-height:38px} select,input{min-height:38px}
+    textarea{min-height:130px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Script Studio</h1>
+  <span class="lenbox" title="Your delivery speed and the video length you cut for">
+    <input id="wpm" type="number" min="80" max="240" step="5" value="135"> wpm ×
+    <input id="mins" type="number" min="1" max="30" step="0.5" value="6"> min
+  </span>
+  <button id="newbtn" class="hide" onclick="resetToForm()">New</button>
+</header>
+
+<div class="wrap">
+  <div id="note" class="hide"></div>
+
+  <!-- start -->
+  <div class="card" id="startcard">
+    <h3>New script</h3>
+    <label>Format <span class="req">*</span></label>
+    <select id="wf" onchange="pickWorkflow()"></select>
+    <div id="wfdesc" class="muted" style="margin-top:8px"></div>
+    <label>Give it a name <span class="req">*</span></label>
+    <input id="topic" placeholder="e.g. upi-mdr-rollout"/>
+    <div id="inputs"></div>
+    <div class="row" style="margin-top:var(--s4)">
+      <button class="primary" onclick="startNew()">Start</button>
+    </div>
+  </div>
+
+  <!-- one step at a time -->
+  <div class="card hide" id="stepcard">
+    <div class="pips" id="stagebar"></div>
+    <div class="steptop"><span class="n" id="stepNum"></span><span class="t" id="stepName"></span></div>
+    <div id="stepBody"></div>
+  </div>
+
+  <!-- finished -->
+  <div class="card hide" id="donecard">
+    <h3>Script <span class="muted" id="doneMeta"></span></h3>
+    <div class="muted" id="doneTitle" style="margin:-4px 0 12px"></div>
+    <div class="row" style="margin-bottom:var(--s3)">
+      <button class="primary" onclick="copyPart('script','Script')">Copy script</button>
+      <button onclick="copyPart('package','Everything')">Copy everything</button>
+      <button onclick="copyPart('sources','Sources')">Copy sources</button>
+      <button onclick="downloadScript()">Download .md</button>
+      <span id="donemsg" class="muted"></span>
+    </div>
+    <div id="scriptbody" class="md"></div>
+  </div>
+
+  <details class="card fold" id="foldRuns" open>
+    <summary><h3>Recent</h3></summary>
+    <div id="runs"></div>
+    <div class="muted" style="margin-top:var(--s2);font-size:11.5px">
+      Kept on this device only. Nothing you type or paste leaves this page.
+    </div>
+  </details>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

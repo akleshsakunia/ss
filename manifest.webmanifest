@@ -1,0 +1,16 @@
+{
+  "name": "Script Studio",
+  "short_name": "Scripts",
+  "description": "Turn an idea into a stock-analysis script, one prompt at a time, in any chatbot.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0e1013",
+  "theme_color": "#0e1013",
+  "icons": [{
+    "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%237c6cf6'/%3E%3Cpath d='M144 160h224M144 256h224M144 352h128' stroke='%23fff' stroke-width='38' stroke-linecap='round'/%3E%3C/svg%3E",
+    "sizes": "any",
+    "type": "image/svg+xml",
+    "purpose": "any maskable"
+  }]
+}
