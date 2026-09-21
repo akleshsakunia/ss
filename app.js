@@ -98,7 +98,7 @@ function lengthTargets() {
   const wpm = +($('wpm').value) || 135, mins = +($('mins').value) || 6;
   const words = Math.round(wpm * mins / 10) * 10;
   return { WPM: String(wpm), VIDEO_MINUTES: String(mins), TARGET_WORDS: String(words),
-           HOOK_SECONDS: '20', HOOK_WORDS: String(Math.round(wpm / 3)),
+           HOOK_SECONDS: '15', HOOK_WORDS: String(Math.round(wpm / 4)),
            GROUND_SECONDS: '25', GROUND_WORDS: String(Math.round(wpm * 5 / 12)),
            TARGET_MIN: String(Math.round(words * 0.92 / 10) * 10),
            TARGET_MAX: String(Math.round(words * 1.08 / 10) * 10) };
@@ -187,25 +187,53 @@ function extractBlock(text, marker) {
   return null;
 }
 
-const OPT_LINE = /^\s*(?:option\s*)?(\d{1,2})[.):\-]\s*[*_#]{0,3}\s*(.{3,90}?)\s*[*_]{0,3}\s*(?:[-–—:]\s*(.*))?$/i;
+// Real thesis output comes back as "### Thesis 1: <title>" far more often than a numbered list, and
+// a loose numeric pattern happily matches dates and table cells - on real documents it returned
+// "2025" and "July 20, 2026" as choices. Headings first, lists only as a fallback, junk filtered.
+const OPT_HEAD = /^[#*\s>]*(?:thesis|option|direction|candidate|angle)\s*#?(\d{1,2})\b[\s:.\-–—)]*(.*)$/i;
+const OPT_LINE = /^\s*(\d{1,2})[.):\-]\s+[*_#]{0,3}\s*(.{6,90}?)\s*[*_]{0,3}\s*(?:[-–—:]\s*(.*))?$/;
+const JUNK = /^(?:\d[\d,./ ]*|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\s+\d.*|q[1-4]\b.*|fy\d+.*|\W*)$/i;
+const clean = x => (x || '').replace(/[*_`#]+/g, '').replace(/^[\s:\-–—]+|[\s:\-–—]+$/g, '');
+const okLabel = l => !!l && l.length >= 6 && !JUNK.test(l) && /[A-Za-z]{3}/.test(l);
+
 function optionsFromText(text, limit = 6) {
   if (!text) return [];
+  const lines = text.split('\n');
+
+  // 1. headings - the shape these documents actually use
+  const out = [], seen = new Set();
+  for (let i = 0; i < lines.length && out.length < limit; i++) {
+    const m = lines[i].match(OPT_HEAD);
+    if (!m) continue;
+    let label = clean(m[2]);
+    if (!label) label = clean(lines.slice(i + 1, i + 3).find(l => l.trim()) || '');
+    if (!okLabel(label) || seen.has(label.toLowerCase())) continue;
+    seen.add(label.toLowerCase());
+    const detail = [];
+    for (const l of lines.slice(i + 1)) {
+      if (OPT_HEAD.test(l) || /^[#*\s>]*#{2,}\s/.test(l)) break;
+      if (l.trim() && !l.trimStart().startsWith('|')) detail.push(clean(l));
+      if (detail.join(' ').length > 300) break;
+    }
+    out.push({ id: m[1], label: label.slice(0, 110), detail: detail.join(' ').slice(0, 400) });
+  }
+  if (out.length >= 2) return out;
+
+  // 2. numbered list, only where the headings gave us nothing usable
   const m = text.match(/(?:^|\n)[#*\s>]*[^\n]{0,60}(THESIS|OPTION|DIRECTION|CANDIDATE)[^\n]{0,60}\n/i);
   const region = m ? text.slice(m.index + m[0].length) : text;
-  const out = [], seen = new Set();
+  const out2 = [], seen2 = new Set();
   for (const line of region.split('\n')) {
+    if (line.trimStart().startsWith('|')) continue;      // table rows are data, not choices
     const mm = line.match(OPT_LINE);
     if (!mm) continue;
-    let label = (mm[2] || '').replace(/[*_`#]+/g, '').replace(/^[\s:\-–—]+|[\s:\-–—]+$/g, '');
-    label = label.replace(/^(?:option|thesis)\s*\d*\s*[:.\-–—]?\s*/i, '').trim();
-    const detail = (mm[3] || '').replace(/[*_`#]+/g, '').trim();
-    if (!label && detail) label = detail.slice(0, 80);
-    if (!label || label.length < 4 || seen.has(label.toLowerCase())) continue;
-    seen.add(label.toLowerCase());
-    out.push({ id: mm[1], label, detail: detail.slice(0, 400) });
-    if (out.length >= limit) break;
+    let label = clean(mm[2]).replace(/^(?:option|thesis)\s*\d*\s*[:.\-–—]?\s*/i, '').trim();
+    if (!okLabel(label) || seen2.has(label.toLowerCase())) continue;
+    seen2.add(label.toLowerCase());
+    out2.push({ id: mm[1], label: label.slice(0, 110), detail: clean(mm[3]).slice(0, 400) });
+    if (out2.length >= limit) break;
   }
-  return out;
+  return out2.length > out.length ? out2 : out;
 }
 
 function spokenScript(pkg) {

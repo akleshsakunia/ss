@@ -9,7 +9,10 @@ Stage 1: Research Brief (run it in any chat)
 EMITS: RESEARCH
 PROVIDER: manual
 ---
-You are one stage of a scripting pipeline. Answer this in a SINGLE message.
+You are STAGE 1 OF 7 of a scripting pipeline: Research Brief (run it in any chat).
+The stage before you produced what is quoted below; the stage after you takes your answer as its
+input. Do that job and only that job - do not write the next stage's output, and do not redo the
+last one. Answer in a SINGLE message.
 
 HOW YOUR ANSWER IS USED: I copy your whole reply with the copy button on this chat and paste it
 straight into my tool. So put EVERYTHING in one message - no "shall I continue?", no splitting across
@@ -96,7 +99,10 @@ EMITS: THESIS_OPTIONS
 PROVIDER: manual
 GATE: pick-one -> SELECTED_THESIS
 ---
-You are one stage of a scripting pipeline. Answer this in a SINGLE message.
+You are STAGE 2 OF 7 of a scripting pipeline: Thesis Finder.
+The stage before you produced what is quoted below; the stage after you takes your answer as its
+input. Do that job and only that job - do not write the next stage's output, and do not redo the
+last one. Answer in a SINGLE message.
 
 HOW YOUR ANSWER IS USED: I copy your whole reply with the copy button on this chat and paste it
 straight into my tool. So put EVERYTHING in one message - no "shall I continue?", no splitting across
@@ -175,7 +181,10 @@ Stage 3: Argument Architect
 EMITS: ARGUMENT_ARCHITECTURE, CENTRAL_CLAIM, DIRECTION_AND_HORIZON
 PROVIDER: manual
 ---
-You are one stage of a scripting pipeline. Answer this in a SINGLE message.
+You are STAGE 3 OF 7 of a scripting pipeline: Argument Architect.
+The stage before you produced what is quoted below; the stage after you takes your answer as its
+input. Do that job and only that job - do not write the next stage's output, and do not redo the
+last one. Answer in a SINGLE message.
 
 HOW YOUR ANSWER IS USED: I copy your whole reply with the copy button on this chat and paste it
 straight into my tool. So put EVERYTHING in one message - no "shall I continue?", no splitting across
@@ -215,14 +224,28 @@ State the thesis in one sentence a viewer could repeat: direction, company, hori
 One line. The direction of the business fundamentals and what the current price appears to assume,
 plus the window in quarters and why that window (tie it to the catalyst calendar).
 
-3. THE TRIGGER AND THE OPENING - TWO BEATS INSIDE {{HOOK_WORDS}} WORDS
+3. THE TRIGGER AND THE OPENING - THREE BEATS INSIDE {{HOOK_WORDS}} WORDS
 The scriptwriter gets {{HOOK_WORDS}} words - {{HOOK_SECONDS}} seconds at {{WPM}} wpm - before the
-viewer decides to stay. Do not hand them more than fits. Specify exactly two beats:
-  BEAT 1 - the trigger in ONE line: what just happened to this company, with its date or its number.
-  BEAT 2 - the offer: the question this video answers and what the viewer walks away knowing.
-Everything else - the business model, the segment split, who this is for, why the consensus is wrong
-- is good material that belongs AFTER the opening. Place it in the body, not the hook.
-State the word budget for each beat so the writer has a target, not a hope.
+viewer decides to stay. Do not hand them more than fits. Specify exactly three beats:
+WRITE THE BEATS AS INGREDIENTS, NOT AS SENTENCES. USE EXACTLY THIS FORM:
+  BEAT 1 | FACT: <what just happened to this company> | NUMBER: <the one figure> | DATE: <when> | WORDS: <budget>
+  BEAT 2 | ASSUMED: <what the market currently believes about this stock> | ACTUAL: <the finding that breaks it> | WORDS: <budget>
+  BEAT 3 | NAME: <the company> | PAYOFF: <what the viewer walks away knowing> | WORDS: <budget>
+Fields, not prose. This form is not optional and it is not a formality: you write in analyst
+English, the script is spoken Hinglish, and any beat you hand over as a finished English sentence
+gets read out as written. That has happened, and an English hook loses the audience this channel
+exists for. Give the ingredients; the writer cooks.
+BEAT 2 IS A COMPRESSION OF YOUR OWN CONSENSUS VS OUR READ SECTION, and it is what makes the opening
+worth listening to - an opening without it is an announcement. ASSUMED must be a belief a real
+viewer holds, and ACTUAL must be specific enough to be checkable. If your consensus section has
+nothing sharp enough to fill those two fields, that is a signal about the thesis rather than about
+the hook: say so in STRUCTURAL WEAKNESSES instead of handing over a vague turn to dress up.
+THE THREE WORDS VALUES MUST ADD UP TO {{HOOK_WORDS}} OR LESS. Add them before you emit and show the
+sum. A budget that is already over on the page has no chance of holding in the mouth.
+Everything else - the business model, the segment split, who this is for, the full consensus
+argument - is good material that belongs AFTER the opening. Place it in the body, not the hook.
+State the word budget for each beat so the writer has a target, not a hope. At {{HOOK_WORDS}} words
+total, roughly 40% / 25% / 35% works.
 
 4. THE ESCALATION SPINE
 3 to 5 numbered reasons, each STRICTLY something that has already happened.
@@ -284,7 +307,10 @@ Stage 4: Scriptwriter
 EMITS: SCRIPT_DRAFT
 PROVIDER: manual
 ---
-You are one stage of a scripting pipeline. Answer this in a SINGLE message.
+You are STAGE 4 OF 7 of a scripting pipeline: Scriptwriter.
+The stage before you produced what is quoted below; the stage after you takes your answer as its
+input. Do that job and only that job - do not write the next stage's output, and do not redo the
+last one. Answer in a SINGLE message.
 
 HOW YOUR ANSWER IS USED: I copy your whole reply with the copy button on this chat and paste it
 straight into my tool. So put EVERYTHING in one message - no "shall I continue?", no splitting across
@@ -319,6 +345,62 @@ remove the least load-bearing explanation, the second-weakest reason, and any se
 a point already made. A tight script that lands inside the range beats a padded one every time.
 State the final word count on its own line at the very end, as: WORD COUNT: <n>
 
+
+EXAMPLES IN THIS BRIEF ARE SHAPES, NOT SCRIPTS
+Every quoted line here exists to show a STRUCTURE - where the number goes, how long the sentence
+runs, what order the clauses take. None of them is wording to reuse. If a phrase from this brief
+appears in your script with only the names swapped, you have copied a template instead of writing,
+and it will be the third video in a row that opens the same way. Take the shape; write your own
+words for this event.
+
+THE AUDIENCE - WHO IS ACTUALLY WATCHING
+Value investors in the Indian market who are NOT professionals. Someone with a job, a demat account
+and a genuine interest: they read Moneycontrol on the commute, they hold eight or ten stocks, they
+understand P/E, results, margin, promoter holding, dividend. They are not fund managers and they are
+not traders. This is the whole reason the channel is Hinglish - the moment the language narrows to
+what a Mumbai analyst says to another analyst, the audience narrows with it.
+
+EVERY WORD CHOICE HAS ONE JOB: LOWER THE MENTAL LOAD
+That is what the Hinglish is FOR. It is not a style; it is how the listener understands you without
+stopping to decode. So:
+  - KEEP IT IN ENGLISH when the ordinary Indian investor already says it in English. Sales, profit,
+    margin, growth, P/E, results, promoter, stake, IPO, board, valuation, cash flow. Translating
+    these into Hindi makes it HARDER, not easier.
+  - USE HINDI when the English word would make them stop and decode. That is where the load drops.
+  - JOINING AND FRAMING STAYS IN ENGLISH, because that is how people actually talk: "here's the
+    thing", "the point is", "which means", "having said that", "at the end of the day".
+
+THE ONE TEST: would the uncle at a family function who owns ten stocks SAY this word? If yes, use
+it. If he would understand it only after a pause, it is costing you mental load and there is a
+plainer way. A hard word is not sophisticated, it is a toll you are charging the listener.
+Write so a fifteen-year-old follows it on the first pass, without ever writing DOWN to them. Active
+voice. Say who did what to whom, in that order.
+
+THE ARCHITECTURE'S VOCABULARY DOES NOT CARRY OVER. THIS IS WHERE HARD WORDS ACTUALLY GET IN.
+The architecture was written analyst-to-analyst, so it is full of words that are exact on a page and
+wrong in a mouth. Almost every difficult word that has ended up in these scripts arrived this way -
+not chosen by the writer, just carried across without anyone stopping.
+  THE FACTS CARRY OVER EXACTLY: names, tickers, numbers, dates, directions, horizons. Do not touch
+  them.
+  THE WORDS AROUND THEM DO NOT. Every one gets re-chosen for someone listening in a car.
+If a phrase arrived from the architecture and you did not stop to ask whether the uncle at the
+family function would say it, you skipped the only step that matters here. Say the thing the
+architecture means, in the words this channel uses.
+
+PLAIN IS NOT CHEAP - AND YOU GET THERE THROUGH STRUCTURE, NOT THROUGH WORDS
+The register is an educated person talking about money on a serious business podcast: plain words,
+full sentences, dignity intact. Someone managing their own savings is making a serious decision, and
+language that sounds like match commentary tells them this is entertainment - the serious viewer
+leaves, and that is the one you want.
+
+So when a line has to hit harder, DO NOT reach for a bigger word. Reach for one of these three:
+  - A BIGGER FACT       - the rupee figure, the date, the percentage, what it already cost a holder.
+  - A SHORTER SENTENCE  - four words land harder than fourteen. Put the full stop early.
+  - A CONTRAST          - what everyone assumed, and then what actually happened.
+That is where force comes from, and all three survive being read aloud by a serious person. Every
+time one of these scripts has come out sounding cheap, it was because the writer went looking for
+force in the vocabulary - and vocabulary is the one source of force that costs you the audience you
+are writing for.
 
 VOICE - HINGLISH, NOT ENGLISH
 This channel speaks the way one Indian investor talks to another. Follow this rule literally:
@@ -362,8 +444,13 @@ WRITE IN ROMAN SCRIPT ONLY
 The Hindi must be written in Latin letters (Hinglish), never in Devanagari. The creator reads this
 aloud off a screen; a stray "को" or "है" mid-sentence breaks the read. Write "ko", "hai", "matlab".
 
-POSH, NOT STREET. An intelligent, well-read investor - not a hyperactive trader. No tapori slang, no
-"bhai log", no shouting, no hype. Calm, sharp, a little dry. The Hindi should sound educated and
+POSH, NOT STREET - EVERYWHERE, INCLUDING THE HOOK. An intelligent, well-read investor, not a
+hyperactive trader. No tapori slang, no "bhai log", no street verbs. Calm, sharp, a little dry
+through the body; loud in the hook, but loud is about the SIZE OF THE STAKE, never about coarse
+language. A cheap-sounding line costs you the serious viewer, which is the one you want.
+The hook is the deliberate exception: see THE OPENING. Stakes have to land hard in the first
+fifteen seconds or nobody hears the calm part. Loud opening, measured argument - that contrast is
+the register, and a uniformly flat script is the more common failure. The Hindi should sound educated and
 natural - the way people actually speak in a Mumbai broking office or a serious business podcast.
 
 
@@ -410,8 +497,19 @@ compression, valuation comfort, margin tailwind/headwind, guidance cut, operatin
 cycle, ramp-up, same-store sales, free float, FII/DII flows, earnings quality. Explain a term only if
 the argument genuinely needs it.
 
-WRITING FOR SPEECH
-Short and medium sentences. Concrete nouns. Strong verbs. Occasional fragments. Natural emphasis.
+WRITING FOR SPEECH - AND THE RHYTHM OF IT
+Concrete nouns. Strong verbs. Active voice. Natural emphasis.
+VARY THE SENTENCE LENGTH DELIBERATELY. This is the most under-used tool in a spoken script. A
+four-word sentence landing after a twenty-word one is what makes writing listenable; three
+medium-length sentences in a row is what makes it drone, even when each one is correct and
+interesting on its own. Put the short sentence exactly where the point lands.
+  "Margin wahi ka wahi raha - 7.97%, teesre quarter se. Koi improvement nahi. Aur yahan se
+   management ke paas do hi raaste bachte hain, dono mehnge."
+LOOK AT THE SHAPE OF THE PARAGRAPH, not only at the words. If every line runs to about the same
+length, the rhythm is flat and you lose people in the middle of the video. Uneven is correct.
+This is also the cheapest source of force you have. A short sentence carries weight that no amount
+of vocabulary can buy - which is why the urge to reach for a bigger word is almost always a sign the
+sentence was simply too long.
 Avoid long academic sentences, dense paragraphs, corporate language, textbook definitions, and
 artificial rhetorical questions.
 
@@ -431,7 +529,7 @@ BANNED as the opening word or phrase: "Dekhiye", "Toh", "Doston", "Namaskar", "A
 "So", "Now", "In today's video", "Let's dive in". "Dekhiye" in particular has been used to open too
 many of these scripts - it is now a tic, and a tic reads as a template.
 Vary the SHAPE of the opening between videos. Any of these work:
-  - the number cold:      "Chaudah hazaar crore. Itna paisa is ek rule ne ek din mein re-price kar diya."
+  - the number cold:      [say the real rupee figure, alone], then one line for what moved it.
   - the date:             "Pandrah October se, har UPI payment do hazaar ke upar ab free nahi rahega."
   - the contradiction:    "Market is stock ko sell kar raha hai. Numbers bilkul ulta keh rahe hain."
   - the name and stakes:  "Paytm ke liye yeh pichhle teen saal ka sabse bada structural change hai."
@@ -439,23 +537,58 @@ Vary the SHAPE of the opening between videos. Any of these work:
 Use "dekhiye", "ab dekhiye" or "toh" mid-script if it genuinely helps the read - the ban is on opening
 with one, and on leaning on the same crutch repeatedly.
 
-THE OPENING - TWO BEATS, {{HOOK_WORDS}} WORDS, {{HOOK_SECONDS}} SECONDS. NOT A WORD MORE.
+THE OPENING - THREE BEATS, {{HOOK_WORDS}} WORDS, {{HOOK_SECONDS}} SECONDS. NOT A WORD MORE.
 This is where the video is won or lost. The viewer decides inside {{HOOK_SECONDS}} seconds whether
 this is for them, and if the offer has not landed by then they are already gone. At {{WPM}} words a
 minute that budget is {{HOOK_WORDS}} WORDS. Count them.
+Three beats share those words, roughly 40% / 25% / 35%.
+THE WHOLE OPENING IS THREE SENTENCES. Count the full stops before you move on: three, one per beat.
+A beat that needed two sentences was a beat carrying something that belongs in the body. At this
+budget a sentence runs eight to thirteen words - not a paragraph with commas in it.
+THE ARCHITECTURE HANDS YOU EACH BEAT AS FIELDS, NOT AS A LINE - FACT / NUMBER / DATE, ASSUMED /
+ACTUAL, NAME / PAYOFF. Those are the ingredients. Writing the sentence is your job and nobody
+else's: the fields are analyst English, and speaking them as they stand gives you an English hook
+in front of a Hinglish video. Keep every name, number and date exactly; choose all the other words
+yourself.
 
-  BEAT 1 - WHAT HAPPENED. One line, one sentence. The trigger with its date or its number, and
-    nothing else. No build-up, no context, no "aaj hum baat karenge". The fact, cold.
-      "Is quarter sales pandrah percent badhi, aur margin wahi ka wahi raha."
+  BEAT 1 - THE FACT. The trigger with its date or its number, and nothing else. No build-up, no
+    context, no "aaj hum baat karenge". The fact, cold.
+      "Is quarter sales pandrah percent badhi, margin wahi ka wahi."
 
-  BEAT 2 - WHAT THIS VIDEO GIVES YOU. One or two sentences naming the company and the question.
-    What does the viewer walk away knowing that they did not know before? This is the offer, and it
-    is the entire reason they stay.
-      "Aaj batata hoon ki 82 ka P/E is business se kya demand kar raha hai, market abhi tak yeh
-       price kyun de raha hai, aur agle teen quarters mein kya dekhna hai."
+  BEAT 2 - THE TURN. What everybody currently assumes, then the break. THIS IS THE BEAT THAT MAKES
+    A HOOK LOUD, and it is the one that has been missing.
+    You do not have to invent it. The architecture has already done this work under CONSENSUS VS OUR
+    READ - it found what the market believes about this stock and exactly where the evidence
+    disagrees. That finding has been going into the middle of the body where nobody hears it. It
+    belongs here, in one line.
+      "Street isko growth story keh raha hai. Numbers teen quarter se mana kar rahe hain."
+    Without this beat the opening is an announcement, and an announcement holds nobody for
+    {{VIDEO_MINUTES}} minutes. With it, the viewer is carrying an open question they need closed -
+    that, and nothing else, is what keeps them past second thirty. It is also where a hook gets its
+    force, which is why you never have to buy that force with a louder word.
+    THE ASSUMED SIDE MUST BE ONE A REAL VIEWER ACTUALLY HOLDS: what the price is doing, what the
+    brokers are saying, what an ordinary holder would conclude from the last result. Never invent a
+    foolish belief so you can knock it down - a strawman is obvious even at full speed, and it costs
+    you precisely the viewer who was going to stay.
 
-Those two beats together are the whole opening. Nothing goes in front of beat 1 and nothing goes
-between the two.
+  BEAT 3 - THE OFFER. What the viewer walks away knowing, with the company named.
+      "82 ka P/E is business se kya maang raha hai - aaj wahi clear karte hain."
+
+  Those three examples come to twenty-nine words. That is the shape, and the budget is real. Write
+  your own words for this stock.
+
+Those three beats together are the whole opening. Nothing goes in front of beat 1, and nothing goes
+between them.
+
+POINT THE CAMERA AT THEM, NOT AT YOURSELF
+"Aaj main aapko batata hoon", "maine analyse kiya", "is video mein hum dekhenge" - every one of
+these spends the viewer's attention on the creator at the exact moment they are deciding whether
+this is about their money. Turn each one around: "aap teen minute mein jaan jaayenge", "aapke
+portfolio par asar yeh hai", "jo sawaal aap abhi soch rahe hain".
+Applies hardest in the opening and the qualifier, and holds through the body.
+THE ONE EXCEPTION IS THE VERDICT. "Mera view yeh hai" is exactly right, because an opinion someone
+is willing to put their name to is what they came for. First person for the judgement, second
+person for everything else.
 
 WHAT USED TO LIVE IN THE OPENING AND NOW COMES AFTER IT
 Who this is for, why the obvious reading is incomplete, the scale, the mechanism - all good, all
@@ -463,26 +596,60 @@ AFTER the {{HOOK_WORDS}}-word mark. The opening buys you the right to say those 
 the place to say them.
 
 COUNT IT BEFORE YOU MOVE ON
-Count from the first word to the end of beat 2. Over {{HOOK_WORDS}}? Cut until it fits, and cut
-adjectives and context - never the names, never the offer. A hook that lands the offer in fifteen
-words beats a beautifully written paragraph that gets skipped at second nine.
+Count from the first word to the end of beat 3. Over {{HOOK_WORDS}}? Cut until it fits, and cut
+adjectives and context - never the names, never the turn, never the offer. A hook that lands all
+three beats inside the budget beats a beautifully written paragraph that gets skipped at second nine.
 
-THE QUALIFIER - ONE LINE, STRAIGHT AFTER THE HOOK
-Before any backdrop, tell the viewer this is theirs. One sentence, about fifteen words, naming the
-stocks again:
-  "Agar aapke portfolio mein in mein se koi hai - ya aap inhe watch kar rahe hain - toh yeh video
-   aapke liye hai."
-It repeats the names (which is why it earns its place), and it turns a passive viewer into an
-invested one: that is my stock.
+GIVE ME THREE HOOKS
+Write THREE complete openings - all three beats in each, each inside {{HOOK_WORDS}} words - in a
+HOOK OPTIONS block at the end. Put your strongest one inline in the script itself.
+Vary WHICH BEAT LEADS, not the phrasing:
+  1. LEAD WITH THE FACT        - the number or the date cold, then the turn, then the offer.
+  2. LEAD WITH THE TURN        - open on the belief and break it in the same breath, then the fact.
+  3. LEAD WITH THE CONSEQUENCE - what it already did to somebody's money, then what actually caused it.
+Three phrasings of one sentence is not three options.
 
-BUT A QUALIFIER IS ALSO A DIS-QUALIFIER, SO WIDEN IT
-"If you hold X, this is for you" tells everyone who does not hold X that it is not. That is the
-wrong trade for a channel that wants to grow. Always give the second door in the same breath - the
-sector, the watchlist, or the mechanism:
-  "...aur agar aap in mein se kuch nahi rakhte, toh bhi rukiye - yeh wahi mechanism hai jo is poore
-   sector par lagega."
-VARY IT. Three videos opening on the same construction is the next "Dekhiye". Sometimes lead with
-the holding, sometimes with the sector, sometimes with the question they are already asking.
+WHAT "LOUD" MEANS HERE
+The stakes have to land or the rest of the video is unheard, and a flat opening on an accurate fact
+is the most common way these scripts die. But loud is a property of the CONTENT, not of the diction:
+the size of the number, the sharpness of the reversal in beat 2, and the shortness of the sentence
+it lands in. Those three are the whole mechanism.
+The real rupee figure, said cold and alone, is loud and true. "Shocking development" is loud and empty. A
+coarse verb is louder than either and costs more than it buys - it tells a serious viewer they have
+walked into entertainment.
+No "you won't believe", no manufactured mystery, no withholding the answer to make them wait.
+Withholding is the opposite of a hook: the open question in beat 2 only pulls if the viewer can see
+exactly what the question is.
+
+THE QUALIFIER - ONE SENTENCE. TWELVE WORDS. NAME THE STOCKS.
+Straight after the hook, one line that tells the viewer this is theirs and repeats the names.
+FOUR DIFFERENT SHAPES - pick one, and not the same one as last video. Do not reuse this wording:
+  - the holding:   "Portfolio mein X ya Y hai? Toh yeh aapke liye hai."
+  - the sector:    "Agar aap payments sector mein kahin bhi invested hain, yeh sunna zaroori hai."
+  - the question:  "Sabse bada sawaal - X becho ya rakho? Wahi aaj decode karenge."
+  - the watchlist: "X, Y, Z - teenon watchlist par hain toh next teen minute aapke hain."
+One sentence. No preamble, no second sentence explaining why it is for them.
+
+A QUALIFIER IS ALSO A DIS-QUALIFIER
+"If you hold X" tells everyone who does not that this is not for them. Widen it inside the same
+sentence - "ya watchlist mein hai", "ya is sector mein invested hain" - so the curious non-holder
+stays. One clause, not a second sentence.
+VARY IT across videos: sometimes the holding, sometimes the sector, sometimes the question they are
+already asking. The same construction three videos running is the next "Dekhiye".
+
+THE CREDIBILITY CHECK - PASS IT INSIDE THE FIRST THIRTY SECONDS
+Somewhere around the half-minute mark the viewer quietly decides whether you actually know this, or
+are just reading the news back to them. You pass that check with a SOURCED fact: the first hard
+number you use, with where it came from attached.
+  "Company ki apni Q1 filing mein", "management ne earnings call par khud kaha", "exchange filing
+   mein yeh number hai"
+One attribution, on the first real number. It costs four words and it is the difference between
+analysis and commentary.
+DO NOT reach for the other kind of credibility. No claim to be an analyst or advisor, no track
+record, no "maine yeh stock kharida hai", no past-call boasting. Beyond being the wrong register for
+this channel, stating positions and credentials while giving a directional view on a named listed
+stock is the part a viewer can hold against you. THE SOURCE IS THE CREDENTIAL - it is stronger
+anyway, because they can check it.
 
 THE GROUND - THE BACKDROP, ONLY IF IT IS NEEDED
 Even a single-stock video has an angle: something happened, and we are here to work out what it
@@ -500,6 +667,12 @@ IF IT IS NEEDED, two or three sentences, in this order:
   3. WHAT THAT PUTS AT STAKE - in rupees or in plain outcome.
 Then name the company again and get into the escalation.
 
+CONCRETE FIRST. THIS IS WHERE THESE PASSAGES FAIL.
+The failure is not length, it is abstraction: explaining the consequence without ever saying what
+happened. If a sentence has no proper noun and no number in it, rewrite it. "Margin pressure ne
+valuation ko re-rate kiya" tells a newcomer nothing; "Q1 mein sales 15% badhi par margin 7.9% par
+atka raha, aur stock abhi bhi 82 ke P/E par hai" tells them everything.
+
 CONCISE IS NOT COMPRESSED
 {{GROUND_WORDS}} words is enough to be genuinely understood if you spend them on those three things
 and nothing else. It is not enough for company history, for the founder story, or for three numbers
@@ -511,8 +684,18 @@ BODY - THE ESCALATION
 Deliver the approved reasons as a rising sequence. You may number them aloud if it suits the argument
 ("pehla reason...", "the second thing that happened...") - this format works well for this channel.
 Each reason must be a thing that has already happened, with its number and its meaning.
-Each one must feel heavier than the last. Make the next question emerge from what was just discovered,
-rather than announcing "now let's move to the next point".
+Each one must feel heavier than the last.
+
+RE-HOOK AT EVERY HANDOVER
+The end of a reason is the most dangerous place in the video. The question the viewer was carrying
+has just been answered, so for one moment nothing is holding them. Do not hand over with a
+transition - hand over with a new open question. Close on the finding, then open the next one in the
+same breath:
+  "...toh margin ka issue itna hi tha. Lekin jo cheez isse zyada mehngi padne wali hai, woh abhi
+   tak kisi ne notice nahi ki."
+Make the next question emerge from what was just discovered, rather than announcing "now let's move
+to the next point". One line, at every handover. The same script with clean re-hooks and the same
+script with "ab aage badhte hain" have completely different retention curves.
 
 NUMBERS
 Use only the numbers in the architecture's number budget.
@@ -616,6 +799,9 @@ The complete spoken script. No section headings inside the narration unless spok
 Minimal annotations like [ON SCREEN: figure] or [CHART: ...] only where genuinely useful.
 Do not scatter B-roll suggestions.
 
+HOOK OPTIONS
+Three, each inside the hook budget, structurally different.
+
 CTA OPTIONS
 Debate / Engagement / Channel
 
@@ -635,7 +821,10 @@ Stage 5: Edit and Rewrite
 EMITS: REVISED_SCRIPT
 PROVIDER: manual
 ---
-You are one stage of a scripting pipeline. Answer this in a SINGLE message.
+You are STAGE 5 OF 7 of a scripting pipeline: Edit and Rewrite.
+The stage before you produced what is quoted below; the stage after you takes your answer as its
+input. Do that job and only that job - do not write the next stage's output, and do not redo the
+last one. Answer in a SINGLE message.
 
 HOW YOUR ANSWER IS USED: I copy your whole reply with the copy button on this chat and paste it
 straight into my tool. So put EVERYTHING in one message - no "shall I continue?", no splitting across
@@ -650,6 +839,7 @@ your own findings.
 INPUT
 CENTRAL CLAIM: {{CENTRAL_CLAIM}}
 DIRECTION AND HORIZON: {{DIRECTION_AND_HORIZON}}
+THE STOCK THE CREATOR ASKED ABOUT: {{STOCK}}
 APPROVED ARCHITECTURE: {{ARGUMENT_ARCHITECTURE}}
 SCRIPT DRAFT: {{SCRIPT_DRAFT}}
 
@@ -697,22 +887,43 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
       the offer. Say what the count was and what it is after your fix.
     - FAIL if the offer never arrives at all - if the opening describes an event but never says what
       the viewer walks away knowing.
+    - THE TURN IS REQUIRED, AND IT IS THE ONE MOST OFTEN MISSING. Between the fact and the offer
+      there must be one line saying what everybody currently assumes and then breaking it. Without
+      it the opening is an announcement, and an announcement gives the viewer no reason to stay.
+      Quote the turn. If there is none, take the architecture's CONSENSUS VS OUR READ finding,
+      compress it to one line, and insert it - then cut the same number of words back out of the
+      other two beats so the total still fits.
+      FAIL a turn built on a belief no real viewer holds: the assumed side has to be what the market
+      actually did, what the headlines actually said, or what an ordinary holder would conclude.
+      A strawman here is worse than no turn.
     - FAIL if beat 1 is longer than one sentence, or if anything sits in front of it.
     - FAIL if the script opens on a throat-clearing word instead of substance - "Dekhiye", "Toh",
       "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first
       sentence and rewrite it to open on the number, the date, the name or the contradiction.
     Judge the count, not the vibe. "It feels punchy" is not a pass.
+    THREE HOOKS ARE REQUIRED. Check a HOOK OPTIONS block exists with three complete openings that
+    differ in WHICH BEAT LEADS - the fact, the turn, or the consequence - not three rewordings of
+    one sentence. Missing block, or fewer than three, is a FAIL.
+    DO NOT FAIL A HOOK FOR BEING LOUD. Stakes are supposed to land hard here; a flat, careful
+    opening is the failure, not an energetic one. Fail it only where the energy is coming from the
+    WORDS rather than from the content - adjectives, teasing, "shocking", "you won't believe",
+    withholding the answer, or a coarse verb doing the work a number should do. A real figure, a
+    real fall and a real reversal are all allowed to be as loud as they want.
 11b2. THE QUALIFIER. Straight after the hook, is there one line telling the viewer this video is
     theirs, naming the stocks again? FAIL if it is missing. FAIL ALSO if it only speaks to holders -
     "agar aapke paas X hai" with no second door for someone who holds none of them is a
     dis-qualifier, and it sends away the viewer you were trying to win. It must widen: the sector,
-    the watchlist, or the mechanism. FAIL if it runs past about twenty words.
+    the watchlist, or the mechanism. FAIL if it runs past about fifteen words, or if it needs a second sentence.
 11c. THE GROUND. If the script explains the event or the business before its first company beat,
-    count those words too. Over {{GROUND_WORDS}} is a FAIL - cut history, politics, second and
-    third numbers, and anything that is not "what changed / whose money / which P&L line".
-    Also FAIL the opposite: if the explanation is there but a viewer still could not say in one
-    line what the event is, it was brief rather than clear - name the missing link. Concise is not
-    compressed: the test is whether they could repeat it to a friend, not whether it was short.
+    count those words. {{GROUND_WORDS}} is the target, not a wall: where the event genuinely has
+    more to explain, going over is fine and cutting it to the number would leave the viewer lost.
+    FAIL it only past roughly double, or where the extra words went on history, politics or a
+    second and third number rather than on "what changed / whose money / which line moves".
+    Also FAIL the opposite - and this is the commoner failure: if the passage explains the
+    CONSEQUENCE without ever stating what happened, it is vague, not concise. Check it contains
+    proper nouns, a date and a number. "Governance paralysis ne optionality khatam kar di" is a
+    FAIL; who did what, when, and how much is the fix. The test is whether a viewer could repeat
+    the event to a friend afterwards, not whether the passage was short.
     And FAIL it for existing at all when it was not needed: if the first company beat would land
     without it, that passage is the most expensive filler in the script.
 11b. THE VERDICT SHAPE - HARD GATE. The closing block must run conditions-first: (a) the two or three
@@ -722,6 +933,38 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
     the conditions, or if the close trails off without a crisp directional statement. Quote the
     closing block and reorder it.
 12. FLUFF - quote every sentence that could be deleted without weakening the argument.
+12b. LIFTED FROM THE BRIEF - HARD GATE. The scriptwriter's brief contains quoted examples. Check
+    the script against them: any sentence that matches one with only the names or numbers changed
+    is a FAIL, however good it reads. Quote both and rewrite it in this event's own words. This is
+    how a channel ends up with three videos that open identically.
+12c. REGISTER - HARD GATE. Read every line aloud in your head with one listener in mind: a
+    45-year-old with a job and a demat account who manages their own money and takes it seriously.
+    Two directions fail, and you must check both.
+    TOO HARD: quote every word that listener would follow only after a pause. Each one is a toll
+    charged to them, and each is a FAIL - give the plainer word. This is about DIFFICULTY, not about
+    which language: "sales", "margin" and "promoter" stay in English precisely because translating
+    them would make it harder.
+    TOO CHEAP: quote every line that would sound at home in match commentary or a reaction video
+    rather than in a serious conversation about money.
+    THE TEST THAT ACTUALLY DISCRIMINATES: would this word survive an editor at Moneycontrol or the
+    Economic Times reporting the same fact? The Indian business press is plain and Hindi-friendly
+    without ever being street - that is precisely this channel's register, so it is the reference
+    to judge against. Do not ask whether the word is vivid. Vivid is not the question.
+    THE SECOND TELL, AND IT CATCHES WHAT THE FIRST ONE MISSES: if a phrase describes the MANNER of
+    a loss rather than its SIZE - how spectacularly the money went rather than how much of it went -
+    it is doing entertainment work, and that is a FAIL no matter how natural it sounds. The size is
+    the story. Check every verb sitting next to a rupee figure.
+    WHEN YOU FIX A CHEAP LINE, DO NOT SIMPLY SOFTEN IT - a flat line is a different failure, not a
+    fix. Keep the fact and rebuild the force from the three things that carry it honestly: the size
+    of the number, a shorter sentence, or the contrast with what everyone assumed. Quote the line
+    before and after, and say which of the three you used.
+13a. THE OPENING'S LANGUAGE - CHECK IT SEPARATELY, BEFORE THE WHOLE-SCRIPT COUNT. The hook is the
+    one place a pure-English passage survives a whole-script average, and it is the worst place to
+    lose the audience. Read the opening on its own: if the three beats are in English rather than
+    the channel's Hinglish, that is a FAIL however well they are written. This happens when a beat
+    gets lifted from the architecture, which is an English working document - the facts in it are
+    right, its wording is not the script. Quote the opening and re-say it in the channel's register,
+    keeping every name, number and date exactly as it stands.
 13. LANGUAGE MIX - HINGLISH, HARD GATE. Count the sentences carrying Hindi. Fewer than half is a FAIL:
     the script has drifted into English and loses a large part of the audience. Quote the longest run
     of consecutive pure-English sentences and rewrite it in the channel's register - Hindi narration,
@@ -742,6 +985,13 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
 PART 2 - THE REWRITE
 Now apply every FAIL you just recorded, with the smallest edits that fix them.
 Preserve the thesis, the beat order, the voice and the natural Hinglish.
+
+BEFORE YOU EMIT, RE-READ YOUR OWN OPENING AGAINST GATES 11 AND 13a.
+Your rewrite is not checked by anything downstream, and cutting a hook to length is the single most
+reliable way to break it: squeezed lines drift into English, the turn gets compressed into something
+vague, and an attribution gets dropped as though it were padding. Read your own three beats back.
+Are they still Hinglish? Is the turn still a specific reversal rather than "market is wrong"? Did
+you keep any source attribution the draft had? Fix your own output before you hand it over.
 Do not add new arguments, companies or numbers - with ONE exception, because it is not an addition:
 if the script DROPPED a company or a figure that the approved architecture contains, put it back,
 using the architecture's own wording. A dropped cast member is the commonest failure here and the
@@ -753,11 +1003,17 @@ Where two fixes conflict, prefer the one protecting factual accuracy.
 
 OUTPUT
 CRITIQUE
-All 16 gates with PASS/FAIL, evidence and the required fix.
+All 22 gates with PASS/FAIL, evidence and the required fix.
 
 REVISED SCRIPT
 The complete revised script, ready for the final pass, in the same shape as the draft
-(the spoken script, then CTA OPTIONS: Debate / Engagement / Channel).
+(the spoken script, then HOOK OPTIONS, then CTA OPTIONS: Debate / Engagement / Channel).
+
+THE HOOK OPTIONS BLOCK IS PART OF THE DELIVERABLE AND IT KEEPS GETTING LOST HERE.
+The creator picks the opening from those three; a revision that hands back only the inline hook has
+taken the choice away and is incomplete, whatever else it fixed. Carry all three through - corrected
+for any gate that failed, since a fault in the inline hook is usually in the other two as well - and
+keep them differing in WHICH BEAT LEADS. If the draft had no block, write one.
 End with: WORD COUNT: <n>
 
 CHANGE LOG
@@ -767,7 +1023,10 @@ Stage 6: Finalizer
 EMITS: FINAL_SCRIPT_PACKAGE
 PROVIDER: manual
 ---
-You are one stage of a scripting pipeline. Answer this in a SINGLE message.
+You are STAGE 6 OF 7 of a scripting pipeline: Finalizer.
+The stage before you produced what is quoted below; the stage after you takes your answer as its
+input. Do that job and only that job - do not write the next stage's output, and do not redo the
+last one. Answer in a SINGLE message.
 
 HOW YOUR ANSWER IS USED: I copy your whole reply with the copy button on this chat and paste it
 straight into my tool. So put EVERYTHING in one message - no "shall I continue?", no splitting across
@@ -804,6 +1063,10 @@ no technical analysis; no unsupported claim; conclusion answers the opening.
 OUTPUT
 FINAL SCRIPT
 The spoken script only. No commentary inside the narration.
+
+HOOK OPTIONS
+All three from the script stage, verbatim, numbered. The creator picks one at
+the mic, so do not silently drop the two that are not in the script body.
 
 CTA OPTIONS
 Debate / Engagement / Channel.
@@ -869,7 +1132,10 @@ EMITS: FACT_CHECK_RESULT
 PROVIDER: manual
 OPTIONAL: yes
 ---
-You are one stage of a scripting pipeline. Answer this in a SINGLE message.
+You are STAGE 7 OF 7 of a scripting pipeline: Fact-check Handoff (paste into Gemini or Claude).
+The stage before you produced what is quoted below; the stage after you takes your answer as its
+input. Do that job and only that job - do not write the next stage's output, and do not redo the
+last one. Answer in a SINGLE message.
 
 HOW YOUR ANSWER IS USED: I copy your whole reply with the copy button on this chat and paste it
 straight into my tool. So put EVERYTHING in one message - no "shall I continue?", no splitting across
