@@ -467,6 +467,18 @@ Count from the first word to the end of beat 2. Over {{HOOK_WORDS}}? Cut until i
 adjectives and context - never the names, never the offer. A hook that lands the offer in fifteen
 words beats a beautifully written paragraph that gets skipped at second nine.
 
+THE GROUND - ONLY IF THE VIEWER CANNOT FOLLOW WITHOUT IT
+Most stock videos need none of this: the viewer knows what the company sells. Skip it by default.
+
+You need it only when the argument turns on something they cannot be assumed to know - an unfamiliar
+segment, an odd revenue model, a subsidiary that matters more than the parent. Then you get
+{{GROUND_WORDS}} WORDS - {{GROUND_SECONDS}} seconds - and no more:
+  1. WHERE THE MONEY ACTUALLY COMES FROM - the segment that drives profit, not the famous one.
+  2. WHAT MOVES THAT NUMBER - the one variable the thesis rests on.
+Then name the trigger again and get into the escalation.
+Never open a stock video with a company profile. If the viewer needed to know what they sell, the
+hook has already failed.
+
 BODY - THE ESCALATION
 Deliver the approved reasons as a rising sequence. You may number them aloud if it suits the argument
 ("pehla reason...", "the second thing that happened...") - this format works well for this channel.
@@ -662,6 +674,13 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
       "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first
       sentence and rewrite it to open on the number, the date, the name or the contradiction.
     Judge the count, not the vibe. "It feels punchy" is not a pass.
+11c. THE GROUND. If the script explains the event or the business before its first company beat,
+    count those words too. Over {{GROUND_WORDS}} is a FAIL - cut history, politics, second and
+    third numbers, and anything that is not "what changed / whose money / which P&L line".
+    Also FAIL the opposite: if the explanation is there but a viewer still could not say in one
+    line what the event is, it was brief rather than clear - name the missing link.
+    And FAIL it for existing at all when it was not needed: if the first company beat would land
+    without it, that passage is the most expensive filler in the script.
 11b. THE VERDICT SHAPE - HARD GATE. The closing block must run conditions-first: (a) the two or three
     specific things that would change the picture and force a re-analysis, THEN (b) the directional
     call - per company where there is a cast - and (c) the one thing to watch. FAIL if the script

@@ -619,9 +619,34 @@ Count from the first word to the end of beat 2. Over {{HOOK_WORDS}}? Cut until i
 adjectives and context - never the names, never the offer. A hook that lands the offer in fifteen
 words beats a beautifully written paragraph that gets skipped at second nine.
 
-THE EVENT SECTION - KEEP IT TIGHT
-You have at most about 60 seconds to establish what happened and why it matters. Say only what the
-company argument needs. The moment the viewer understands the mechanism, move to the companies.
+THE GROUND - ONLY IF THE VIEWER CANNOT FOLLOW WITHOUT IT
+Some events explain themselves; some genuinely need the ground set before any company beat lands.
+Decide honestly, then commit either way.
+
+ASK ONE QUESTION: can a viewer who has never heard of this event follow the FIRST company beat
+without extra explanation? If yes, skip this entirely and go straight to the companies. A recap
+nobody needed is the most common way these scripts lose their first minute.
+
+IF THEY CANNOT, YOU GET {{GROUND_WORDS}} WORDS - {{GROUND_SECONDS}} SECONDS. Three sentences, in
+this order, because this is the shortest path from "what is this" to "why it touches my money":
+  1. WHAT CHANGED - the rule, the price, the rate. One sentence, one number, the one that sizes it.
+  2. WHOSE MONEY IT TOUCHES - which side pays, which side collects. Not "the sector" - the actual
+     party: merchants, lenders, importers, the bank at the other end.
+  3. HOW IT SHOWS UP IN PROFIT - the line on the P&L that moves, in plain words.
+Then stop and name your first company. That sentence is the bridge; do not wander back into policy.
+
+CONCISE IS NOT THE SAME AS COMPRESSED
+{{GROUND_WORDS}} words is enough to be genuinely understood if you spend them on the chain above and
+nothing else. It is not enough for history, for who proposed what, for the political argument, or
+for three numbers where one will do. If you find yourself explaining a second rule to explain the
+first, you have picked the wrong first sentence.
+  Good, and complete, in three sentences:
+    "Ab tak UPI par merchant ko kuch nahi dena padta tha. Pandrah October se, do hazaar se upar ke
+     har payment par woh 0.4% dega - aur woh paisa jaata hai bank aur payment app ke paas. Matlab
+     merchant ke liye naya kharcha, aur in companies ke liye naya revenue."
+
+THE TEST: after these three sentences, could the viewer explain the event to a friend in one line?
+If not, you have been brief instead of clear, and those are not the same thing.
 
 BODY - ONE COMPANY AT A TIME, ESCALATING
 This is a multi-stock video, so the body is organised BY COMPANY, not by theme. Take the approved cast
@@ -852,6 +877,13 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
       "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first
       sentence and rewrite it to open on the number, the date, the name or the contradiction.
     Judge the count, not the vibe. "It feels punchy" is not a pass.
+11c. THE GROUND. If the script explains the event or the business before its first company beat,
+    count those words too. Over {{GROUND_WORDS}} is a FAIL - cut history, politics, second and
+    third numbers, and anything that is not "what changed / whose money / which P&L line".
+    Also FAIL the opposite: if the explanation is there but a viewer still could not say in one
+    line what the event is, it was brief rather than clear - name the missing link.
+    And FAIL it for existing at all when it was not needed: if the first company beat would land
+    without it, that passage is the most expensive filler in the script.
 11b. THE VERDICT SHAPE - HARD GATE. The closing block must run conditions-first: (a) the two or three
     specific things that would change the picture and force a re-analysis, THEN (b) the directional
     call - per company where there is a cast - and (c) the one thing to watch. FAIL if the script
