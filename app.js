@@ -9,7 +9,7 @@
  */
 const WORKFLOWS = ['optimal-sneakleshow-v1-event-manual', 'optimal-sneakleshow-v1-stock-manual'];
 const LS_RUNS = 'ss.runs.v1';
-const KEEP_RUNS = 3;   // "my last few ideas", not an archive
+const KEEP_RUNS = 7;   // "my last week of ideas", not an archive
 
 const $ = id => document.getElementById(id);
 const esc = s => (s || '').replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
@@ -282,8 +282,25 @@ function saveRun(run) {
   let runs = loadRuns().filter(r => r.id !== run.id);
   runs.unshift(run);
   runs = runs.slice(0, KEEP_RUNS);          // last few ideas, not an archive
-  try { localStorage.setItem(LS_RUNS, JSON.stringify(runs)); }
-  catch (e) { note('Could not save this run locally — storage may be full or blocked.'); }
+  for (const r of runs) delete r.outputs;   // legacy: a byte-for-byte duplicate of ctx, never read
+
+  // A phone gives this site about 5MB, and one research-heavy run is a few hundred KB of pasted
+  // text, so a full history CAN hit the wall. Dropping the run just finished is the worst possible
+  // answer: shed the OLDEST instead, and keep shedding until the newest fits.
+  const wanted = runs.length;
+  while (runs.length) {
+    try {
+      localStorage.setItem(LS_RUNS, JSON.stringify(runs));
+      if (runs.length < wanted)
+        note(`Storage was full, so the ${wanted - runs.length} oldest run(s) were dropped to make `
+           + `room for this one.`);
+      paintRuns();
+      return;
+    } catch (e) {
+      runs.pop();
+    }
+  }
+  note('Could not save this run — this phone has no storage left for this site, or is blocking it.');
   paintRuns();
 }
 function dropRun(id) {
@@ -296,7 +313,7 @@ let WFS = {}, RUN = null;
 
 function newRun(wfId, topic, inputs) {
   return { id: 'r' + Date.now().toString(36), wf: wfId, topic, inputs,
-           ctx: Object.assign({}, inputs), stage: 0, outputs: {}, pendingChoice: null,
+           ctx: Object.assign({}, inputs), stage: 0, pendingChoice: null,
            updated: Date.now() };
 }
 
@@ -324,7 +341,6 @@ function buildPrompt(stage) {
 function submitPaste(value) {
   const stage = curStage();
   RUN.ctx[stage.emits[0]] = value;
-  RUN.outputs[stage.number] = value;
   // a stage emitting several variables ships them in a ===FIELDS=== block
   if (stage.emits.length > 1) {
     const f = extractBlock(value, '===FIELDS===') || {};
@@ -559,5 +575,7 @@ window.SS = {
   get prompt() { return window.__prompt; },
   get parts() { return window.__parts; },
   runs: loadRuns,
+  save: saveRun,
+  key: LS_RUNS,
   reset() { localStorage.removeItem(LS_RUNS); RUN = null; render(); },
 };
