@@ -619,6 +619,23 @@ Count from the first word to the end of beat 2. Over {{HOOK_WORDS}}? Cut until i
 adjectives and context - never the names, never the offer. A hook that lands the offer in fifteen
 words beats a beautifully written paragraph that gets skipped at second nine.
 
+THE QUALIFIER - ONE LINE, STRAIGHT AFTER THE HOOK
+Before any backdrop, tell the viewer this is theirs. One sentence, about fifteen words, naming the
+stocks again:
+  "Agar aapke portfolio mein in mein se koi hai - ya aap inhe watch kar rahe hain - toh yeh video
+   aapke liye hai."
+It repeats the names (which is why it earns its place), and it turns a passive viewer into an
+invested one: that is my stock.
+
+BUT A QUALIFIER IS ALSO A DIS-QUALIFIER, SO WIDEN IT
+"If you hold X, this is for you" tells everyone who does not hold X that it is not. That is the
+wrong trade for a channel that wants to grow. Always give the second door in the same breath - the
+sector, the watchlist, or the mechanism:
+  "...aur agar aap in mein se kuch nahi rakhte, toh bhi rukiye - yeh wahi mechanism hai jo is poore
+   sector par lagega."
+VARY IT. Three videos opening on the same construction is the next "Dekhiye". Sometimes lead with
+the holding, sometimes with the sector, sometimes with the question they are already asking.
+
 THE GROUND - ONLY IF THE VIEWER CANNOT FOLLOW WITHOUT IT
 Some events explain themselves; some genuinely need the ground set before any company beat lands.
 Decide honestly, then commit either way.
@@ -877,11 +894,17 @@ Judge each gate PASS or FAIL, with evidence quoted from the script:
       "Doston", "Namaskar", "So", "Aaj hum baat karenge", "In today's video". Quote the first
       sentence and rewrite it to open on the number, the date, the name or the contradiction.
     Judge the count, not the vibe. "It feels punchy" is not a pass.
+11b2. THE QUALIFIER. Straight after the hook, is there one line telling the viewer this video is
+    theirs, naming the stocks again? FAIL if it is missing. FAIL ALSO if it only speaks to holders -
+    "agar aapke paas X hai" with no second door for someone who holds none of them is a
+    dis-qualifier, and it sends away the viewer you were trying to win. It must widen: the sector,
+    the watchlist, or the mechanism. FAIL if it runs past about twenty words.
 11c. THE GROUND. If the script explains the event or the business before its first company beat,
     count those words too. Over {{GROUND_WORDS}} is a FAIL - cut history, politics, second and
     third numbers, and anything that is not "what changed / whose money / which P&L line".
     Also FAIL the opposite: if the explanation is there but a viewer still could not say in one
-    line what the event is, it was brief rather than clear - name the missing link.
+    line what the event is, it was brief rather than clear - name the missing link. Concise is not
+    compressed: the test is whether they could repeat it to a friend, not whether it was short.
     And FAIL it for existing at all when it was not needed: if the first company beat would land
     without it, that passage is the most expensive filler in the script.
 11b. THE VERDICT SHAPE - HARD GATE. The closing block must run conditions-first: (a) the two or three
