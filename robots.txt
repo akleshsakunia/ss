@@ -1,0 +1,3 @@
+# Reachable by anyone with the link, but not something to be found by searching.
+User-agent: *
+Disallow: /
