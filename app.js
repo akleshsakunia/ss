@@ -513,7 +513,15 @@ async function boot() {
   if (saved.length && saved[0].stage < (WFS[saved[0].wf] || { stages: [] }).stages.length) RUN = saved[0];
   render();
 }
-window.addEventListener('DOMContentLoaded', boot);
+// publish_static.sh rewrites the placeholder as it copies, so the live page always says which
+// build it is. Served straight from docs/ the placeholder survives, which is the honest answer.
+function stampBuild() {
+  const el = $('build');
+  if (!el) return;
+  el.textContent = el.textContent.includes('__BUILD')
+    ? 'local build - not published' : 'build ' + el.textContent;
+}
+window.addEventListener('DOMContentLoaded', () => { stampBuild(); boot(); });
 
 /* A handle for the browser console - `let` at script top level does not attach to window, and on a
  * phone the console is the only way in when something looks wrong. Read-only views of the state. */
