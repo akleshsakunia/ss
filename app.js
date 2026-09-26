@@ -418,15 +418,50 @@ function startNew() {
 
 function resetToForm() { RUN = null; render(); }
 
-function pickWorkflow() {
+function pickWorkflow(prefill) {
   const w = WFS[$('wf').value];
   if (!w) return;
   $('wfdesc').textContent = w.description || '';
-  $('inputs').innerHTML = w.inputs.map(i => `
+  const pre = prefill || {};
+  $('inputs').innerHTML = w.inputs.map(i => {
+    const v = esc(pre[i.name] || '');
+    return `
     <label>${esc(i.label)} ${i.required ? '<span class="req">*</span>' : '<span class="muted">(optional)</span>'}</label>
     ${i.kind === 'text'
-      ? `<input class="in" data-n="${i.name}" data-req="${i.required ? 1 : 0}" data-label="${esc(i.label)}">`
-      : `<textarea class="in" data-n="${i.name}" data-req="${i.required ? 1 : 0}" data-label="${esc(i.label)}"></textarea>`}`).join('');
+      ? `<input class="in" data-n="${i.name}" data-req="${i.required ? 1 : 0}" data-label="${esc(i.label)}" value="${v}">`
+      : `<textarea class="in" data-n="${i.name}" data-req="${i.required ? 1 : 0}" data-label="${esc(i.label)}">${v}</textarea>`}`;
+  }).join('');
+}
+
+/* A story arrives on the phone as a link, not as text to copy into four separate boxes. The radar
+   builds one of these per story; tapping it opens this page with the form already filled, so the
+   path from "that looks interesting" to "stage 1 prompt" is a single tap.
+
+   Everything rides in the hash rather than the query string, so it never leaves the browser - no
+   referrer, nothing in a server log, and the fragment is not sent on the wire at all.
+       #new?wf=...-event-manual&topic=gst-mdr&EVENT=...&SUGGESTED_STOCKS=... */
+function applyDeepLink() {
+  const h = location.hash || '';
+  if (!h.startsWith('#new?')) return false;
+  let p;
+  try { p = new URLSearchParams(h.slice(5)); } catch (e) { return false; }
+
+  // Accept a partial workflow id so the link survives the workflow files being renamed.
+  const want = (p.get('wf') || '').toLowerCase();
+  const id = Object.keys(WFS).find(k => k.toLowerCase() === want)
+          || Object.keys(WFS).find(k => want && k.toLowerCase().includes(want));
+  if (id) $('wf').value = id;
+
+  const pre = {};
+  for (const [k, v] of p) if (!['wf', 'topic'].includes(k)) pre[k.toUpperCase()] = v;
+  pickWorkflow(pre);
+  if (p.get('topic')) $('topic').value = p.get('topic');
+
+  // Drop the parameters from the address bar: a reload should not silently refill a form the user
+  // has since edited, and the link often carries a whole headline.
+  history.replaceState(null, '', location.pathname + location.search);
+  note('Filled in from Market Radar. Check it, then Start.');
+  return true;
 }
 
 function render() {
@@ -553,6 +588,8 @@ async function boot() {
   $('wf').innerHTML = picked.map(id =>
     `<option value="${id}">${esc(WFS[id].name.replace(/^Optimal Sneakleshow v1 - /, ''))}</option>`).join('');
   pickWorkflow();
+  // A deep link is an explicit "start this one", so it wins over resuming the last run.
+  if (applyDeepLink()) { RUN = null; render(); return; }
   const saved = loadRuns();
   if (saved.length && saved[0].stage < (WFS[saved[0].wf] || { stages: [] }).stages.length) RUN = saved[0];
   render();
