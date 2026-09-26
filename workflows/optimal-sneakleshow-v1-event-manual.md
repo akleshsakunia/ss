@@ -4,7 +4,7 @@ INPUT: EVENT | The event (policy change, global fallout, sector under pressure, 
 INPUT: SUGGESTED_STOCKS | Stocks to steer the research towards - comma separated, optional | optional | text
 INPUT: USER_QUESTION | Optional angle you already suspect | optional | textarea
 INPUT: USER_NOTES | Optional notes for the scriptwriter | optional | textarea
-INPUT: SOURCE_LINKS | Article link(s) this came from - the researcher reads these first | optional | textarea
+INPUT: SOURCE_LINKS | Article link(s) this came from, and what they said - the researcher reads these first | optional | textarea
 
 
 Stage 1: Research Brief (run it in any chat)
@@ -44,8 +44,11 @@ Two reasons this matters. It stops the research drifting to a neighbouring story
 rank better in search, which is how a script ends up about something the creator never intended.
 And the reporting usually names companies the headline did not, which is exactly the breadth this
 format needs.
-If a link will not open, say so plainly and carry on with search - do not invent what it said.
-If the line is empty, ignore all of this and research the event from scratch.
+Any text after the links under "AS REPORTED" is the summary as published. Use it only if a link
+will not open - a paywall, a dead redirect - so you still know what was reported rather than
+working from the headline alone. It is a fallback, never a substitute for reading the source.
+If a link will not open and there is no such text, say so plainly and carry on with search - do
+not invent what it said. If the whole field is empty, research the event from scratch.
 
 STOCKS I WANT COVERED: {{SUGGESTED_STOCKS}}
 If that line names companies, treat them as a STEER, not a conclusion. Research each one properly and

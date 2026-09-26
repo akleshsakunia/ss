@@ -3,7 +3,7 @@ DESCRIPTION: Every stage hands you a prompt. Run it in Gemini, Claude or ChatGPT
 INPUT: STOCK | Stock / company (e.g. Reliance Industries) | required | text
 INPUT: USER_QUESTION | Optional angle you already suspect | optional | textarea
 INPUT: USER_NOTES | Optional notes for the scriptwriter | optional | textarea
-INPUT: SOURCE_LINKS | Article link(s) this came from - the researcher reads these first | optional | textarea
+INPUT: SOURCE_LINKS | Article link(s) this came from, and what they said - the researcher reads these first | optional | textarea
 
 
 Stage 1: Research Brief (run it in any chat)
@@ -44,8 +44,11 @@ ran, what was actually claimed. Pull the concrete details out of them first, the
 your own searching.
 It stops the research drifting to a neighbouring story that happens to rank better in search,
 which is how a script ends up about something the creator never intended.
-If a link will not open, say so plainly and carry on with search - do not invent what it said.
-If the line is empty, ignore all of this and research the company from scratch.
+Any text after the links under "AS REPORTED" is the summary as published. Use it only if a link
+will not open, so you still know what was reported rather than working from the headline alone.
+It is a fallback, never a substitute for reading the source.
+If a link will not open and there is no such text, say so plainly and carry on with search - do
+not invent what it said. If the whole field is empty, research the company from scratch.
 
 
 SCOPE
