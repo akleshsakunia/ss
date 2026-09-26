@@ -65,6 +65,13 @@
     .opt:hover{border-color:var(--accent)}
   }
   a.ext{color:var(--accent2);font-size:12px;text-decoration:none;padding:6px 2px}
+  /* Links under a field that holds a URL. Comfortably tappable rather than a thin line of text:
+     this is how you get from "make script" to actually reading the article. */
+  .fieldlinks{display:flex;flex-wrap:wrap;gap:var(--s2);margin:6px 0 2px}
+  .fieldlinks a.ext{border:1px solid var(--line);border-radius:var(--r-pill);
+        padding:7px 12px;min-height:34px;display:inline-flex;align-items:center;
+        background:var(--panel2);max-width:100%;overflow-wrap:anywhere}
+  @media (hover:hover){.fieldlinks a.ext:hover{border-color:var(--accent2)}}
 
   .wrap{padding:var(--s3);max-width:1100px;margin:0 auto}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);
@@ -193,7 +200,7 @@
       Kept on this device only. Nothing you type or paste leaves this page.
     </div>
   </details>
-  <footer class="build" id="build">27 Sep 2026, 01:47 IST · 4c97dd4</footer>
+  <footer class="build" id="build">27 Sep 2026, 02:07 IST · c7dd16d</footer>
 </div>
 
 <script src="app.js"></script>

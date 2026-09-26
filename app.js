@@ -434,6 +434,30 @@ function pickWorkflow(prefill) {
       ? `<input class="in" data-n="${i.name}" data-req="${i.required ? 1 : 0}" data-label="${esc(i.label)}" value="${v}">`
       : `<textarea class="in" data-n="${i.name}" data-req="${i.required ? 1 : 0}" data-label="${esc(i.label)}">${v}</textarea>`}`;
   }).join('');
+  $('inputs').oninput = showFieldLinks;
+  showFieldLinks();
+}
+
+/* Any field holding a URL gets a real link under it. Market Radar sends you here from a headline,
+   so the article itself is one field away but not openable - a textarea is text, not a link. This
+   makes it tappable, and it updates as you type, so a link pasted by hand behaves the same. */
+function showFieldLinks() {
+  document.querySelectorAll('.fieldlinks').forEach(e => e.remove());
+  document.querySelectorAll('.in').forEach(el => {
+    const urls = [...new Set((el.value || '').match(/https?:\/\/[^\s"'<>)\]]+/g) || [])];
+    if (!urls.length) return;
+    const box = document.createElement('div');
+    box.className = 'fieldlinks';
+    box.innerHTML = urls.slice(0, 4).map((u, i) => {
+      let label = 'Open the article';
+      try {
+        const h = new URL(u).hostname.replace(/^www\./, '');
+        label = urls.length > 1 ? `Open ${h}` : `Open the article — ${h}`;
+      } catch (e) { /* not a parseable URL; the generic label is fine */ }
+      return `<a class="ext" href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`;
+    }).join('');
+    el.insertAdjacentElement('afterend', box);
+  });
 }
 
 /* A story arrives on the phone as a link, not as text to copy into four separate boxes. The radar
@@ -459,6 +483,7 @@ function applyDeepLink() {
   for (const [k, v] of p) if (!['wf', 'topic'].includes(k)) pre[k.toUpperCase()] = v;
   pickWorkflow(pre);
   if (p.get('topic')) $('topic').value = p.get('topic');
+  showFieldLinks();
 
   // Drop the parameters from the address bar: a reload should not silently refill a form the user
   // has since edited, and the link often carries a whole headline.
