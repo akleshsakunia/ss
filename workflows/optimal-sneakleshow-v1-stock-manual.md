@@ -3,6 +3,7 @@ DESCRIPTION: Every stage hands you a prompt. Run it in Gemini, Claude or ChatGPT
 INPUT: STOCK | Stock / company (e.g. Reliance Industries) | required | text
 INPUT: USER_QUESTION | Optional angle you already suspect | optional | textarea
 INPUT: USER_NOTES | Optional notes for the scriptwriter | optional | textarea
+INPUT: SOURCE_LINKS | Article link(s) this came from - the researcher reads these first | optional | textarea
 
 
 Stage 1: Research Brief (run it in any chat)
@@ -36,6 +37,16 @@ happened is history, not a catalyst.
 SUBJECT
 COMPANY: {{STOCK}}
 OPTIONAL ANGLE I ALREADY SUSPECT: {{USER_QUESTION}}
+SOURCE ARTICLES: {{SOURCE_LINKS}}
+IF THAT LINE HAS URLs, OPEN THEM BEFORE ANY OTHER SEARCH. They are the specific reporting this
+idea came from, so they define what the creator actually saw - the figures quoted, the date it
+ran, what was actually claimed. Pull the concrete details out of them first, then widen out with
+your own searching.
+It stops the research drifting to a neighbouring story that happens to rank better in search,
+which is how a script ends up about something the creator never intended.
+If a link will not open, say so plainly and carry on with search - do not invent what it said.
+If the line is empty, ignore all of this and research the company from scratch.
+
 
 SCOPE
 This is a COMPANY investigation, not a sector explainer. Industry or policy context matters only where

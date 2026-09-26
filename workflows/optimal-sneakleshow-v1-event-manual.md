@@ -4,6 +4,7 @@ INPUT: EVENT | The event (policy change, global fallout, sector under pressure, 
 INPUT: SUGGESTED_STOCKS | Stocks to steer the research towards - comma separated, optional | optional | text
 INPUT: USER_QUESTION | Optional angle you already suspect | optional | textarea
 INPUT: USER_NOTES | Optional notes for the scriptwriter | optional | textarea
+INPUT: SOURCE_LINKS | Article link(s) this came from - the researcher reads these first | optional | textarea
 
 
 Stage 1: Research Brief (run it in any chat)
@@ -34,6 +35,18 @@ happened is history, not a catalyst.
 
 EVENT: {{EVENT}}
 OPTIONAL ANGLE I ALREADY SUSPECT: {{USER_QUESTION}}
+SOURCE ARTICLES: {{SOURCE_LINKS}}
+IF THAT LINE HAS URLs, OPEN THEM BEFORE ANY OTHER SEARCH. They are the specific reporting this
+idea came from, so they define what the creator actually saw - the companies named there, the
+figures quoted, the date it ran. Pull the concrete details out of them first: who, what, how much,
+when, and which listed names appear. Then widen out with your own searching.
+Two reasons this matters. It stops the research drifting to a neighbouring story that happens to
+rank better in search, which is how a script ends up about something the creator never intended.
+And the reporting usually names companies the headline did not, which is exactly the breadth this
+format needs.
+If a link will not open, say so plainly and carry on with search - do not invent what it said.
+If the line is empty, ignore all of this and research the event from scratch.
+
 STOCKS I WANT COVERED: {{SUGGESTED_STOCKS}}
 If that line names companies, treat them as a STEER, not a conclusion. Research each one properly and
 put it in whichever group the evidence supports - including "wrongly assumed to be affected" if it
