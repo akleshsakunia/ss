@@ -7,7 +7,10 @@
  * What is not here, because it needs a server: the auto and hybrid workflows (they call Gemini) and
  * the deterministic number check (it fetches pages, which CORS blocks from a browser).
  */
-const WORKFLOWS = ['optimal-sneakleshow-v1-event-manual', 'optimal-sneakleshow-v1-stock-manual'];
+// Article first: it is the one you reach by tapping a link, so it is the common way in.
+const WORKFLOWS = ['optimal-sneakleshow-v1-article-manual',
+                   'optimal-sneakleshow-v1-event-manual',
+                   'optimal-sneakleshow-v1-stock-manual'];
 const LS_RUNS = 'ss.runs.v1';
 const KEEP_RUNS = 7;   // "my last week of ideas", not an archive
 
