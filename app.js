@@ -158,12 +158,14 @@ const FIELDS_CONTRACT = `
 
 ---
 MACHINE BLOCK (required, in addition to everything above)
+Your full response above is carried forward whole as %p - do NOT summarise it anywhere, and do not
+repeat it below. The block below is only for the short derived values.
 After your full response, output this exact block last:
 ===FIELDS===
 \`\`\`json
 {%s}
 \`\`\`
-Fill each key with that section's content as plain text.`;
+Each of these is a few lines at most. Plain text.`;
 
 /* ============ reading a pasted reply, whatever chat it came from (port of engine.py) ============ */
 function extractBlock(text, marker) {
@@ -242,9 +244,12 @@ function optionsFromText(text, limit = 6) {
 function spokenScript(pkg) {
   if (!pkg) return '';
   let t = pkg.replace(/^#+ *Finalizer\s*\n/, '').trim();
-  const m = t.match(/^[ \t]*(?:#+\s*)?(?:FINAL|REVISED)\s+SCRIPT[ \t]*$/mi);
+  // the scriptwriter heads its draft with a bare "SCRIPT" and ends on "WRITER FLAG"
+  // "### PART 2 - REVISED SCRIPT" is a shape the editor actually emits; missing it drops the whole
+  // English critique into what gets measured and shown as the script.
+  const m = t.match(/^[ \t]*(?:#+\s*)?(?:PART\s+\d+\s*[-–—:]\s*)?(?:(?:FINAL|REVISED)\s+)?SCRIPT[ \t]*$/mi);
   if (m) t = t.slice(m.index + m[0].length);
-  const end = t.match(/^[ \t]*(?:#+\s*)?(?:CTA OPTIONS|TITLE OPTIONS|THUMBNAIL TEXT|PRODUCTION NOTES|CHANGE LOG|REVIEW FLAGS|RUN FLAGS|SOURCES|WORD COUNT)\b/mi);
+  const end = t.match(/^[ \t]*(?:#+\s*)?(?:HOOK OPTIONS|CTA OPTIONS|TITLE OPTIONS|THUMBNAIL TEXT|PRODUCTION NOTES|CHANGE LOG|READ-ALOUD DONE|REVIEW FLAGS|RUN FLAGS|SOURCES|WRITER FLAG|WORD COUNT)\b/mi);
   if (end) t = t.slice(0, end.index);
   return t.trim();
 }
@@ -324,6 +329,90 @@ function newRun(wfId, topic, inputs) {
 function curWf() { return WFS[RUN.wf]; }
 function curStage() { const w = curWf(); return RUN.stage < w.stages.length ? w.stages[RUN.stage] : null; }
 
+/* ---- read-aloud check: the JS twin of prosody.py ----------------------------
+   The finalizer cannot count its own sentences - on Flash-Lite six of seven self-reported counts
+   came back wrong - so it gets handed the over-long ones already quoted. Unlike the number check
+   this needs no network, so the browser build runs the real thing rather than an apology.
+   Keep in step with prosody.py; the thresholds live in both files. */
+const BREATH = 25, SHORT = 8, SHORT_SHARE = 0.25;
+const TICS = ['iska matlab yeh hai ki', 'ab aate hain', 'jab aap', 'market yeh maan raha hai',
+              'yeh ek structural', 'ke liye yeh ek'];
+
+function repeatedPhrases(text, n = 4, keep = 6) {
+  const toks = (text.toLowerCase().match(/[a-z']+/g) || []), counts = new Map();
+  for (let i = 0; i + n <= toks.length; i++) {
+    const g = toks.slice(i, i + n).join(' ');
+    counts.set(g, (counts.get(g) || 0) + 1);
+  }
+  const low = text.toLowerCase(), out = [];
+  for (const [g, c] of [...counts].sort((a, b) => b[1] - a[1])) {
+    if (c < 2 || out.some(([k]) => k.includes(g))) continue;
+    const words = g.split(' ');
+    let i = toks.findIndex((_, j) => toks.slice(j, j + n).join(' ') === g);
+    let phrase = g, count = c;
+    while (i >= 0 && i + phrase.split(' ').length < toks.length) {
+      const longer = toks.slice(i, i + phrase.split(' ').length + 1).join(' ');
+      const c2 = low.split(longer).length - 1;
+      if (c2 < 2) break;
+      phrase = longer; count = c2;
+    }
+    out.push([phrase, count]);
+    if (out.length >= keep) break;
+  }
+  return out;
+}
+
+function prosodyCheck(script, limit = 14) {
+  if (!script || !script.trim()) return '';
+  const spoken = spokenScript(script).replace(/\[[^\]]*\]/g, ' ');
+  // Split after . ! ? without a lookbehind: a regex literal Safari cannot parse takes the whole
+  // file down at load, and this runs on phones. Splitting on a capturing group keeps the
+  // punctuation so it can be glued back on, and only breaks where whitespace follows - so "0.4%"
+  // stays one token.
+  const parts = spoken.split(/([.!?])\s+/), sents = [];
+  for (let i = 0; i < parts.length; i += 2) {
+    const s = (parts[i] + (parts[i + 1] || '')).trim();
+    if (s) sents.push(s);
+  }
+  if (!sents.length) return '';
+  const lens = sents.map(s => s.split(/\s+/).length), n = sents.length;
+  const words = lens.reduce((a, b) => a + b, 0);
+  const over = sents.map((s, i) => [lens[i], s]).filter(([l]) => l > BREATH).sort((a, b) => b[0] - a[0]);
+  const short = lens.filter(l => l < SHORT).length;
+  const needShort = Math.max(0, Math.round(n * SHORT_SHARE) - short);
+  const addr = (spoken.match(/\baap(?:ke|ko|se|ka|ki|ne)?\b/gi) || []).length
+             - (spoken.match(/\bjab aap\b[^.?!]*?\bkarte hain/gi) || []).length;
+  const obj = (spoken.match(/\b(?:Ab aap|Aap yeh soch|Yeh sawal aap|Aap poochh|Aap kahenge)/gi) || []).length;
+  const verdict = /\bmera view\b|\bmujhe lagta\b|\bmain track\b/i.test(spoken);
+  const digits = [...new Set([...spoken.matchAll(/(?:^|[^QqA-Za-z\d])(\d[\d,]*(?:\.\d+)?\s?(?:%|percent|crore|lakh)?)/g)]
+    .map(m => m[1].trim()))];
+  const rep = repeatedPhrases(spoken);
+  const tics = TICS.map(t => [t, (spoken.toLowerCase().split(t).length - 1)])
+    .filter(([t, c]) => c > 1 && !rep.some(([p]) => p.includes(t)));
+
+  const L = ['Counted mechanically on the script above - these are facts about it, not opinions.',
+    `${n} sentences, ${words} words, median ${[...lens].sort((a, b) => a - b)[n >> 1]} words `
+    + `(a person talking runs 11-14).`, ''];
+  L.push(`BREATH TEST - ${over.length} sentence(s) over ${BREATH} words. Break every one:`);
+  if (!over.length) L.push('  none - this part is already clean.');
+  over.slice(0, limit).forEach(([l, s]) => L.push(`  [${l}w] ${s}`));
+  if (over.length > limit) L.push(`  ...and ${over.length - limit} more over ${BREATH} words - break those too.`);
+  L.push('', `SHORT SENTENCES - ${short} of ${n} run under ${SHORT} words `
+    + `(${Math.floor(100 * short / n)}%, target ${SHORT_SHARE * 100}%).`);
+  L.push(needShort ? `  Create ${needShort} more by breaking the long ones above.` : '  Target met.');
+  L.push('', `THE VIEWER - addressed ${addr} time(s) after filler constructions are discounted `
+    + `(target 8+). Objections voiced: ${obj} (target 2-3). First-person verdict present: `
+    + `${verdict ? 'yes' : 'NO - the close needs one'}.`);
+  if (digits.length) L.push('', 'DIGITS IN THE SPOKEN TEXT - each is a stumble at the mic. Say them in '
+    + 'words, or round them and move the exact figure into [ON SCREEN: ...]:', '  ' + digits.slice(0, 20).join(', '));
+  if (rep.length || tics.length) {
+    L.push('', 'REPEATED PHRASING - the second use is what makes beats sound templated:');
+    rep.forEach(([p, c]) => L.push(`  ${c}x  "${p}"`));
+    tics.forEach(([t, c]) => L.push(`  ${c}x  "${t}"  (known tic for this channel)`));
+  }
+  return L.join('\n');
+}
+
 function buildPrompt(stage) {
   const wf = curWf();
   const ctx = Object.assign({}, RUN.ctx, lengthTargets(), nowContext(), {
@@ -332,22 +421,32 @@ function buildPrompt(stage) {
     // invent a clean bill of health for figures nothing verified.
     NUMBER_CHECK: 'No automated number check ran (this is the browser-only build, which cannot fetch '
       + 'pages). Treat every figure as unverified: list each one and say what to check.',
+    // this one needs no network, so the browser runs the real check
+    PROSODY_CHECK: prosodyCheck(RUN.ctx.REVISED_SCRIPT || RUN.ctx.SCRIPT_DRAFT || ''),
     SOURCES_USED: references(RUN.ctx), REVIEW_FLAGS: 'None - manual run.',
   });
   let p = resolve(stage.prompt, ctx, wf.aliases);
   if (stage.gate && ['pick-one', 'pick-many'].includes(stage.gate.mode)) p += OPTIONS_CONTRACT;
   if (stage.emits.length > 1)
-    p += FIELDS_CONTRACT.replace('%s', stage.emits.map(e => `"${e}": ""`).join(', '));
+    // never ask for the first emit as a field - it is the whole document (see engine.py)
+    p += FIELDS_CONTRACT.replace('%p', stage.emits[0])
+                        .replace('%s', stage.emits.slice(1).map(e => `"${e}": ""`).join(', '));
   return p;
 }
 
 function submitPaste(value) {
   const stage = curStage();
   RUN.ctx[stage.emits[0]] = value;
+  // Measure what actually came back. The stage cannot measure itself - across five runs it claimed
+  // "LEFT UNDONE: None" every time while leaving three to eight sentences over the breath limit -
+  // so this number, not the model's, is the one shown to the creator.
+  if ((stage.prompt || '').includes('{{PROSODY_CHECK}}')) RUN.ctx.PROSODY_AFTER = prosodyCheck(value);
   // a stage emitting several variables ships them in a ===FIELDS=== block
   if (stage.emits.length > 1) {
+    // the first emit is the whole pasted reply; only the derived values come from the block
     const f = extractBlock(value, '===FIELDS===') || {};
-    for (const e of stage.emits) RUN.ctx[e] = (typeof f[e] === 'string' && f[e].trim()) ? f[e] : value;
+    RUN.ctx[stage.emits[0]] = value;
+    for (const e of stage.emits.slice(1)) RUN.ctx[e] = (typeof f[e] === 'string' && f[e].trim()) ? f[e] : '';
   }
   // a pick-one stage is only half done at the paste: chain into the choice
   if (stage.gate && ['pick-one', 'pick-many'].includes(stage.gate.mode)) {
@@ -518,7 +617,18 @@ function render() {
     $('stepcard').classList.add('hide');
     $('donecard').classList.remove('hide');
     $('doneTitle').textContent = RUN.topic;
-    $('doneMeta').textContent = `${words} words ≈ ${(words / (+$('wpm').value || 135)).toFixed(1)} min`;
+    // The breath-test number is measured here, not taken from the script's own READ-ALOUD DONE
+    // block - that block reported "LEFT UNDONE: None" in five runs out of five while leaving
+    // three to eight sentences too long to say in one breath.
+    const over = (String(RUN.ctx.PROSODY_AFTER || '').match(/BREATH TEST - (\d+)/) || [])[1];
+    // A shortfall is worth showing: the writer may not pad, so a short script means the
+    // architecture ran out of evidence rather than that the script was written badly.
+    const lt = lengthTargets(), lo = +lt.TARGET_MIN, hi = +lt.TARGET_MAX;
+    const short = lo && words < lo ? ` · ${lo - words} words short of ${lo} — the architecture ran `
+      + `out of evidence, not the writing` : (hi && words > hi ? ` · ${words - hi} over` : '');
+    $('doneMeta').textContent = `${words} words ≈ ${(words / (+$('wpm').value || 135)).toFixed(1)} min`
+      + (over === undefined ? '' : ` · ${over} sentence${over === '1' ? '' : 's'} still over 25 words`)
+      + short;
     $('scriptbody').innerHTML = md(script);
     window.__parts = {
       script, package: pkg,
