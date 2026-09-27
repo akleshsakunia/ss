@@ -359,6 +359,26 @@ remove the least load-bearing explanation, the second-weakest reason, and any se
 a point already made. A tight script that lands inside the range beats a padded one every time.
 State the final word count on its own line at the very end, as: WORD COUNT: <n>
 
+LENGTH COMES FROM EVIDENCE, NEVER FROM WORDS. THIS IS THE RULE THAT DECIDES BOTH.
+The viewer was promised {{VIDEO_MINUTES}} minutes and a short video is a miss, so do not shrug at
+the floor. But there is exactly one honest way to reach it: SAY MORE OF WHAT THE ARCHITECTURE
+ALREADY PROVED. Never by lengthening sentences, never by restating a point in new words, never by
+explaining something the argument does not need.
+So before you decide you are finished, go back to the architecture and check you have spent
+everything in it:
+  - Every figure in the NUMBER BUDGET - said, and with its consequence. That is the commonest thing
+    left on the table, and each one is worth two sentences of real substance.
+  - Every approved reason - the already-happened fact behind it, its number, and what it does to
+    the business.
+  - The CONSENSUS VS OUR READ finding - in the hook AND paid off in the body.
+  - The two or three falsifiers, stated as conditions.
+If all of that is in and the script still runs under {{TARGET_MIN}}, that is your answer: hand it
+over as it stands. Do not pad, do not stretch a sentence, and do not stop or hold back the script
+over it. A short script is never a reason to withhold one - it means this story carried less
+evidence than {{VIDEO_MINUTES}} minutes, which is worth knowing and is measured for the creator
+elsewhere. You do not need to flag it, count it, or comment on it. Write the best script the
+architecture supports and hand it over.
+
 
 EXAMPLES IN THIS BRIEF ARE SHAPES, NOT SCRIPTS
 Every quoted line here exists to show a STRUCTURE - where the number goes, how long the sentence
@@ -513,12 +533,51 @@ the argument genuinely needs it.
 
 WRITING FOR SPEECH - AND THE RHYTHM OF IT
 Concrete nouns. Strong verbs. Active voice. Natural emphasis.
-VARY THE SENTENCE LENGTH DELIBERATELY. This is the most under-used tool in a spoken script. A
-four-word sentence landing after a twenty-word one is what makes writing listenable; three
-medium-length sentences in a row is what makes it drone, even when each one is correct and
-interesting on its own. Put the short sentence exactly where the point lands.
-  "Margin wahi ka wahi raha - 7.97%, teesre quarter se. Koi improvement nahi. Aur yahan se
-   management ke paas do hi raaste bachte hain, dono mehnge."
+
+THESE FOUR RULES ARE THE WHOLE OF IT, AND THEY ARE RULES, NOT ADVICE. Every draft this pipeline has
+produced came out at a median sentence of sixteen to twenty-one words with six to twelve per cent of
+its sentences short - which is the shape of a written report, not of somebody talking. Nothing
+downstream fixes that: the editor and the finalizer hand on almost exactly the rhythm they are
+given, so whatever you do here is what gets recorded.
+They are deliberately positional. Do not try to hold a statistic in your head across nine hundred
+words - just satisfy each rule where you are, reason by reason.
+
+  R1. NO TWO SENTENCES OVER TWENTY WORDS MAY SIT NEXT TO EACH OTHER.
+      Look only at the sentence you just wrote and the one before it. Two long ones together is
+      where a listener drops out, and it is the commonest shape in these drafts.
+  R2. EVERY REASON ENDS ON A SENTENCE UNDER EIGHT WORDS.
+      The last thing said about a reason is the thing remembered, so it is short and it is the
+      finding. Not a summary, not a transition - the point itself, with nothing hanging off it.
+  R3. NO SENTENCE RUNS PAST TWENTY-FIVE WORDS. EVER.
+      That is the limit of one breath. Past it the creator audibly runs out, and the sentence has
+      to be read twice. If one gets there, the break is already sitting in it as a comma or an
+      "aur" - cut it there.
+  R4. NEVER TWO NUMBERS IN ONE SENTENCE.
+      The second one is not heard. Give it its own sentence or move it to [ON SCREEN: ...].
+
+MORE SENTENCES, NOT FEWER WORDS. THIS IS THE TRAP, AND IT HAS ALREADY CAUGHT THIS STAGE.
+The four rules pull against the length target, and followed carelessly they bring the script in
+hundreds of words short - four of five drafts written to them landed under {{TARGET_MIN}}, one at
+529 words against a target of {{TARGET_WORDS}}, and every one believed it had written
+{{TARGET_WORDS}}. You cannot count your own words; do not try.
+The cause is mechanical. Left alone this stage writes about forty-five sentences whatever else it
+is told, roughly one per thought, so shortening each sentence simply drops the word count with it.
+SO COUNT SENTENCES PER REASON, WHICH IS A NUMBER SMALL ENOUGH TO HOLD. Each reason runs NINE TO
+TWELVE sentences. Count them as you finish each one. A reason of five or six is not a tight reason -
+it is one missing its number, its mechanism or its consequence, and you will feel the script run
+short at the end because of it. Nine short sentences carry MORE than five long ones did, not less.
+
+DO NOT SATISFY R2 BY CHOPPING A LONG SENTENCE IN HALF. That gives two eighteen-word sentences and
+changes nothing - it is exactly what happens when this is left to a later stage to fix, and it is
+why the short-sentence count never moves. A short sentence is WRITTEN short: you say the finding in
+five words and let the sentence before it carry the explanation.
+  Flat - one twenty-nine-word sentence, the point buried in the middle of it:
+    "Iska asar yeh hoga ki company ka margin profile jo abhi tak flat chal raha tha, wahan pressure
+     aayega kyunki raw material cost badh rahi hai aur pricing power bilkul nahi hai."
+  Spoken - the explanation runs long, the finding lands short:
+    "Ab tak margin flat chal raha tha. Raw material mehnga ho raha hai, aur daam badha nahi sakte.
+     Matlab seedha margin par chot."
+
 LOOK AT THE SHAPE OF THE PARAGRAPH, not only at the words. If every line runs to about the same
 length, the rhythm is flat and you lose people in the middle of the video. Uneven is correct.
 This is also the cheapest source of force you have. A short sentence carries weight that no amount
@@ -600,6 +659,11 @@ these spends the viewer's attention on the creator at the exact moment they are 
 this is about their money. Turn each one around: "aap teen minute mein jaan jaayenge", "aapke
 portfolio par asar yeh hai", "jo sawaal aap abhi soch rahe hain".
 Applies hardest in the opening and the qualifier, and holds through the body.
+ONCE PER REASON, AT LEAST. Every reason has one sentence that speaks to the viewer directly - what
+this does to their holding, or the question they are already carrying. Across six scripts the word
+"aap" appeared once per script, in scripts written for one person watching alone.
+"Jab aap iske business ko dekhte hain" does NOT count. That is a filler construction with "aap"
+sitting inside it, and it addresses nobody.
 THE ONE EXCEPTION IS THE VERDICT. "Mera view yeh hai" is exactly right, because an opinion someone
 is willing to put their name to is what they came for. First person for the judgement, second
 person for everything else.
@@ -711,10 +775,31 @@ Make the next question emerge from what was just discovered, rather than announc
 to the next point". One line, at every handover. The same script with clean re-hooks and the same
 script with "ab aage badhte hain" have completely different retention curves.
 
-NUMBERS
-Use only the numbers in the architecture's number budget.
-Explain what each number means. Never stack several numbers in one breath.
-Use a comparison only when it genuinely clarifies scale.
+SAY THE OBJECTION OUT LOUD - IN TWO OF THE REASONS
+Not one script out of six has done this, and it is the clearest difference between somebody talking
+TO a viewer and somebody reading AT one. The speaker knows what you are about to say, and says it
+first.
+Pick the two reasons a sensible holder would argue with - and there always are two, because every
+claim worth making has an obvious objection sitting next to it. Put that objection in the viewer's
+mouth, then answer it in the very next sentence:
+  "Ab aap poochhoge - margin itna gir raha hai toh stock upar kyun ja raha hai? Kyunki market abhi
+   tak pichhle saal ke order book par chal raha hai."
+The usual ones: this is already priced in, management has guided for it, the last two quarters were
+worse and nothing happened, everyone in the sector has the same problem.
+IT HAS TO BE AN OBJECTION A REAL HOLDER WOULD RAISE. A soft one you can knock over is worse than
+none - same failure as a strawman in the hook's turn, and just as obvious at full speed.
+IF THE ARCHITECTURE GIVES YOU NOTHING TO ANSWER IT WITH, DO NOT RAISE IT AND DO NOT INVENT AN
+ANSWER. Pick a different reason. An open question you cannot close loses more than it wins.
+
+NUMBERS - THE BUDGET IS A FLOOR AS WELL AS A CEILING
+Only the numbers in the architecture's number budget - and, just as binding, ALL of the ones in it
+that bear on the company. Those figures are the whole reason this is analysis rather than
+commentary, and scripts out of this pipeline have been using one or two of eight. A budget figure
+you skipped is evidence the viewer was owed.
+Each one gets said AND gets its consequence - what it means for the business, in money or in plain
+outcome. A figure with no consequence attached is a statistic; a figure with one is an argument.
+Explain what each number means. Never stack several numbers in one breath. Never two in one
+sentence. Use a comparison only when it genuinely clarifies scale.
 
 THE WOW BEAT
 The consensus-vs-our-read section must land as the turn of the video. Make the gap between what the
@@ -1068,6 +1153,111 @@ Length: {{TARGET_MIN}}-{{TARGET_MAX}} spoken words - ENFORCE THIS. If the incomi
 before doing anything else (drop repetition, over-explanation, then the weakest reason).
 If corrections make it shorter, that is fine - never pad. End with: WORD COUNT: <n>
 
+THE READ-ALOUD PASS - DO THIS LAST, AFTER THE LENGTH CUT, AND WORK THE LIST
+Everything above this line was about whether the script is TRUE. This is about whether it sounds
+like one person talking to another. It is the last work you do on the words, because a script that
+survives a fact check and still reads like a report is a script nobody finishes.
+
+ASSUME IT IS BROKEN, BECAUSE IT MEASURABLY IS. The last six scripts out of this pipeline all passed
+their fact gates and all read as written prose spoken aloud:
+  median sentence           19 words      a person talking runs 11-14
+  sentences under 8 words   6-11%         a person talking runs 25-35%
+  sentences over 25 words   11 to 16      a person talking has none
+  the viewer addressed      0-2 times     in an 850-word script written for one person
+  an objection said aloud   0 times       in all six
+
+YOU DO NOT HAVE TO FIND THE PROBLEMS. THEY HAVE ALREADY BEEN COUNTED FOR YOU:
+
+{{PROSODY_CHECK}}
+
+That block was produced by counting the script, not by reading it, so it is not a matter of taste
+and there is nothing in it to disagree with. Every sentence it quotes is one you have to break.
+Work down it item by item. A pass that changed three sentences did not happen.
+
+YOU MAY NOT CHANGE any company name, number, date, claim, verdict, beat order, or which
+reasons the script makes and in what order.
+YOU MAY ONLY break sentences, reorder clauses within a sentence, cut words, swap a connective, and
+add the two devices below. Breaking long sentences usually LOWERS the word count. That is fine.
+Never let it rise.
+THE HOOK OPTIONS ARE THE ONE EXEMPTION, AND ONLY PARTLY. They are already built to a fixed three
+sentences and {{HOOK_WORDS}} words, so breaking their sentences would break that spec. Apply rule 6
+to them - numbers as they will be said - and change nothing else about them.
+
+1. THE BREATH TEST - EVERY SENTENCE OVER 25 WORDS GETS BROKEN.
+   Say each one out loud in one breath. Over about 25 words you cannot, and the listener hears you
+   run out. Every one of them is quoted under BREATH TEST above with its word count - that list IS
+   the job, and none of those sentences may survive into your output in one piece.
+   The break is nearly always already sitting there as a comma, a dash, an "aur", a "lekin" or a
+   "jiska". Cut it there. Two sentences, sometimes three.
+   A sentence carrying two numbers is two sentences. Split it at the second number.
+
+2. ONE SENTENCE IN FOUR RUNS UNDER EIGHT WORDS.
+   SHORT SENTENCES above says how many more this script needs. Breaking the long ones in item 1
+   creates most of them for free.
+   And they do not go just anywhere. The short sentence lands ON the point, straight after the long
+   one that set it up. That contrast is the entire mechanism: four words after twenty is what makes
+   a script listenable, and three medium sentences in a row is what makes it drone even when every
+   one of them is correct.
+   The shape, not the words - this is a real before and after from a recent script:
+     BEFORE, 33 words, nothing lands:
+       "Iska asar yeh hoga ki unke payment business ka margin profile jo abhi tak flat chal raha
+        tha, wahan sudden operating leverage aayega - yani kharche wahi rahenge aur zyadatar naya
+        paisa seedha munafa ban kar aayega."
+     AFTER, 8 / 9 / 5:
+       "Ab tak yeh business flat chal raha tha. Naya paisa aayega, par kharche wahi ke wahi rahenge.
+        Matlab woh seedha profit hai."
+   Same facts, same length budget, and now there is somewhere for the point to land.
+
+3. SAY THE OBJECTION OUT LOUD - TWO OR THREE TIMES. THIS IS THE ONE THAT IS ALWAYS MISSING.
+   The reliable difference between somebody talking TO you and somebody reading AT you is that the
+   speaker knows what you are about to say, and says it first.
+   Find the two or three places a sensible holder would push back. There always are some, because
+   every claim worth making has an obvious objection sitting next to it. The usual ones: if the
+   exposure is that big why has the stock not moved, this is already priced in, the company itself
+   has said nothing, the last time a rule like this came in nothing happened.
+   Put it in the viewer's mouth immediately BEFORE you answer it, and answer it in the next sentence:
+     "Ab aap poochhoge - exposure itna bada hai toh stock gira kyun nahi? Kyunki notification
+      shukravaar shaam ko aaya, aur pehla full trading day abhi aaya hi nahi hai."
+   IT MUST BE AN OBJECTION A REAL HOLDER WOULD RAISE. A soft one you can knock over is worse than
+   none - it is the same failure as a strawman in the hook's turn and just as obvious at full speed.
+   IF YOU CANNOT ANSWER IT FROM MATERIAL ALREADY IN THE SCRIPT, DO NOT INVENT AN ANSWER AND DO NOT
+   RAISE IT. Pick a different objection. Opening a question you cannot close loses more than it wins.
+
+4. SPEAK TO THEM, NOT ABOUT THEM - AT LEAST EIGHT TIMES.
+   Across three recent scripts the word "aap" appeared twice, once, and not at all.
+   "Jab aap iske business ko dekhte hain" does NOT count. That is a filler construction with "aap"
+   sitting in it and it addresses nobody. What counts is a sentence about THEIR money, THEIR holding,
+   or the question THEY are already carrying: "aapke portfolio mein agar yeh hai", "aap yeh soch
+   rahe honge", "aapke liye iska matlab yeh hai", "yeh number aap khud dekh sakte hain".
+   Convert the impersonal sentences that are already about consequence - they are the cheapest ones
+   to turn round and they are usually the important ones.
+   THE VERDICT STAYS FIRST PERSON. "Mera view yeh hai" is what they came for, and only one of three
+   recent scripts had it at all. Check the close has exactly one.
+
+5. NO CONNECTIVE PHRASE TWICE.
+   These are already tics in this channel's output. The second and third use are what make four
+   reasons sound like one template run four times:
+     "iska matlab yeh hai ki", "ab aate hain ... par", "jab aap ... karte hain toh",
+     "market yeh maan raha hai", "yeh ek structural", "ke liye yeh ek"
+   THE HANDOVER IS THE WORST OF THEM. "Ab aate hain second naam par" announces the next company
+   instead of making the viewer want it, and it is the exact line the writer's brief exists to
+   prevent. Close the beat on its finding, then open the next on what that finding leaves open:
+     "...toh margin ka issue itna hi tha. Lekin jo cheez isse zyada mehngi padne wali hai, woh
+   abhi tak kisi ne notice nahi ki."
+   Every handover, not only the first.
+
+6. WRITE EVERY NUMBER THE WAY IT WILL BE SAID.
+   The creator reads this off a screen at the mic, so a bare digit mid-sentence is a stumble: "is
+   2,000 threshold ke upar" has to be decoded while reading.
+   - Write it as spoken: "do hazaar", "pandrah October", "chaalis percent".
+   - Where a figure carries more precision than a mouth can, ROUND IT IN SPEECH and move the exact
+     figure on screen. "7.97%" becomes "aath percent ke aas-paas" with [ON SCREEN: 7.97%] beside it.
+     Nothing is lost - the precision goes where it is actually readable, and the viewer sees the
+     exact number while hearing the scale.
+   - THE EXCEPTION: when the number IS the claim it stays exact in speech. A 0.4% MDR rate that the
+     whole video is about gets said in full. A margin quoted as evidence for a claim does not.
+   - Never two numbers in one spoken sentence.
+
 FINAL SILENT CHECK
 Central claim clear; opening concrete and audience-targeted; NO disclaimer written;
 reasons are already-happened facts in escalating order; at least three-quarters company-level;
@@ -1077,6 +1267,27 @@ no technical analysis; no unsupported claim; conclusion answers the opening.
 OUTPUT
 FINAL SCRIPT
 The spoken script only. No commentary inside the narration.
+End it with WORD COUNT: <n>, then the block below.
+
+READ-ALOUD DONE
+Mandatory, every run, immediately after WORD COUNT.
+DO NOT RECOUNT THE SCRIPT. You are bad at it - a previous version of this stage reported zero
+sentences over 25 words when four remained, and a longest sentence of 24 when the real one ran to
+31. A wrong count is worse than an admitted miss, because it tells the creator the pass succeeded.
+Instead, tick off the worklist you were given. One line per item, in its order:
+  BREATH: <how many of the quoted sentences you broke> of <how many were quoted>
+  SHORT: created <n> of the <n> asked for
+  OBJECTIONS: <quote the opening words of each one you added>
+  VIEWER: <quote two of the sentences you turned round to address them>
+  DIGITS: <the ones you converted, or "none flagged">
+  REPEATED: <the phrasings you replaced, or "none flagged">
+  LEFT UNDONE: <anything on the list you could not do, and why>
+THIS BLOCK NEVER HOLDS UP THE SCRIPT. It is a note to the creator, not a gate: however many items
+you left undone, you still output the complete package. There is nothing here you can fail.
+LEFT UNDONE IS NOT A FAILURE AND IT IS NOT OPTIONAL. Some sentences genuinely cannot be broken
+without losing a fact, and some objections have no answer inside the script - rule 3 tells you to
+drop those rather than invent one. Say so plainly. An honest miss gets fixed at the mic; a silent
+one gets recorded.
 
 HOOK OPTIONS
 All three from the script stage, verbatim, numbered. The creator picks one at
