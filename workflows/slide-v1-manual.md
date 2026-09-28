@@ -177,6 +177,11 @@ HOW MANY. Aim for one usable image per slide - twelve to eighteen - rather than 
 deck is 13-16 slides and a photograph carries a slide better than a bullet list does. Spread them
 across the six categories rather than returning six portraits.
 
+You are hunting slightly blind here, and that is expected: you do not yet know what the slides
+will be. Cover the ground broadly. Stage 2 knows exactly which picture each slide needs and will
+search again for the specific gaps, so your job is breadth and a verified URL for each - not a
+perfect final selection.
+
 Prefer a large image: it is displayed across a 1920-wide frame, and a 200px thumbnail scaled up
 looks worse than no photograph at all. Use https:// URLs only.
 
@@ -255,14 +260,29 @@ MY ANGLE, IF I GAVE ONE: {{USER_ANGLE}}
 THE EVIDENCE FROM STAGE 1
 {{RESEARCH}}
 
-WHICH OF ITS IMAGES ACTUALLY LOAD - measured by the tool, not claimed by anyone
+WHICH OF STAGE 1's IMAGES ACTUALLY LOAD - measured by loading each one, not claimed by anyone
 {{IMAGE_CHECK}}
-Use only the LIVE ones on a VISUAL line. If that report lists dead URLs and I have not already
-pasted replacements above, search Google Images for those subjects yourself now, open the page
-each picture sits on, and take the file URL from it - then use the replacements you found. Where
-something genuinely has no findable picture, design that slide as a chart or a typographic
-treatment and say so on the VISUAL line. Never put a dead URL on a VISUAL line hoping it will
-work on the day: it has already been tested and it will not.
+
+YOU ARE THE SECOND AND LAST CHANCE ON PICTURES, SO TAKE IT SERIOUSLY
+Stage 1 hunted blind: it did not know what the slides would be. You do. You are deciding, right
+now, that slide 4 is about the minister and slide 9 is about the plant - so you are the only
+stage that can go and get exactly the right picture. Stage 3 cannot: it is writing the HTML and
+has nothing left to search with.
+
+  - Use the LIVE URLs above freely.
+  - For every DEAD one whose subject you still need, and for every slide where you want a
+    photograph stage 1 never found, SEARCH GOOGLE IMAGES YOURSELF NOW. Search for the specific
+    thing - "Adani Power Mundra thermal plant", not "power plant". OPEN THE PAGE the picture
+    sits on. Take the real file URL off that page: its og:image meta tag, or the src of the
+    <img> itself. That URL goes on the VISUAL line.
+  - A URL you did not read off a page is one you constructed, and constructed URLs do not exist.
+    Five out of five were invented that way on the first real deck. Everything you write here is
+    load-tested again before stage 3 runs, so inventing one costs you the search twice over.
+  - It must be the actual named thing, not a lookalike from another country.
+  - Where something genuinely has no findable picture, design that slide as a chart or a
+    typographic treatment and say so on the VISUAL line. That is a good outcome.
+  - Never put a URL listed DEAD above on a VISUAL line. It has already been tested; it will not
+    start working on the day.
 
 WHAT I AM ACTUALLY MAKING
 A 5 to 7 minute faceless video. No face, no camera - just this deck full-screen while I talk over it

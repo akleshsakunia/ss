@@ -528,11 +528,14 @@ async function submitPaste(value) {
   RUN.ctx[stage.emits[0]] = value;
   // Load-test any image URLs this stage produced, before the next stage is allowed to build on
   // them. Async, so it has to happen here rather than in buildPrompt, which is synchronous.
-  if (imageUrls(value).length && !RUN.ctx.IMAGE_CHECK_DONE) {
-    const urls = imageUrls(value);
+  //
+  // Runs after EVERY stage that emits image URLs, not just the first. Stage 1 hunts photographs
+  // and stage 2 replaces the dead ones for the slides it is actually writing, so both need
+  // measuring - and a URL invented at stage 2 would otherwise reach the deck unchecked.
+  const urls = imageUrls(value);
+  if (urls.length) {
     note(`Checking ${urls.length} image URL${urls.length > 1 ? 's' : ''}...`);
     RUN.ctx.IMAGE_CHECK = imageReport(await checkImages(urls));
-    RUN.ctx.IMAGE_CHECK_DONE = true;
     note('');
   }
   // Measure what actually came back. The stage cannot measure itself - across five runs it claimed
