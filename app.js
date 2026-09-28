@@ -8,9 +8,12 @@
  * the deterministic number check (it fetches pages, which CORS blocks from a browser).
  */
 // Article first: it is the one you reach by tapping a link, so it is the common way in.
+// slide-v1-manual is the odd one out - it ends in a presentation deck rather than a script, and
+// Market Radar's second channel links straight at it.
 const WORKFLOWS = ['optimal-sneakleshow-v1-article-manual',
                    'optimal-sneakleshow-v1-event-manual',
-                   'optimal-sneakleshow-v1-stock-manual'];
+                   'optimal-sneakleshow-v1-stock-manual',
+                   'slide-v1-manual'];
 const LS_RUNS = 'ss.runs.v1';
 const KEEP_RUNS = 7;   // "my last week of ideas", not an archive
 
