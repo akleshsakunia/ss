@@ -85,29 +85,60 @@ If the real data does not support that many charts, say so and give fewer honest
 this section with invented or interpolated figures - a fabricated chart is the one mistake that
 would destroy the channel's credibility, because a chart looks authoritative by default.
 
-=== 4. PEOPLE, COMPANIES AND PLACES - WITH PHOTOS ===
-Every named entity the deck will show: people, companies, ministries, regulators, plants, buildings.
-For each one, hunt an actual photograph. Give, in this shape:
+=== 4. THE VISUALS - PHOTOGRAPHS OF EVERYTHING IN THIS STORY ===
+Hunt a real photograph for every one of these. The ordering is by how much each one carries the
+video, and the first category is the one most often missed.
+
+  A. THE SUBJECT ITSELF - the product, service, object or system the story is actually about.
+     MANDATORY: at least two of these, and more if the story allows. A deck made only of
+     headshots and logos is a press-conference deck, not an explainer, and it is the single most
+     common way this format goes flat.
+     Concretely, for this channel: a UPI payment screen or a QR sticker on a shop counter; a metro
+     freight rake; the actual vehicle model; the drug's packaging or the plant that makes it; a
+     wafer or a fab floor; cement bags on a lorry; a policy document; a credit card terminal; a
+     warehouse; the machine that was ordered. Whatever the thing IS, show the thing.
+  B. THE DOCUMENT - the actual order, notice, filing, circular, judgement or press release the
+     story turns on. The first page or the header, as published. SEBI, PIB, the exchanges and the
+     courts all publish these openly, so they are easy to find and enormously credible on screen:
+     a viewer who sees the real letterhead stops doubting you. Skip only if there is no document.
+  C. PEOPLE - ministers, chief executives, regulators, judges, anyone named or quoted.
+  D. COMPANIES - the wordmark or logo, AND a real photograph of what they operate: the plant, the
+     store, the rig, the office. A logo alone is filler; a logo plus their actual site is a fact.
+  E. INSTITUTIONS AND PLACES - the ministry building, the Supreme Court, the RBI, the exchange.
+  F. THE SCENE - where this actually lands: the shop counter, the trading floor, the queue, the
+     loading bay. One or two of these are what make an abstract policy story feel real.
+
+For each one, give exactly this shape:
 
   NAME: exactly as it should appear on screen
-  ROLE: why they are in this story, in under twelve words
+  WHAT: which category above, and why it is in this story, in under fifteen words
   IMAGE: a DIRECT image URL - one that ends in .jpg, .jpeg, .png or .webp and loads on its own.
          Not a search results page, not an article page, not a Google Images link.
   SOURCE PAGE: the page you found it on
-  CONFIDENCE: HIGH if you opened the image URL itself and it is a stable host; MEDIUM if you are
-              confident of the host pattern but did not open it; LOW if you are guessing.
+  CONFIDENCE: HIGH if you opened the image URL itself; MEDIUM if you are confident of the host
+              pattern but did not open it; LOW if you are guessing.
   FALLBACK: what the slide should show if that image does not load - a name treatment, a logo
             wordmark, an icon, a chart. Always fill this in, even when confidence is HIGH.
 
-Where to hunt, in this order, because it decides whether the image still loads next week:
-  1. Wikimedia Commons (upload.wikimedia.org/...) - stable, freely licensed, and it has essentially
-     every sitting Indian minister, most listed-company logos and most public buildings.
-  2. The organisation's own site - press kit, investor-relations page, media room, PIB for ministers
-     and ministries, the exchange site for a listed company.
-  3. A news photograph, if neither of the above has one.
-Say plainly when you could not find a real photo for someone. A named FALLBACK is a good outcome; a
-made-up URL is not. Do not invent a URL that merely looks right - a broken image mid-recording is
-worse than a designed slide that never pretended to have a photo.
+WHICH SOURCE TO PREFER. The best photograph wins - this deck is recorded within hours of being
+built, so how long a URL survives is not a consideration. Take the news photograph of the actual
+event over a generic stock image or an old official portrait, every time: a picture of the thing
+that happened beats a picture of someone connected to it.
+Two real tie-breakers when images are otherwise equal:
+  - The deck is opened as a local file, so images are requested with no referrer and a null
+    origin. Wikimedia Commons, PIB, the exchanges and most company sites serve those fine; some
+    news CDNs refuse them. Where the choice is even, take the one that is not behind a news CDN.
+  - Prefer a large image. It is displayed across a 1920-wide frame, and a 200px thumbnail scaled
+    up looks worse than no photograph at all.
+
+WHY THE FALLBACK IS STILL MANDATORY, even at HIGH confidence and even recording the same day. The
+failure this guards against is not the URL going stale - it is hotlink protection: a referrer check
+or a CORS rule refusing the request the very first time it is made, which is exactly the condition
+a local file creates. That fails within a second of opening the deck, not within a week. So every
+entry gets a FALLBACK line.
+
+Say plainly when you could not find a real photograph for something. A named FALLBACK is a good
+outcome; a made-up URL is not. Never invent a URL that merely looks right.
 
 === 5. QUOTABLE LINES ===
 Exact words worth putting on screen in quotation marks: from a minister, a chief executive, a
@@ -196,7 +227,11 @@ VISUAL: <which photo from stage 1 section 4, with its URL - or which chart from 
          or NONE if this slide is typographic>
 SOURCE: <URL, if this slide quotes or cites anything - otherwise omit the line>
 
-TYPE is one of: COLD_OPEN, FACTS, TIMELINE, CHART, QUOTE, SPLIT, PORTRAIT, LIST, CLOSE.
+TYPE is one of: COLD_OPEN, FACTS, TIMELINE, CHART, QUOTE, SPLIT, PORTRAIT, SUBJECT, DOCUMENT,
+LIST, CLOSE.
+  SUBJECT   the thing itself fills the slide - the product, the vehicle, the screen, the plant
+  DOCUMENT  the actual order, notice or filing on screen with its key line pulled out beside it
+  PORTRAIT  a person
 
 THE RULES, and these are not negotiable
 
@@ -223,10 +258,16 @@ after the chart has drawn, never before.
 
 ONE CLAIM PER SLIDE. If a slide is making two arguments, it is two slides.
 
-USE THE PHOTOS. Stage 1 found real pictures of the people and companies in this story. A slide about
-a minister's decision should show that minister. Name which photo, by URL, on the VISUAL line. Where
-stage 1 marked an image LOW confidence, still use it, but say on the VISUAL line what the fallback
-should be.
+USE THE PHOTOS, AND SHOW THE THING. Stage 1 hunted real pictures in six categories: the subject
+itself, the document, people, companies, places, and the scene. Name which one you are using, by
+URL, on the VISUAL line. Where stage 1 marked an image LOW confidence, still use it, but say on
+that line what the fallback should be.
+Spend them deliberately. A slide about a minister's decision shows that minister - but the slide
+about WHAT WAS DECIDED shows the thing itself: the payment screen, the freight rake, the packaging,
+the terminal. Count them before you finish: if more than half your photo slides are headshots and
+logos, you have built a press-conference deck, and the fix is to reach for category A and B.
+Where stage 1 found the actual order, notice or judgement, put it on screen at the moment you state
+what it says. Real letterhead is the cheapest credibility in this format.
 
 AFTER THE SLIDE BLOCKS, add these three short sections:
 
@@ -350,8 +391,19 @@ Photographs are treated, not pasted raw:
   - a small caption underneath in secondary text: who it is, and the source
   - rounded to 8px, on the surface panel, never floating on the bare ground
 
-Portrait slides: photo on one side taking about 40% of the width, the content list on the other.
+PORTRAIT slides: photo on one side taking about 40% of the width, the content list on the other.
 Never a face centred behind text - it fights the words and flatters nobody.
+
+SUBJECT slides: the thing gets the room. Photo filling roughly 60-70% of the frame, bled to one
+edge rather than boxed in the middle, with the beats stacked in the remaining column. This is the
+slide type that stops the deck looking like a slide deck, so do not shrink it to a thumbnail
+beside a bullet list.
+
+DOCUMENT slides: the document image on one side, squared on a surface panel with a thin border and
+a soft drop shadow so it reads as a piece of paper rather than a screenshot. Beside it, the line
+that matters, pulled out large and in quotation marks, with the accent colour behind or beside the
+corresponding area of the document. Underneath, the issuing body and the date. This is the highest
+credibility-per-pixel slide available in this format - lay it out carefully.
 
 === CHARTS ===
 
@@ -405,6 +457,9 @@ Credibility in this format is almost entirely visible sourcing. Do not skip it.
   1. Every slide from the sequence is present, in order, with its beats in the given order.
   2. Every beat count is 7 or more - a slide with 3 beats leaves me talking over a static screen.
   3. Every <img> has an onerror fallback. Every one.
+  3b. At least two slides show the SUBJECT - the product, object or system the story is about -
+      rather than a person or a logo. If the sequence did not give you two, use the evidence's
+      category A images and say which slides you put them on.
   4. Every chart's numbers match the evidence exactly. Read them back against it.
   5. No paragraph of prose anywhere on any slide.
   6. All on-screen text is English.
