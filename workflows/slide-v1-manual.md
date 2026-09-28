@@ -596,8 +596,9 @@ care. Define every colour as a CSS custom property on :root and override the who
   Photos        the duotone or desaturation is re-tuned, not reused: raise brightness slightly and
                 keep contrast lower, because a news photo treated for a near-black ground looks
                 muddy on off-white. Scrims over images run from the LIGHT ground colour.
-  Charts        grid #E6E4DF, ticks and labels #5C6169, series in the darkened accent. Re-theme
-                Chart.js on toggle - redraw or update the chart options, do not leave it dark.
+  Charts        grid #E6E4DF, ticks and labels #5C6169, series in the darkened accent. Redraw
+                every chart on theme toggle - inline SVG/canvas will not re-colour itself, and a
+                chart left dark on a light slide is the most obvious way the toggle looks broken.
   Every text-on-colour pairing clears 4.5:1 in BOTH themes. Check the secondary text and the
   source lines especially; those are where it slips.
 
@@ -612,10 +613,50 @@ as a local file and storage can throw - and fall back to dark if it does.
   Space         generous. A 100px margin on all four sides of the 1920x1080 frame. Crowding is the
                 single fastest way to make a deck look cheap.
 
-FIXED DESIGN FRAME. Lay the deck out at exactly 1920x1080 and scale the whole thing to fit the
-window with a CSS transform, centred, letterboxed with the ground colour. Recompute the scale on
-resize. This guarantees the framing is identical whatever size my window is, which matters because I
-am recording it.
+=== THE PRESENTER FRAME - THE STAGE AND THE NOTES AREA ===
+
+The page has exactly two zones, and only the first is ever recorded. Get this right before you
+style anything, because it decides how large the video frame actually is.
+
+THE STAGE (recorded)
+  A fixed 1920x1080 box laid out at those exact pixel dimensions, overflow hidden, scaled with a
+  CSS transform, transform-origin: top center, pinned to the TOP of the window and horizontally
+  centred, on its own opaque background. This IS the video frame.
+  NOTHING that is not the slide may appear inside it: no notes, no slide number, no progress bar,
+  no controls, no hint text, no mode pill. Nothing outside the stage may be visible within it, and
+  nothing outside it may animate or flash while recording.
+
+  THE STAGE CHOOSES ITS SIZE FIRST, AND THE NOTES TAKE WHAT IS LEFT. Never the other way round.
+  Sizing the notes first and giving the stage the remainder is what produced a 960x540 recording
+  area on a 1889x1027 window - less than half the frame that fits.
+
+  SNAP TO A LADDER OF STANDARD 16:9 SIZES, largest that fits:
+      1920x1080, 1600x900, 1440x810, 1280x720, 1152x648, 1024x576, 960x540, 854x480, 640x360
+  Fits means: width <= viewport width, and height <= viewport height MINUS a 200px notes reserve.
+  If nothing fits, use 640x360. Recompute on resize.
+  Snapping to this ladder rather than to quarter steps matters: on that same 1889x1027 window,
+  0.25-steps gives 960x540 while the ladder gives 1440x810 - 2.25 times the recorded area. And
+  because these are standard sizes the crop region stays put, so the recorder region is typed
+  once and reused, which was the whole point of snapping at all.
+
+  Print the chosen size in the notes area as "recording area: 1440 x 810" so it can be copied
+  into the recorder.
+
+THE NOTES AREA (never recorded)
+  Below the stage, filling whatever viewport height remains, and it SCROLLS rather than pushing
+  the stage smaller. Visually quiet: muted ground, small type, no bright accents that would be
+  obvious if the crop slips. For the CURRENT slide only, it shows:
+    - the narration, verbatim, large enough to read while speaking. This is the important one.
+    - slide number and type, e.g. "7 / 17 - CHART"
+    - the loop state in plain production language - which question this slide opens, or which
+      earlier question it answers and from which slide ("closes the question opened on slide 6").
+      This language is BANNED inside the stage and wanted here.
+    - the source line for the current slide
+  Draw a 1px alignment rule at the exact top and bottom edge of the stage, in the notes area's
+  own colour and OUTSIDE the stage, so the crop can be lined up against it.
+
+  N hides the notes area entirely and re-runs the ladder against the full window height, for a
+  clean full-screen pass. On that same window it goes from 1440x810 to 1600x900.
 
 === THE MOTION - this is the part that decides whether it works ===
 
@@ -666,10 +707,10 @@ I only know once I am talking over it.
   Slide transition: 300ms cross-fade. No slide-in, no flip, no zoom. Anything more looks like a
   template.
 
-  A 3px accent progress bar pinned to the bottom edge, showing position through the whole deck.
-  A small "7 / 15" counter in the bottom right, in secondary text at 20px. Neither counts the
-  SOURCES or DISCLAIMER_CTA slides in its total - the progress bar should read full on the verdict,
-  because that is where the video ends.
+  NO progress bar and NO slide counter inside the stage. Both are production furniture and both
+  would be in the recording. They live in the notes area instead, where they are useful and
+  invisible to the viewer. H toggles the notes area's counter; it never puts anything on stage.
+  The mode pill from M is notes-area furniture too - it must not render on the stage.
 
 === IMAGES - real photographs, and they must never break on camera ===
 
@@ -704,20 +745,72 @@ credibility-per-pixel slide available in this format - lay it out carefully.
 
 === CHARTS ===
 
-Chart.js 4 from cdnjs. The deck already loads real photographs from the web, so a CDN costs nothing
-extra. Build every chart from the CHART blocks in the evidence - the exact labels, the exact values,
+Drawn with INLINE SVG or inline canvas. No chart library from a CDN. The photographs already
+depend on the network and sometimes fail; the charts carry the actual argument and must not. A
+hand-drawn bar chart that always renders beats a library chart that is occasionally missing, and
+in practice the inline ones have looked clean at 1080p. If a library is genuinely wanted, inline
+the whole of it in a <script> block - but that is rarely worth 200KB for six bars.
+
+Build every chart from the CHART blocks in the evidence - the exact labels, the exact values,
 the exact units. Do not smooth, extrapolate, or invent a data point to make a line prettier.
+Where a series carries projections as well as actuals, render the projected segment visually
+distinct - dashed, or hollow markers - and label it as projected.
 
   - Dark theme throughout: grid #24272C, ticks and labels #9BA1A8, no chart-area border
   - The emphasised series in the accent; other series in greys. Never a rainbow palette.
   - Legend off when there is one series. Data labels directly on the bars or points rather than a
     legend wherever it fits - a viewer should never have to look twice to read a chart.
-  - Animate on reveal, not on page load: initialise a chart when its beat is revealed, so I actually
-    see it draw. 900ms, easeOutQuart.
+  - Animate on reveal, not on page load: draw a chart when its beat is revealed, so I actually
+    see it build. About 900ms, eased out. With inline SVG this is a stroke-dashoffset or a width
+    transition; with canvas it is a requestAnimationFrame loop.
   - The chart's TITLE from the evidence goes above it as a claim, in the slide title position.
     The SO WHAT line arrives as the LAST beat on that slide, under the chart, in the accent.
   - Axis label with the unit. A number with no unit is a wrong number.
   - Currency in Indian convention: crore and lakh, and Indian digit grouping.
+
+=== RENDERING THE LOOPS - READ THIS BEFORE BUILDING ANY SLIDE ===
+
+The sequence opens questions early and answers them later. That structure is the spine of the
+video. The MACHINERY of it must be invisible on the stage.
+
+BANNED STRINGS. None of these may appear anywhere inside the stage:
+  "LOOP", "LOOP OPEN", "LOOP CLOSE", "LOOP CLOSED", "BIG LOOP", "THE BIG LOOP",
+  "CLOSING THE BIG LOOP", "OPEN:", "CLOSE:", "Q:", "A:", "Question:", "Answer:"
+This is screen-recorded. A viewer must never see production scaffolding. The same words in the
+NOTES area are wanted - that is where the presenter needs them.
+
+PARSING THE LOOP FIELD. Each slide block carries one. "-" means no loop element on that slide.
+Otherwise strip the leading OPEN BIG / CLOSE BIG / OPEN / CLOSE token, its colon and the
+whitespace after it. For a CLOSE or CLOSE BIG, split the remainder at the FIRST question mark:
+everything up to and including "?" is the QUESTION ECHO, everything after it is the ANSWER.
+
+TWO COMPONENTS, BUILT ONCE AND REUSED. Do not restyle them per slide, do not fold them into a
+slide's beat list, and do not position them inline.
+
+  QUESTION BOX - rendered wherever the LOOP field opens one
+    A distinct panel, separate from the beat list. Identical every time it appears: same width,
+    same margins, same vertical anchor (lower third), same radius, same type scale.
+    One restrained accent, treated as UNRESOLVED - OUTLINED, not filled.
+    Contains the question text and nothing else.
+
+  ANSWER BOX - rendered wherever the LOOP field closes one
+    The SAME component in its RESOLVED state. Same width, same margins, same vertical anchor,
+    same radius, same accent, so it is instantly recognisable as the box from the earlier slide.
+    Signal resolution by INVERTING THE FILL ONLY. Stacked inside it:
+      - the QUESTION ECHO, small and muted
+      - the ANSWER, dominant in weight and size
+
+  The big loop uses the same two components at hero scale: the question is the focal element of
+  slide 1, and the answer is the payoff of the verdict slide, outranking that slide's beat list.
+
+PAIRING DISCIPLINE. A question box and its answer box must read as the same object seen twice.
+Vary ONLY the fill between open and close - never the hue, width, radius or position. That
+recognition is the entire effect; a differently-shaped answer box reads as a new idea rather than
+a resolution.
+
+COVERAGE. Every slide whose LOOP field is not "-" must render its box. A previous build silently
+dropped two closes, leaving questions asked on screen and never answered. Count the LOOP fields
+in the sequence, count the boxes you rendered, and confirm the numbers match before finishing.
 
 === STOCKS ARE A DISTINCT VISUAL ELEMENT ===
 
@@ -815,7 +908,7 @@ SOURCES, last. It has two jobs and they pull in different directions, so do both
 === TECHNICAL ===
 
   - One .html file. Everything inline. It must work opened directly from the filesystem.
-  - Chart.js from https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js, pinned.
+  - No chart library. Charts are inline SVG or canvas, drawn by the deck's own code.
   - Google Fonts for Inter is fine, with a real system fallback stack so it still reads offline.
   - No other dependency. No bundler, no modules, no framework.
   - <title> is the story, so the recording's window title is not "Untitled".
@@ -853,5 +946,19 @@ SOURCES, last. It has two jobs and they pull in different directions, so do both
   14. Every quote and chart has a visible, linked source.
   15. DISCLAIMER + CTA is one slide and is SECOND to last.
   16. SOURCES is the last slide, and its copy button works, WITH the execCommand fallback.
+  17. THE STAGE SIZED ITSELF FIRST. Walk the code: does it pick the largest ladder size that
+      fits, and give the notes whatever is left - or does it size the notes first and hand the
+      stage the remainder? The second is the bug that produced a 960x540 recording area on a
+      window that had room for 1440x810. The notes area SCROLLS; it never shrinks the stage.
+  18. Not one banned string appears inside the stage. Search the rendered slide markup for
+      "LOOP", "OPEN:", "CLOSE:", "Q:", "A:". The notes area may use them freely.
+  19. Count the LOOP fields in the sequence that are not "-", count the question and answer
+      boxes you rendered, and confirm the two numbers match. A previous build silently dropped
+      two closes, leaving questions asked on screen and never answered.
+  20. Every question box and its answer box share width, margin, vertical anchor and radius, and
+      differ ONLY in fill.
+  21. Nothing but the slide is inside the stage: no counter, no progress bar, no mode pill, no
+      hint text. Those belong to the notes area.
+  22. Charts are inline SVG or canvas with no external library, and they redraw on theme toggle.
 
 Then tell me in one line that the Canvas artifact is ready to download. Nothing else.
