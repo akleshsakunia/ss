@@ -120,27 +120,37 @@ For each one, give exactly this shape:
   FALLBACK: what the slide should show if that image does not load - a name treatment, a logo
             wordmark, an icon, a chart. Always fill this in, even when confidence is HIGH.
 
-WHERE TO GET THEM, IN THIS ORDER. Read this carefully - the last real deck failed here completely.
+HOW TO FIND THEM: SEARCH GOOGLE IMAGES, THEN TAKE THE FILE URL OFF THE PAGE
 
-  1. THE og:image OF THE SOURCE ARTICLES, and of other news pieces about this exact story.
-     Open the article, read its <meta property="og:image" content="..."> tag, and use that URL.
-     This is the best route by a wide margin and it is the one to reach for first:
-       - It is a photograph OF THIS STORY. The actual plant, the actual minister at the actual
-         announcement - not a library picture of something similar.
-       - og:image exists so that third parties can fetch it for link previews. It is the one
-         image URL on a news page that is BUILT to be hotlinked, so it survives being loaded
-         from a local file with no referrer, which most other news images do not.
-       - These are the same photographs an image search would surface from those articles.
-     Take several: the source articles, plus two or three other outlets covering the same story.
-  2. THE ORGANISATION'S OWN SITE - press kit, media room, investor-relations deck, PIB for
-     ministers and ministries, the exchange for a listed company. Relevant and stable.
-  3. WIKIMEDIA COMMONS, and only through this exact URL form:
-         https://commons.wikimedia.org/wiki/Special:FilePath/FILE_NAME.jpg?width=1600
-     Never the upload.wikimedia.org/wikipedia/commons/X/YZ/... form. That path contains a hash
-     directory you cannot know, so writing one out is guessing, and guessing produces a 404.
-     Special:FilePath takes only the file name and redirects to wherever the file really is.
-     Commons is for ministers, logos, ministry buildings and landmarks - the things it genuinely
-     has. It is not where you find a picture of this week's event.
+This is the method, and the second half is the half that gets skipped. An image search result is
+not an image URL - it is a pointer to a page. So for every subject:
+
+  1. SEARCH GOOGLE IMAGES for it. Be specific: "Adani Power Mundra thermal plant", not "thermal
+     power plant". "Nirmala Sitharaman GST Council press conference", not "Indian minister".
+  2. OPEN THE PAGE the picture sits on.
+  3. TAKE THE REAL FILE URL FROM THAT PAGE - its <meta property="og:image" content="..."> tag,
+     or the src of the <img> itself. That is the URL that goes on the IMAGE line.
+
+Step 3 is not optional and it is why the last attempt produced nothing usable. A URL you did not
+read off a page is a URL you constructed, and a constructed URL does not exist.
+
+og:image is worth knowing about specifically: every news article has one, it is the photograph
+from that story, and it exists so third parties can fetch it for link previews - which makes it
+the one image on a news page that is BUILT to be hotlinked and therefore still loads from a local
+file with no referrer. Measured on the outlets this channel actually uses - LiveMint, Business
+Standard, Economic Times, Hindu BusinessLine - it worked on four out of four. Start with the
+source articles above, then widen to other coverage of the same story.
+
+Two other places worth checking once image search has been done:
+  - THE ORGANISATION'S OWN SITE - press kit, media room, investor-relations deck, PIB for
+    ministers and ministries, the exchange for a listed company.
+  - WIKIMEDIA COMMONS, and ONLY through this exact URL form:
+        https://commons.wikimedia.org/wiki/Special:FilePath/FILE_NAME.jpg?width=1600
+    Never the upload.wikimedia.org/wikipedia/commons/X/YZ/... form. That path contains a hash
+    directory you cannot know, so writing one out is guessing, and guessing produces a 404.
+    Special:FilePath needs only the file name and redirects to wherever the file really is.
+    Commons is good for ministers, logos, ministry buildings and landmarks. It is not where you
+    find a picture of this week's event.
 
 IT MUST BE A PICTURE OF THE ACTUAL THING. This is a hard rule and the last deck broke it: an
 Indian thermal-power story was illustrated with the turbine hall of Didcot A Power Station, in
@@ -159,8 +169,9 @@ plausible hash directories, none of which existed. The prompt already said not t
   - A URL you have not actually opened is CONFIDENCE: LOW. Say LOW. Do not say HIGH because the
     URL looks well-formed - that is exactly the mistake.
   - It is far better to return six images you opened than eighteen you assembled from memory.
-  - The tool load-tests every URL you give before the next stage runs, and hands the next stage
-    the list of dead ones. Inventing URLs does not save you work; it just wastes a stage.
+  - Every URL you give is load-tested by the tool before the next stage runs. Anything that fails
+    comes straight back to you in this same chat as a list, with a request to search again. So an
+    invented URL saves you nothing at all - it just means doing the search twice.
 
 HOW MANY. Aim for one usable image per slide - twelve to eighteen - rather than four or five. The
 deck is 13-16 slides and a photograph carries a slide better than a bullet list does. Spread them
@@ -246,10 +257,12 @@ THE EVIDENCE FROM STAGE 1
 
 WHICH OF ITS IMAGES ACTUALLY LOAD - measured by the tool, not claimed by anyone
 {{IMAGE_CHECK}}
-Use only the LIVE ones on a VISUAL line. Where something important has no live picture, either
-find a replacement now - the og:image of a news article about this story is the best bet, and it
-is built to be fetched by third parties - or design that slide as a chart or a typographic
-treatment and say so. Never put a dead URL on a VISUAL line hoping it will work on the day.
+Use only the LIVE ones on a VISUAL line. If that report lists dead URLs and I have not already
+pasted replacements above, search Google Images for those subjects yourself now, open the page
+each picture sits on, and take the file URL from it - then use the replacements you found. Where
+something genuinely has no findable picture, design that slide as a chart or a typographic
+treatment and say so on the VISUAL line. Never put a dead URL on a VISUAL line hoping it will
+work on the day: it has already been tested and it will not.
 
 WHAT I AM ACTUALLY MAKING
 A 5 to 7 minute faceless video. No face, no camera - just this deck full-screen while I talk over it

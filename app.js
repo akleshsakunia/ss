@@ -175,28 +175,45 @@ function checkImages(urls) {
   })));
 }
 
+/* The repair prompt. A dead-image list on its own is just bad news - this turns it into one paste
+ * that sends Gemini back to image search for the ones that failed. Shown in the app AND carried
+ * into the later stages, so the fix costs a copy rather than a restarted run. */
+function rehuntPrompt(dead) {
+  return [
+    'These image URLs you gave me do not load. I tested every one of them:',
+    ...dead.map(u => '  ' + u),
+    '',
+    'For each dead one, search GOOGLE IMAGES for that subject, open the page the picture actually',
+    'sits on, and take the real file URL from that page - the og:image meta tag, or the src of the',
+    '<img> itself. Give me a URL you have opened, not one you have reconstructed: every URL above',
+    'was assembled from memory rather than retrieved, which is why none of them exist.',
+    'It must be a picture of the actual named thing, not a lookalike from another country.',
+    'If a subject genuinely has no findable picture, say so and name a fallback treatment instead.',
+    'Reply with just the corrected IMAGE lines. Nothing else.',
+  ].join('\n');
+}
+
 function imageReport(results) {
   if (!results.length) {
     return 'IMAGE CHECK: the research contained no image URLs at all.\n'
       + 'Every visual in this deck will have to be a chart or a typographic treatment. If that is '
       + 'not what you want, go back and hunt photographs before continuing.';
   }
-  const dead = results.filter(r => !r.ok), live = results.filter(r => r.ok);
+  const dead = results.filter(r => !r.ok).map(r => r.url), live = results.filter(r => r.ok);
   const L = [`IMAGE CHECK - ${live.length} of ${results.length} image URLs actually load.`,
     'Measured by loading each one in the browser, not reported by a model. Treat it as fact.'];
-  if (dead.length) {
-    L.push('', 'DEAD - these do NOT load. Do not put them in the deck. Where one was the only',
-      'picture of something that matters, search for a replacement now and prefer the og:image',
-      'of a news article about this story, which is built to be fetched by third parties:');
-    dead.forEach(r => L.push('  ' + r.url));
-  }
   if (live.length) {
     L.push('', 'LIVE - confirmed to load, use these freely:');
     live.forEach(r => L.push('  ' + r.url));
   }
+  if (dead.length) {
+    L.push('', `DEAD - ${dead.length} of them. Never put these in an src attribute.`,
+      'To replace them, paste everything between the lines back into the SAME Gemini chat:',
+      '-'.repeat(78), rehuntPrompt(dead), '-'.repeat(78));
+  }
   if (!live.length) {
-    L.push('', 'NOT ONE of them loads. Do not proceed as though the deck has photographs - either',
-      'find real ones now, or design every slide to work without them.');
+    L.push('', 'NOT ONE of them loads. Do not proceed as though the deck has photographs - get',
+      'replacements with the block above, or design every slide to work without them.');
   }
   return L.join('\n');
 }
