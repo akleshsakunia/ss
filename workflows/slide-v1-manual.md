@@ -120,16 +120,54 @@ For each one, give exactly this shape:
   FALLBACK: what the slide should show if that image does not load - a name treatment, a logo
             wordmark, an icon, a chart. Always fill this in, even when confidence is HIGH.
 
-WHICH SOURCE TO PREFER. The best photograph wins - this deck is recorded within hours of being
-built, so how long a URL survives is not a consideration. Take the news photograph of the actual
-event over a generic stock image or an old official portrait, every time: a picture of the thing
-that happened beats a picture of someone connected to it.
-Two real tie-breakers when images are otherwise equal:
-  - The deck is opened as a local file, so images are requested with no referrer and a null
-    origin. Wikimedia Commons, PIB, the exchanges and most company sites serve those fine; some
-    news CDNs refuse them. Where the choice is even, take the one that is not behind a news CDN.
-  - Prefer a large image. It is displayed across a 1920-wide frame, and a 200px thumbnail scaled
-    up looks worse than no photograph at all.
+WHERE TO GET THEM, IN THIS ORDER. Read this carefully - the last real deck failed here completely.
+
+  1. THE og:image OF THE SOURCE ARTICLES, and of other news pieces about this exact story.
+     Open the article, read its <meta property="og:image" content="..."> tag, and use that URL.
+     This is the best route by a wide margin and it is the one to reach for first:
+       - It is a photograph OF THIS STORY. The actual plant, the actual minister at the actual
+         announcement - not a library picture of something similar.
+       - og:image exists so that third parties can fetch it for link previews. It is the one
+         image URL on a news page that is BUILT to be hotlinked, so it survives being loaded
+         from a local file with no referrer, which most other news images do not.
+       - These are the same photographs an image search would surface from those articles.
+     Take several: the source articles, plus two or three other outlets covering the same story.
+  2. THE ORGANISATION'S OWN SITE - press kit, media room, investor-relations deck, PIB for
+     ministers and ministries, the exchange for a listed company. Relevant and stable.
+  3. WIKIMEDIA COMMONS, and only through this exact URL form:
+         https://commons.wikimedia.org/wiki/Special:FilePath/FILE_NAME.jpg?width=1600
+     Never the upload.wikimedia.org/wikipedia/commons/X/YZ/... form. That path contains a hash
+     directory you cannot know, so writing one out is guessing, and guessing produces a 404.
+     Special:FilePath takes only the file name and redirects to wherever the file really is.
+     Commons is for ministers, logos, ministry buildings and landmarks - the things it genuinely
+     has. It is not where you find a picture of this week's event.
+
+IT MUST BE A PICTURE OF THE ACTUAL THING. This is a hard rule and the last deck broke it: an
+Indian thermal-power story was illustrated with the turbine hall of Didcot A Power Station, in
+Oxfordshire, England. A visually similar object in another country is not evidence, it is set
+dressing, and a viewer who recognises it stops trusting the rest.
+  - The named company's OWN plant, office or product. Not "a thermal plant".
+  - The named person. Not "an official at a podium".
+  - The Indian regulator, exchange or ministry. Not a generic government building.
+If you genuinely cannot find a picture of the actual thing, say so and give a FALLBACK. A
+well-designed typographic slide is a perfectly good outcome; a lookalike from another country is
+not.
+
+DO NOT INVENT URLs, AND UNDERSTAND WHY THIS WARNING IS HERE. On this workflow's first real deck
+you returned five Wikimedia image URLs and ALL FIVE WERE 404 - plausible file names under
+plausible hash directories, none of which existed. The prompt already said not to do this. So:
+  - A URL you have not actually opened is CONFIDENCE: LOW. Say LOW. Do not say HIGH because the
+    URL looks well-formed - that is exactly the mistake.
+  - It is far better to return six images you opened than eighteen you assembled from memory.
+  - The tool load-tests every URL you give before the next stage runs, and hands the next stage
+    the list of dead ones. Inventing URLs does not save you work; it just wastes a stage.
+
+HOW MANY. Aim for one usable image per slide - twelve to eighteen - rather than four or five. The
+deck is 13-16 slides and a photograph carries a slide better than a bullet list does. Spread them
+across the six categories rather than returning six portraits.
+
+Prefer a large image: it is displayed across a 1920-wide frame, and a 200px thumbnail scaled up
+looks worse than no photograph at all. Use https:// URLs only.
 
 WHY THE FALLBACK IS STILL MANDATORY, even at HIGH confidence and even recording the same day. The
 failure this guards against is not the URL going stale - it is hotlink protection: a referrer check
@@ -137,8 +175,24 @@ or a CORS rule refusing the request the very first time it is made, which is exa
 a local file creates. That fails within a second of opening the deck, not within a week. So every
 entry gets a FALLBACK line.
 
-Say plainly when you could not find a real photograph for something. A named FALLBACK is a good
-outcome; a made-up URL is not. Never invent a URL that merely looks right.
+=== 4b. THE LISTED COMPANIES - EXACT NAMES AND TICKERS ===
+Every listed company the deck will name, in this shape, and nothing invented:
+
+  NAME: the exact listed entity, as it should read on screen
+  TICKER: NSE symbol, and BSE code where the NSE one does not exist
+  WHAT IT DOES: under ten words
+  WHY IT IS IN THIS STORY: under fifteen words
+  FOR IT: two or three things currently working in this company's favour, each a fact with a
+          number and a source - a margin, an order book, a capacity, a balance-sheet change
+  AGAINST IT: two or three things currently working against it, on the same terms
+  MOST RECENT MOVE: the share price move tied to this story, with the date, if there was one
+
+The FOR IT / AGAINST IT lists are not optional and not a formality - the deck's second-to-last
+content slide is built directly from them. Keep them factual and attributable. Do not write a
+view, a rating or a target: "operating margin rose 180bps to 14.2% in Q1 FY27 (company filing)"
+belongs there; "well placed for re-rating" does not.
+
+Get the ticker right or leave it blank. An invented symbol on screen is worse than no symbol.
 
 === 5. QUOTABLE LINES ===
 Exact words worth putting on screen in quotation marks: from a minister, a chief executive, a
@@ -190,6 +244,13 @@ MY ANGLE, IF I GAVE ONE: {{USER_ANGLE}}
 THE EVIDENCE FROM STAGE 1
 {{RESEARCH}}
 
+WHICH OF ITS IMAGES ACTUALLY LOAD - measured by the tool, not claimed by anyone
+{{IMAGE_CHECK}}
+Use only the LIVE ones on a VISUAL line. Where something important has no live picture, either
+find a replacement now - the og:image of a news article about this story is the best bet, and it
+is built to be fetched by third parties - or design that slide as a chart or a typographic
+treatment and say so. Never put a dead URL on a VISUAL line hoping it will work on the day.
+
 WHAT I AM ACTUALLY MAKING
 A 5 to 7 minute faceless video. No face, no camera - just this deck full-screen while I talk over it
 in Hinglish. The deck is the entire visual. If the screen is static, the video is dead, so something
@@ -213,8 +274,9 @@ THE ARC - every step introduces something the previous steps did not
   10-11 THE TWO SIDES bull then bear, honestly
   12  WHAT IS PRICED IN  what the market already believes, and what it is assuming is safe
   13  WHAT TO WATCH   dated, forward-looking
-  14  THE VERDICT     my judgement, plainly, with what would change my mind
-  then SOURCES, then DISCLAIMER + CTA - both specified under REQUIRED CLOSING SLIDES below.
+  14  THE SCORECARD   each named stock: what is working for it, what against. Specified below.
+  15  THE VERDICT     my judgement, plainly, and where the big loop closes
+  then DISCLAIMER + CTA, then SOURCES last - both specified under REQUIRED CLOSING SLIDES below.
 
 The arc has been rewritten because the previous one built repetition into the deck by design: it
 opened on "the most arresting fact", then gave "the facts", then charted the same facts, so a
@@ -222,6 +284,32 @@ one-day price story got told three times before slide 8. The rule that replaces 
 you should apply it to every slide you write:
 
   A SLIDE EARNS ITS PLACE ONLY IF A VIEWER WHO HAS SEEN EVERY PREVIOUS SLIDE LEARNS SOMETHING NEW.
+
+LOOPS - THIS IS WHAT HOLDS A VIEWER FOR SIX MINUTES, AND IT IS CURRENTLY MISSING
+A loop is a question the viewer wants answered, planted on purpose and left open. Closing it is
+answering that question in the same words it was asked, so the viewer feels it land. Decks without
+loops are lists of true facts that nobody watches to the end, which is what the last two were.
+
+THE BIG LOOP - one, opened on slide 1, closed on the verdict.
+  It must be a SPECIFIC, ANSWERABLE question this deck actually resolves. "What happens next?" is
+  not a loop, it is a tease, and a tease that is never paid reads as a waste of six minutes.
+  Good: "Three power companies are all called a play on the grid crunch. Only one of them
+  actually earns more when the grid strains. Which one - and how would you tell?"
+  It goes on slide 1 in the narration AND as a line on screen, and the verdict slide answers it
+  explicitly, echoing the question's own words before giving the answer.
+  Do not answer it, or half-answer it, anywhere in the middle. The middle EARNS the answer.
+
+MINI LOOPS - one per section, three to five across the deck.
+  Each opens a smaller question and closes it within two or three slides, before the next opens.
+  Open: "Jaiprakash trades at a third of Tata's multiple. That is either an opportunity or a
+  warning." Close, two slides later: "It is a warning about earnings quality - here is why."
+  THE RULE THAT MATTERS: never stack unanswered questions. A mini loop CLOSES before the next
+  one OPENS. Three open questions at once is not suspense, it is confusion, and the viewer
+  disengages rather than leaning in.
+  A mini loop may be opened at the END of a slide as the last beat - that is the strongest place
+  for it, because the viewer carries the question across the slide change.
+
+Every slide block therefore carries a LOOP: line - see the format below. Nothing is left implicit.
 
 SLIDE 1 IS ABOUT IMPACT, AND WHICH KIND DEPENDS ON THE STORY
 Ask one question: does this story touch what the viewer personally pays, earns or owes?
@@ -245,20 +333,26 @@ BEATS:
   1. <what appears on screen at this tick>
   2. <the next thing, 3.5s later>
   ... 7 to 9 of them
+LOOP: <one of these, exactly>
+        OPEN BIG: <the question> | CLOSE BIG: <the question, echoed, then the answer>
+        OPEN: <the mini-loop question>  | CLOSE: <which question this answers, and the answer>
+        - <a dash, when this slide neither opens nor closes a loop>
 VISUAL: <which photo from stage 1 section 4, with its URL - or which chart from section 3 by number,
          or NONE if this slide is typographic>
 SOURCE: <URL, if this slide quotes or cites anything - otherwise omit the line>
 
 TYPE is one of: IMPACT, FACTS, TIMELINE, CHART, QUOTE, SPLIT, PORTRAIT, SUBJECT, DOCUMENT,
-BIGNUMBER, LIST, VERDICT, SOURCES, DISCLAIMER_CTA.
-  IMPACT     slide 1 only - what is now different
+BIGNUMBER, LIST, SCORECARD, VERDICT, DISCLAIMER_CTA, SOURCES.
+  IMPACT     slide 1 only - what is now different, and where the big loop opens
   SUBJECT    the thing itself fills the slide - the product, the vehicle, the screen, the plant
   DOCUMENT   the actual order, notice or filing on screen with its key line pulled out beside it
   PORTRAIT   a person
   BIGNUMBER  one enormous figure and a short label, nothing else
   SPLIT      two things set against each other - before/after, gainers/losers, bull/bear
-  SOURCES    second to last, always
-  DISCLAIMER_CTA  last, always
+  SCORECARD  one row per named stock, what is for it and against it. Second to last content slide
+  VERDICT    where the big loop closes
+  DISCLAIMER_CTA  second to last overall
+  SOURCES    the genuinely last slide
 
 THE RULES, and these are not negotiable
 
@@ -278,6 +372,13 @@ implies, what I think. Write them as two halves of one thing.
 
 EVERY NUMBER ON SCREEN MUST EXIST IN STAGE 1. You have no licence to invent, round for effect, or
 interpolate. If a beat needs a figure stage 1 did not establish, drop the beat.
+
+A LISTED COMPANY IS ALWAYS NAMED WITH ITS TICKER. Every single time it appears on screen, not
+just the first, and written exactly as "Adani Power  NSE: ADANIPOWER". Stage 3 renders that pair
+as a distinct visual element, so write it as a pair everywhere and let the deck style it. Tickers
+come from stage 1 section 4b and nowhere else - if one is blank there, leave it blank here rather
+than guessing a symbol. In the NARRATION use the company's spoken name only; nobody says "NSE
+colon" out loud.
 
 BEATS ARE ORDERED FOR SUSPENSE. Within a slide, the reveal order is a small piece of storytelling:
 set up, then land. Put the number that surprises last, not first. A chart's takeaway line arrives
@@ -320,32 +421,69 @@ logos, you have built a press-conference deck, and the fix is to reach for categ
 Where stage 1 found the actual order, notice or judgement, put it on screen at the moment you state
 what it says. Real letterhead is the cheapest credibility in this format.
 
+THE SCORECARD - the last CONTENT slide, immediately before the verdict
+
+  SLIDE <n> | SCORECARD
+  One row per listed company the deck named, built straight from stage 1 section 4b. Each row:
+    - the company name and its TICKER
+    - FOR: two or three factual points currently working in its favour
+    - AGAINST: two or three working against it
+  This is the slide I asked for so a viewer leaves with a sense of where each name stands. It is
+  written as EVIDENCE, NOT AS A CALL, and the distinction is the whole design:
+
+    ALLOWED - facts, attributed, each with its number:
+      "Merchant realisation ₹6.50/kWh vs ₹4.10 cost (CEA, Sep 2026)"
+      "Net debt down ₹8,400 crore over four quarters (company filing)"
+      "62% of capacity unhedged into a seasonal demand peak"
+    NOT ALLOWED - anywhere on this slide or in its narration:
+      a buy / sell / hold / accumulate / avoid, in any wording
+      a price target, a fair value, or an expected return
+      "our view", "we like", "well placed", "attractive", "overvalued", "poised to"
+      an arrow, a traffic light or a colour applied to the COMPANY
+
+  Colour is allowed only on a MEASURED CHANGE, never on the company: a margin that rose may be
+  green, a debt that grew may be red, because those are facts about a number that moved. The row
+  itself carries no colour, no rating and no ranking.
+  The narration says what is working and what is not, and stops there. It does not say what I
+  would do, and it does not hint. "Yeh do cheezein iske favour mein hain, yeh do against" is the
+  register. Anything that resolves into a recommendation is out.
+  If stage 1 gave no FOR/AGAINST material for a company, leave that company off rather than
+  inventing balance.
+
 REQUIRED CLOSING SLIDES - two of them, always, in this order, after the verdict
 
 These are ADDITIONAL to the 13-16 content slides and do not count towards the runtime. Write them
-as slide blocks like any other, with these types:
-
-  SLIDE <n> | SOURCES
-  Every source the deck used: the publication, what it said, and the URL. Laid out properly, not
-  as a raw dump - I do not normally reach this slide while recording, but if I overshoot it must
-  not look like a debug screen. Its real job is the copy button stage 3 puts on it, which fills my
-  clipboard with a ready-to-paste YouTube description. So list them completely and in a sensible
-  order: primary sources first, then news.
-  NARRATION: none. Write "NARRATION: (not narrated)".
+as slide blocks like any other, with these types. THE ORDER IS DISCLAIMER FIRST, SOURCES LAST -
+the disclaimer and CTA are the end of the video I actually narrate, and the sources slide sits
+past the end as a reference I copy from rather than present.
 
   SLIDE <n> | DISCLAIMER_CTA
-  ONE slide carrying both, and it is the last. Two halves:
-    - Educational purposes only. Not investment advice. Always consult your own financial adviser
-      before any buy or sell decision.
+  ONE slide carrying both halves. Two parts:
+    - Educational purposes only. Not investment advice. Always consult a SEBI-registered
+      investment adviser before any buy or sell decision.
     - Like, share and subscribe.
   NARRATION: two or three Hinglish lines I can read over it, covering both halves naturally rather
   than reciting the legal wording.
+
+  SLIDE <n> | SOURCES
+  The genuinely last slide. Every source the deck used: the publication, what it said, and the
+  URL. Laid out properly, not as a raw dump - I do not normally reach it while recording, but if
+  I overshoot it must not look like a debug screen. Its real job is the copy button stage 3 puts
+  on it, which fills my clipboard with a ready-to-paste YouTube description. List them completely,
+  primary sources first, then news.
+  NARRATION: none. Write "NARRATION: (not narrated)".
 
 AFTER THE SLIDE BLOCKS, add these four short sections:
 
 === RUNTIME ===
 Total spoken words across the CONTENT slides, and that divided by 145, as minutes. If it lands
 outside 5:00-7:00, fix the slides rather than reporting a miss.
+
+=== THE LOOPS ===
+The big loop, quoted twice: the question exactly as slide 1 asks it, and the answer exactly as the
+verdict gives it. Then every mini loop as "opened slide N -> closed slide M", with its question.
+Confirm two things: every loop you opened is closed, and no two mini loops were open at the same
+time. If either fails, fix the slides before answering.
 
 === NOTHING SAID TWICE ===
 Prove it to yourself in writing. List every figure used in the deck with the slide number it
@@ -385,6 +523,12 @@ THE CONTENT - build exactly this, nothing added, nothing dropped
 SUPPORTING EVIDENCE, for chart values, exact figures, image URLs and source links:
 
 {{RESEARCH}}
+
+WHICH IMAGE URLs ACTUALLY LOAD - measured by loading each one, not claimed by a model:
+{{IMAGE_CHECK}}
+Put ONLY the live ones in the deck. A URL listed DEAD above must not appear in an src attribute
+under any circumstances - it is already proven not to work, and the onerror fallback exists for
+the ones that fail unexpectedly, not as cover for shipping known-broken links.
 
 SOURCE LINKS COLLECTED SO FAR:
 {{REFERENCES}}
@@ -542,6 +686,43 @@ the exact units. Do not smooth, extrapolate, or invent a data point to make a li
   - Axis label with the unit. A number with no unit is a wrong number.
   - Currency in Indian convention: crore and lakh, and Indian digit grouping.
 
+=== STOCKS ARE A DISTINCT VISUAL ELEMENT ===
+
+Wherever a listed company is named on screen, it renders as a ticker chip - never as plain body
+text. This is the single most repeated element in the deck, so it is worth building once and
+using everywhere.
+
+  <span class="tkr"><b>Adani Power</b><i>NSE: ADANIPOWER</i></span>
+
+  - The company name in primary text at the surrounding size, semibold.
+  - The ticker immediately after in a small pill: uppercase, letter-spaced ~0.06em, tabular
+    figures, about 0.62em, in the accent on a low-opacity accent wash, 4px radius, 2px/7px
+    padding. Not italic in the rendering - the <i> above is only markup shorthand.
+  - The pair never breaks across a line. white-space: nowrap on the chip.
+  - Where stage 1 left the ticker blank, render the name alone. Never invent a symbol, and never
+    show an empty pill.
+  - It reads correctly in both themes: the accent differs per theme, so the chip must take its
+    colours from the :root custom properties like everything else.
+
+In a SCORECARD row the chip is the row's anchor - set it larger there, at the row's leading edge.
+
+=== THE SCORECARD SLIDE ===
+
+One row per named stock, and it is the slide most likely to be paused and screenshotted, so lay
+it out properly. Each row: the ticker chip on the left, then two columns - FOR and AGAINST -
+as short factual lines, the FOR column marked with a subtle positive rule and AGAINST with a
+negative one. Two or three lines each, nine words maximum, each carrying its figure.
+
+Rules that are not stylistic:
+  - NO rating, arrow, star, score, traffic light or ranking on any row. Not even implied by
+    ordering - list the companies in the order the sequence gives them.
+  - The positive and negative colours apply ONLY to a measured change inside a line - a margin
+    that rose, a debt that grew. Never to the row, the chip or the company name.
+  - Each line keeps its source, in secondary text, as on every other slide.
+  - The disclaimer line sits quietly at the foot of this slide as well as on its own slide later.
+
+Each row is one beat, so the rows arrive one at a time in "one element" mode.
+
 === TEXT ON SLIDES ===
 
 NO PARAGRAPHS. Anywhere. This is an absolute.
@@ -562,9 +743,22 @@ Anything quoted, any figure that could be challenged, and every chart gets its s
   - links open in a new tab and are underlined on hover only, so they never distract on screen
 Credibility in this format is almost entirely visible sourcing. Do not skip it.
 
-=== THE LAST TWO SLIDES - build both exactly as described ===
+=== THE LAST TWO SLIDES - build both exactly as described, in THIS order ===
 
-SOURCES, second to last. It has two jobs and they pull in different directions, so do both.
+DISCLAIMER + CTA comes FIRST of the two, then SOURCES is the genuinely last slide. The disclaimer
+is where the video I narrate ends; the sources slide sits past the end, as a thing I copy from
+rather than present.
+
+DISCLAIMER + CTA, second to last, ONE slide carrying both halves.
+  Upper half: educational purposes only, not investment advice, always consult a SEBI-registered
+  investment adviser before any buy or sell decision. Set quietly - secondary text, generous
+  space. It is a real statement, not fine print, but it is not the emphasis.
+  Lower half: like, share and subscribe. This is the emphasis - large, in the accent, with room
+  around it. If the channel handle appears anywhere in the evidence, use it; otherwise leave the
+  call generic rather than inventing one.
+  Both halves are beats, so they arrive in sequence rather than landing together.
+
+SOURCES, last. It has two jobs and they pull in different directions, so do both.
   ON SCREEN: a properly designed list - publication, what it said, the date - laid out in two
   columns if it runs long, each entry linked, primary sources grouped above news. I do not
   normally reach this slide while recording, but if I overshoot it must look like part of the deck
@@ -585,15 +779,6 @@ SOURCES, second to last. It has two jobs and they pull in different directions, 
   the button label to "Copied" for two seconds. A copy button that silently does nothing is worse
   than no button.
 
-DISCLAIMER + CTA, last, ONE slide carrying both halves.
-  Upper half: educational purposes only, not investment advice, always consult your own financial
-  adviser before any buy or sell decision. Set quietly - secondary text, generous space. It is a
-  real statement, not fine print, but it is not the emphasis.
-  Lower half: like, share and subscribe. This is the emphasis - large, in the accent, with room
-  around it. If the channel handle appears anywhere in the evidence, use it; otherwise leave the
-  call generic rather than inventing one.
-  Both halves are beats, so they arrive in sequence rather than landing together.
-
 === TECHNICAL ===
 
   - One .html file. Everything inline. It must work opened directly from the filesystem.
@@ -608,9 +793,16 @@ DISCLAIMER + CTA, last, ONE slide carrying both halves.
   1. Every slide from the sequence is present, in order, with its beats in the given order.
   2. Every beat count is 7 or more - a slide with 3 beats leaves me talking over a static screen.
   3. Every <img> has an onerror fallback. Every one.
+  3b. NO src attribute contains a URL the image check listed as DEAD. Check each one against
+      that list by eye - this is the failure that left the last deck with zero photographs.
   4. At least two slides show the SUBJECT - the product, object or system the story is about -
      rather than a person or a logo. If the sequence did not give you two, use the evidence's
      category A images and say which slides you put them on.
+  4b. The big loop is visibly opened on slide 1 and answered on the verdict slide, in words that
+      echo the question. Every mini loop closes.
+  4c. Every listed company on screen renders as a ticker chip, everywhere it appears.
+  4d. The SCORECARD carries no rating, arrow, score or ranking, and colour appears only on a
+      measured change inside a line - never on a row, a chip or a company name.
   5. Every chart's numbers match the evidence exactly. Read them back against it.
   6. NOTHING IS SAID TWICE. Walk the finished deck and list every figure with the slide it is on.
      If a figure, a name-with-a-number, or an explained mechanism appears on two slides, cut it
@@ -626,7 +818,7 @@ DISCLAIMER + CTA, last, ONE slide carrying both halves.
   13. T toggles a genuine light palette - check the charts re-theme and the source lines stay
       readable. No component hardcodes a colour outside the :root custom properties.
   14. Every quote and chart has a visible, linked source.
-  15. SOURCES is second to last and its copy button works, WITH the execCommand fallback.
-  16. DISCLAIMER + CTA is one slide, and it is last.
+  15. DISCLAIMER + CTA is one slide and is SECOND to last.
+  16. SOURCES is the last slide, and its copy button works, WITH the execCommand fallback.
 
 Then tell me in one line that the Canvas artifact is ready to download. Nothing else.

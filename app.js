@@ -136,6 +136,71 @@ function references(ctx) {
   return out.slice(0, 20).join('\n');
 }
 
+/* ---------------------------------------------------------------- image check
+ * The slide workflow asks stage 1 to find real photographs. On the first real deck it returned
+ * five Wikimedia URLs and ALL FIVE were 404 - invented filenames under invented hash directories,
+ * despite the prompt saying in as many words not to invent a URL that merely looks right. That is
+ * the same lesson the prosody work landed on: a model's account of its own output is not evidence.
+ *
+ * So this measures it. <img> loading is NOT subject to CORS - only fetch() is - which is the one
+ * reason a static page with no backend can test an arbitrary image URL at all.
+ */
+const IMG_URL_RE =
+  /https?:\/\/[^\s)<>"'\]]+?(?:\.(?:jpe?g|png|webp|gif|svg)(?:\?[^\s)<>"'\]]*)?|Special:FilePath\/[^\s)<>"'\]]+)/gi;
+const IMG_CHECK_MAX = 40;        // a runaway paste must not open 300 connections
+const IMG_CHECK_MS = 9000;       // slower than most, faster than losing the user's patience
+
+function imageUrls(text) {
+  const seen = new Set();
+  for (const m of (text || '').matchAll(IMG_URL_RE)) seen.add(m[0].replace(/[.,;]+$/, ''));
+  return [...seen].slice(0, IMG_CHECK_MAX);
+}
+
+function checkImages(urls) {
+  return Promise.all(urls.map(u => new Promise(resolve => {
+    const im = new Image();
+    let settled = false;
+    const done = ok => {
+      if (settled) return;
+      settled = true;
+      im.onload = im.onerror = null;
+      resolve({ url: u, ok });
+    };
+    const timer = setTimeout(() => done(false), IMG_CHECK_MS);
+    // naturalWidth > 1 rather than just onload: some hosts answer a dead path with a 1px tracking
+    // pixel, which fires onload and would otherwise pass.
+    im.onload = () => { clearTimeout(timer); done(im.naturalWidth > 1); };
+    im.onerror = () => { clearTimeout(timer); done(false); };
+    im.src = u;
+  })));
+}
+
+function imageReport(results) {
+  if (!results.length) {
+    return 'IMAGE CHECK: the research contained no image URLs at all.\n'
+      + 'Every visual in this deck will have to be a chart or a typographic treatment. If that is '
+      + 'not what you want, go back and hunt photographs before continuing.';
+  }
+  const dead = results.filter(r => !r.ok), live = results.filter(r => r.ok);
+  const L = [`IMAGE CHECK - ${live.length} of ${results.length} image URLs actually load.`,
+    'Measured by loading each one in the browser, not reported by a model. Treat it as fact.'];
+  if (dead.length) {
+    L.push('', 'DEAD - these do NOT load. Do not put them in the deck. Where one was the only',
+      'picture of something that matters, search for a replacement now and prefer the og:image',
+      'of a news article about this story, which is built to be fetched by third parties:');
+    dead.forEach(r => L.push('  ' + r.url));
+  }
+  if (live.length) {
+    L.push('', 'LIVE - confirmed to load, use these freely:');
+    live.forEach(r => L.push('  ' + r.url));
+  }
+  if (!live.length) {
+    L.push('', 'NOT ONE of them loads. Do not proceed as though the deck has photographs - either',
+      'find real ones now, or design every slide to work without them.');
+  }
+  return L.join('\n');
+}
+
 function resolve(text, ctx, aliases) {
   return text.replace(PLACEHOLDER_RE, (_, name) => {
     name = name.toUpperCase();
@@ -426,6 +491,10 @@ function buildPrompt(stage) {
       + 'pages). Treat every figure as unverified: list each one and say what to check.',
     // this one needs no network, so the browser runs the real check
     PROSODY_CHECK: prosodyCheck(RUN.ctx.REVISED_SCRIPT || RUN.ctx.SCRIPT_DRAFT || ''),
+    // set by submitPaste once the URLs have actually been loaded; before that there is nothing
+    // honest to say, and saying "all fine" would be the exact failure this check exists for
+    IMAGE_CHECK: RUN.ctx.IMAGE_CHECK
+      || 'No image check has run yet - no image URLs were found in the research.',
     SOURCES_USED: references(RUN.ctx), REVIEW_FLAGS: 'None - manual run.',
   });
   let p = resolve(stage.prompt, ctx, wf.aliases);
@@ -437,9 +506,18 @@ function buildPrompt(stage) {
   return p;
 }
 
-function submitPaste(value) {
+async function submitPaste(value) {
   const stage = curStage();
   RUN.ctx[stage.emits[0]] = value;
+  // Load-test any image URLs this stage produced, before the next stage is allowed to build on
+  // them. Async, so it has to happen here rather than in buildPrompt, which is synchronous.
+  if (imageUrls(value).length && !RUN.ctx.IMAGE_CHECK_DONE) {
+    const urls = imageUrls(value);
+    note(`Checking ${urls.length} image URL${urls.length > 1 ? 's' : ''}...`);
+    RUN.ctx.IMAGE_CHECK = imageReport(await checkImages(urls));
+    RUN.ctx.IMAGE_CHECK_DONE = true;
+    note('');
+  }
   // Measure what actually came back. The stage cannot measure itself - across five runs it claimed
   // "LEFT UNDONE: None" every time while leaving three to eight sentences over the breath limit -
   // so this number, not the model's, is the one shown to the creator.
