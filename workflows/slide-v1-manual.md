@@ -197,22 +197,44 @@ must change on screen every three to four seconds throughout.
 
 The arithmetic, so you build to the right size:
   6 minutes of Hinglish commentary at about 145 words per minute is roughly 870 words.
-  Across 13 to 16 slides that is 55 to 70 spoken words per slide, about 25 to 30 seconds each.
+  Across 13 to 16 CONTENT slides that is 55 to 70 spoken words per slide, 25 to 30 seconds each.
+  The two closing slides - sources, and disclaimer + CTA - are extra and are not counted here.
   At one visual change every 3.5 seconds, that is 7 to 9 reveal beats per slide.
 Hit those numbers. A deck of 8 slides means I am talking for 45 seconds over a static screen, which
 is exactly the failure this whole format exists to avoid.
 
-THE ARC - use it unless the story genuinely demands otherwise
-  1  COLD OPEN         the single most arresting fact. No "today we will discuss". Start mid-punch.
-  2  WHAT HAPPENED     the dated facts, plainly
-  3  WHY IT MATTERS    who this touches and how
-  4  THE TIMELINE      the dated spine as one visual
-  5-7 THE NUMBERS      the charts, one claim per slide
-  8-9 WHO GAINS/LOSES  named, quantified
-  10-11 THE TWO SIDES  bull then bear, honestly
-  12  WHAT IS PRICED IN  what the market already believes
-  13  WHAT TO WATCH    dated, forward-looking
-  14  THE CLOSE        my judgement, stated plainly, with what would change my mind
+THE ARC - every step introduces something the previous steps did not
+  1  THE IMPACT       what this CHANGES. Not what happened - what is now different. See below.
+  2  THE TRIGGER      the one dated event that caused it, with its number. ONE slide, not three.
+  3  THE MECHANISM    why that event produces that consequence. The causal chain, stated once.
+  4  THE TIMELINE     how it built up, dated
+  5-7 THE EVIDENCE    the charts. Each must SHOW a magnitude or trend that no earlier slide stated.
+  8-9 WHO IT LANDS ON named winners and losers, quantified
+  10-11 THE TWO SIDES bull then bear, honestly
+  12  WHAT IS PRICED IN  what the market already believes, and what it is assuming is safe
+  13  WHAT TO WATCH   dated, forward-looking
+  14  THE VERDICT     my judgement, plainly, with what would change my mind
+  then SOURCES, then DISCLAIMER + CTA - both specified under REQUIRED CLOSING SLIDES below.
+
+The arc has been rewritten because the previous one built repetition into the deck by design: it
+opened on "the most arresting fact", then gave "the facts", then charted the same facts, so a
+one-day price story got told three times before slide 8. The rule that replaces it is simple and
+you should apply it to every slide you write:
+
+  A SLIDE EARNS ITS PLACE ONLY IF A VIEWER WHO HAS SEEN EVERY PREVIOUS SLIDE LEARNS SOMETHING NEW.
+
+SLIDE 1 IS ABOUT IMPACT, AND WHICH KIND DEPENDS ON THE STORY
+Ask one question: does this story touch what the viewer personally pays, earns or owes?
+  YES - a deposit rate, a loan rate, a transaction fee, the price of something they buy, a tax:
+        open on THAT, in their own money, then land the second half of the slide on what it means
+        for anyone holding the stock. "Your FD now pays 7.5% while your home loan has not moved"
+        is an opening. "PSU Banks Drop 2% to 4%" is a headline, and a headline is not an impact.
+  NO  - a PLI disbursement, a bond auction, a capex cycle, an order win, a sector-wide shift with
+        no household hook: open on the stake for the SECTOR or the economy, concrete and
+        quantified. How much capital, how many companies, what it decides.
+Do NOT force a personal angle onto a story that has none. An invented "this affects YOU because..."
+on a story about wholesale bond yields is worse than an honest sectoral opening - it reads as
+clickbait and the viewer who stays feels lied to.
 
 FORMAT - one block per slide, exactly this shape, nothing else between blocks:
 
@@ -227,11 +249,16 @@ VISUAL: <which photo from stage 1 section 4, with its URL - or which chart from 
          or NONE if this slide is typographic>
 SOURCE: <URL, if this slide quotes or cites anything - otherwise omit the line>
 
-TYPE is one of: COLD_OPEN, FACTS, TIMELINE, CHART, QUOTE, SPLIT, PORTRAIT, SUBJECT, DOCUMENT,
-LIST, CLOSE.
-  SUBJECT   the thing itself fills the slide - the product, the vehicle, the screen, the plant
-  DOCUMENT  the actual order, notice or filing on screen with its key line pulled out beside it
-  PORTRAIT  a person
+TYPE is one of: IMPACT, FACTS, TIMELINE, CHART, QUOTE, SPLIT, PORTRAIT, SUBJECT, DOCUMENT,
+BIGNUMBER, LIST, VERDICT, SOURCES, DISCLAIMER_CTA.
+  IMPACT     slide 1 only - what is now different
+  SUBJECT    the thing itself fills the slide - the product, the vehicle, the screen, the plant
+  DOCUMENT   the actual order, notice or filing on screen with its key line pulled out beside it
+  PORTRAIT   a person
+  BIGNUMBER  one enormous figure and a short label, nothing else
+  SPLIT      two things set against each other - before/after, gainers/losers, bull/bear
+  SOURCES    second to last, always
+  DISCLAIMER_CTA  last, always
 
 THE RULES, and these are not negotiable
 
@@ -258,6 +285,30 @@ after the chart has drawn, never before.
 
 ONE CLAIM PER SLIDE. If a slide is making two arguments, it is two slides.
 
+SAY IT ONCE. A fact, a figure, a company name with a number attached, a date - each appears on
+EXACTLY ONE slide. This is the rule the last deck broke hardest, so it is worth being concrete
+about what went wrong: the per-bank drawdown list (Bank of Maharashtra -3.8%, Canara -3.2%, PNB
+-2.9%, Bank of Baroda -2.5%) was printed in full on slide 1 AND again on slide 5, with slide 2
+restating the same thing in words. Three slides, one piece of information. Separately, the funding
+cost mechanism - CASA erosion, FD competition, deposit repricing - was restated on slides 3, 6, 7,
+9 and 11 under five different headings.
+  - Before you finalise, list every number you have used and check none appears twice.
+  - A mechanism explained on one slide is not re-explained later under a new heading. Later slides
+    may USE it; they may not teach it again.
+  - The NARRATION may refer back freely - "that same 3.8% we just saw" is good writing. The
+    SCREEN may not reprint it.
+  - If two slides feel like they need the same figure, one of them is not needed.
+
+VARY THE SHAPE. Eight of the last deck's fifteen slides were the identical construction: kicker,
+claim title, six to eight bullets. It reads as one long list and the eye stops registering the
+changes. So:
+  - No more than TWO consecutive slides of the same TYPE.
+  - At least SIX distinct TYPEs across the deck.
+  - At most half the slides may be bullet lists. The rest are charts, a timeline, a quote, a
+    portrait, the subject, the document, a single enormous number.
+  - Where you find yourself writing a third list in a row, the content is usually telling you it
+    belongs in a chart or on the document slide instead.
+
 USE THE PHOTOS, AND SHOW THE THING. Stage 1 hunted real pictures in six categories: the subject
 itself, the document, people, companies, places, and the scene. Name which one you are using, by
 URL, on the VISUAL line. Where stage 1 marked an image LOW confidence, still use it, but say on
@@ -269,11 +320,38 @@ logos, you have built a press-conference deck, and the fix is to reach for categ
 Where stage 1 found the actual order, notice or judgement, put it on screen at the moment you state
 what it says. Real letterhead is the cheapest credibility in this format.
 
-AFTER THE SLIDE BLOCKS, add these three short sections:
+REQUIRED CLOSING SLIDES - two of them, always, in this order, after the verdict
+
+These are ADDITIONAL to the 13-16 content slides and do not count towards the runtime. Write them
+as slide blocks like any other, with these types:
+
+  SLIDE <n> | SOURCES
+  Every source the deck used: the publication, what it said, and the URL. Laid out properly, not
+  as a raw dump - I do not normally reach this slide while recording, but if I overshoot it must
+  not look like a debug screen. Its real job is the copy button stage 3 puts on it, which fills my
+  clipboard with a ready-to-paste YouTube description. So list them completely and in a sensible
+  order: primary sources first, then news.
+  NARRATION: none. Write "NARRATION: (not narrated)".
+
+  SLIDE <n> | DISCLAIMER_CTA
+  ONE slide carrying both, and it is the last. Two halves:
+    - Educational purposes only. Not investment advice. Always consult your own financial adviser
+      before any buy or sell decision.
+    - Like, share and subscribe.
+  NARRATION: two or three Hinglish lines I can read over it, covering both halves naturally rather
+  than reciting the legal wording.
+
+AFTER THE SLIDE BLOCKS, add these four short sections:
 
 === RUNTIME ===
-Total spoken words, and that divided by 145, as minutes. If it lands outside 5:00-7:00, fix the
-slides rather than reporting a miss.
+Total spoken words across the CONTENT slides, and that divided by 145, as minutes. If it lands
+outside 5:00-7:00, fix the slides rather than reporting a miss.
+
+=== NOTHING SAID TWICE ===
+Prove it to yourself in writing. List every figure used in the deck with the slide number it
+appears on, and confirm no figure appears on two slides. Then list the TYPE of each slide in order
+and confirm no more than two consecutive repeats and at least six distinct types. If either check
+fails, fix the slides before answering - do not report the failure and leave it.
 
 === WHAT I AM CLAIMING ===
 The deck's actual argument in three lines, so I can see whether I agree with it before I record.
@@ -323,6 +401,31 @@ startup pitch and not a news channel's lower-third.
                 Amber #F5A524 by default. Pick a different one only if the story has an obvious
                 owning colour. Never more than one accent.
   Positive/neg  #3FB950 and #F85149, and ONLY for genuinely directional numbers. Not decoration.
+
+LIGHT MODE IS A SECOND REAL PALETTE, NOT AN INVERSION. I may shoot in either, so it gets the same
+care. Define every colour as a CSS custom property on :root and override the whole set under
+[data-theme="light"] - no component may hardcode a colour, or half the deck will stay dark.
+
+  Ground        #FBFBF9, a warm off-white. Not #FFF: pure white blooms on camera and under
+                YouTube's compression it crushes thin type.
+  Surface       #FFFFFF panels with a #E6E4DF border. The card is LIGHTER than the ground here,
+                the reverse of dark mode - that inversion is what makes panels read as raised.
+  Text          #14161A primary, #5C6169 secondary.
+  Accent        the same accent hue, darkened for contrast on light - amber #B47600 rather than
+                #F5A524, which is unreadable on off-white.
+  Positive/neg  #1A7F37 and #C3342B - the dark-mode pair fails contrast on light.
+  Shadow        light mode needs real shadows to build depth, since it cannot use glow. A soft
+                0 2px 8px rgba(20,22,26,.08) on panels. Dark mode uses borders instead.
+  Photos        the duotone or desaturation is re-tuned, not reused: raise brightness slightly and
+                keep contrast lower, because a news photo treated for a near-black ground looks
+                muddy on off-white. Scrims over images run from the LIGHT ground colour.
+  Charts        grid #E6E4DF, ticks and labels #5C6169, series in the darkened accent. Re-theme
+                Chart.js on toggle - redraw or update the chart options, do not leave it dark.
+  Every text-on-colour pairing clears 4.5:1 in BOTH themes. Check the secondary text and the
+  source lines especially; those are where it slips.
+
+T toggles. Default dark. Remember the choice in localStorage inside a try/catch - this is opened
+as a local file and storage can throw - and fall back to dark if it does.
   Type          a clean grotesque - Inter, with -apple-system and system-ui fallbacks. One family.
                 Numbers in tabular figures (font-variant-numeric: tabular-nums) so they do not
                 jitter as they animate.
@@ -339,32 +442,47 @@ am recording it.
 
 === THE MOTION - this is the part that decides whether it works ===
 
-Within a slide, elements reveal themselves one at a time on a timer. Between slides, I press a key.
-That way the screen is never static while I talk, but I never have to match a stopwatch.
-
-Exact behaviour, implement it precisely:
+THREE REVEAL MODES, switchable live with a keypress. Not a build-time choice - all three ship in
+every deck and I change between them while recording, because which one suits a slide is something
+I only know once I am talking over it.
 
   Markup contract:
     <section class="slide"> for each slide
     elements that reveal carry class "beat", in document order
     everything else on the slide is visible from the moment the slide appears
 
-  Entering a slide: hide every .beat, then reveal them one by one at 3500ms intervals, starting
-  3500ms after the slide appears. The first slide does NOT start its timer until I press a key -
-  I need a moment to start the screen recorder.
+  MODE 1 - "one element"  <<< THIS IS THE DEFAULT ON OPEN >>>
+    No timer at all. SPACE or RIGHT ARROW reveals the next hidden beat, one per press. When every
+    beat on the slide is showing, the next press advances to the next slide.
+    This is the presenter rhythm: I say the thing, then show it.
 
-  RIGHT ARROW or SPACE:
-    if any beats on this slide are still hidden, reveal ALL of them immediately and stop the timer
-    otherwise, advance to the next slide
-  This is important: it means a key press never skips content I have not shown yet, and I am never
-  trapped waiting for a timer when I have finished talking early.
+  MODE 2 - "auto"
+    On entering a slide, reveal beats one by one at 3500ms intervals, starting 3500ms after the
+    slide appears. SPACE or RIGHT ARROW while beats are still hidden reveals ALL of them at once
+    and cancels the timer; pressing again advances. So a press never skips content I have not
+    shown, and I am never stuck waiting when I have finished talking early.
 
-  LEFT ARROW: previous slide, with every beat already revealed.
-  H: toggle the slide counter.
-  Escape: stop the auto-reveal timer on the current slide.
+  MODE 3 - "one slide"
+    Every beat visible the instant the slide appears. SPACE or RIGHT ARROW advances to the next
+    slide. No intra-slide reveals at all.
+
+  M cycles: one element -> auto -> one slide -> one element.
+  On a mode change, show the new mode's name as a small pill in the lower left, in secondary text,
+  and FADE IT OUT AFTER 1.5 SECONDS. It must not sit there during a recording. Changing mode never
+  re-hides a beat that is already showing - switching mid-slide only changes what the NEXT press
+  does.
+
+  Applies in every mode:
+    LEFT ARROW    previous slide, with every beat already revealed
+    T             toggle light / dark
+    H             toggle the slide counter and progress bar
+    Escape        cancel the auto timer on this slide (mode 2 only)
+    The FIRST slide never reveals or auto-advances until I have pressed a key once - I need a
+    moment to start the screen recorder. This holds in all three modes.
 
   Reveal animation: 420ms, opacity 0 to 1 with a 16px upward translate, cubic-bezier(.2,.7,.2,1).
-  Stagger nothing - each beat is its own tick, so they must not overlap.
+  Stagger nothing - each beat is its own event, so they must not overlap. In mode 3 the beats
+  appear together with the slide and do not animate individually.
   Honour prefers-reduced-motion by dropping the translate and shortening to 120ms. Keep the timing
   of the reveals themselves - the pacing is the point, the sliding is not.
 
@@ -372,7 +490,9 @@ Exact behaviour, implement it precisely:
   template.
 
   A 3px accent progress bar pinned to the bottom edge, showing position through the whole deck.
-  A small "7 / 15" counter in the bottom right, in secondary text at 20px.
+  A small "7 / 15" counter in the bottom right, in secondary text at 20px. Neither counts the
+  SOURCES or DISCLAIMER_CTA slides in its total - the progress bar should read full on the verdict,
+  because that is where the video ends.
 
 === IMAGES - real photographs, and they must never break on camera ===
 
@@ -440,8 +560,39 @@ Anything quoted, any figure that could be challenged, and every chart gets its s
   - a small source line under the element, in secondary text at 20px, linking out with the
     publication's name - not a raw URL
   - links open in a new tab and are underlined on hover only, so they never distract on screen
-  - a final SOURCES slide after the close, listing every source used, each linked
 Credibility in this format is almost entirely visible sourcing. Do not skip it.
+
+=== THE LAST TWO SLIDES - build both exactly as described ===
+
+SOURCES, second to last. It has two jobs and they pull in different directions, so do both.
+  ON SCREEN: a properly designed list - publication, what it said, the date - laid out in two
+  columns if it runs long, each entry linked, primary sources grouped above news. I do not
+  normally reach this slide while recording, but if I overshoot it must look like part of the deck
+  and not a debug dump. No raw URLs on screen.
+  ON THE CLIPBOARD: a "Copy for description" button, prominent, in the accent. It writes a
+  complete YouTube description to the clipboard as PLAIN TEXT, in this order:
+      a two-line summary of what the video covers
+      a blank line
+      "Sources:" then each source numbered, as:
+          1. Publication - the headline or document title
+             https://the-url
+      a blank line
+      "This video is for educational purposes only and is not investment advice. Always consult
+       your own financial adviser before making any buy or sell decision."
+  The clipboard write MUST have a fallback: navigator.clipboard.writeText is blocked on file://
+  in some browsers, and this deck is opened as a local file. Try it, and on failure select the
+  text in a hidden textarea and use document.execCommand('copy'). Confirm either way by swapping
+  the button label to "Copied" for two seconds. A copy button that silently does nothing is worse
+  than no button.
+
+DISCLAIMER + CTA, last, ONE slide carrying both halves.
+  Upper half: educational purposes only, not investment advice, always consult your own financial
+  adviser before any buy or sell decision. Set quietly - secondary text, generous space. It is a
+  real statement, not fine print, but it is not the emphasis.
+  Lower half: like, share and subscribe. This is the emphasis - large, in the accent, with room
+  around it. If the channel handle appears anywhere in the evidence, use it; otherwise leave the
+  call generic rather than inventing one.
+  Both halves are beats, so they arrive in sequence rather than landing together.
 
 === TECHNICAL ===
 
@@ -457,15 +608,25 @@ Credibility in this format is almost entirely visible sourcing. Do not skip it.
   1. Every slide from the sequence is present, in order, with its beats in the given order.
   2. Every beat count is 7 or more - a slide with 3 beats leaves me talking over a static screen.
   3. Every <img> has an onerror fallback. Every one.
-  3b. At least two slides show the SUBJECT - the product, object or system the story is about -
-      rather than a person or a logo. If the sequence did not give you two, use the evidence's
-      category A images and say which slides you put them on.
-  4. Every chart's numbers match the evidence exactly. Read them back against it.
-  5. No paragraph of prose anywhere on any slide.
-  6. All on-screen text is English.
-  7. Right arrow reveals remaining beats before it advances - test this logic by reading it.
-  8. The first slide waits for a key press before its timer starts.
-  9. Every quote and chart has a visible, linked source.
-  10. A SOURCES slide at the end.
+  4. At least two slides show the SUBJECT - the product, object or system the story is about -
+     rather than a person or a logo. If the sequence did not give you two, use the evidence's
+     category A images and say which slides you put them on.
+  5. Every chart's numbers match the evidence exactly. Read them back against it.
+  6. NOTHING IS SAID TWICE. Walk the finished deck and list every figure with the slide it is on.
+     If a figure, a name-with-a-number, or an explained mechanism appears on two slides, cut it
+     from the weaker one. This is the check that matters most - the last deck printed the same
+     four drawdown percentages on two slides and restated one mechanism across five.
+  7. No more than two consecutive slides share a TYPE, and at least six distinct types appear.
+  8. No paragraph of prose anywhere on any slide.
+  9. All on-screen text is English.
+  10. All three reveal modes work, M cycles them, and the deck opens in "one element".
+  11. Space with beats still hidden never skips a beat: in mode 1 it reveals the next, in mode 2
+      it reveals all remaining, in mode 3 there are none hidden to skip.
+  12. The first slide waits for a key press before anything reveals or advances, in every mode.
+  13. T toggles a genuine light palette - check the charts re-theme and the source lines stay
+      readable. No component hardcodes a colour outside the :root custom properties.
+  14. Every quote and chart has a visible, linked source.
+  15. SOURCES is second to last and its copy button works, WITH the execCommand fallback.
+  16. DISCLAIMER + CTA is one slide, and it is last.
 
 Then tell me in one line that the Canvas artifact is ready to download. Nothing else.
