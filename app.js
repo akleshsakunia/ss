@@ -684,12 +684,51 @@ function applyDeepLink() {
   pickWorkflow(pre);
   if (p.get('topic')) $('topic').value = p.get('topic');
   showFieldLinks();
+  renderLocalOpen();          // offer the jump to the local runner while the form is filled
 
   // Drop the parameters from the address bar: a reload should not silently refill a form the user
   // has since edited, and the link often carries a whole headline.
   history.replaceState(null, '', location.pathname + location.search);
-  note('Filled in from Market Radar. Check it, then Start.');
+  note('Filled in from Market Radar. Check it, then Start — or open it on your computer for the automated run.');
   return true;
+}
+
+/* This page has no runner - it walks you through the manual copy-paste flow. But if you are at the
+   computer with the local runner up, the same story can run end to end there. This builds a link
+   that hands the local UI the current form (workflow + name + every field) as a '#new?' hash, with
+   auto=1 so the runner opens the AUTOMATED variant of the workflow. Rebuilt from the live form on
+   each call, so edits made here carry over.
+
+   http://127.0.0.1 is exempt from mixed-content blocking, so this navigates fine from the HTTPS
+   site - on the same machine. It is a link, not a fetch, so nothing here can tell whether the
+   runner is actually up; it either lands or the browser says it cannot connect. */
+const LOCAL_RUNNER = 'http://127.0.0.1:7870/';
+function localRunnerHref() {
+  const w = WFS[$('wf').value];
+  if (!w) return '';
+  const q = new URLSearchParams();
+  q.set('wf', w.id);
+  q.set('auto', '1');
+  const topic = ($('topic').value || '').trim();
+  if (topic) q.set('topic', topic);
+  document.querySelectorAll('.in').forEach(el => {
+    const v = (el.value || '').trim();
+    if (v) q.set((el.dataset.n || '').toUpperCase(), v);
+  });
+  return LOCAL_RUNNER + '#new?' + q.toString();
+}
+function renderLocalOpen() {
+  const box = $('localopen');
+  if (!box) return;
+  const href = localRunnerHref();
+  box.innerHTML = `<a class="ext" href="${esc(href)}">Open on this computer (local runner) ↗</a>
+    <span class="muted"> — runs the automated version end to end. Needs the runner started on this machine.</span>`;
+  box.classList.remove('hide');
+  // keep the link in step with edits to the form, including a workflow switch
+  const upd = () => { const a = box.querySelector('a'); if (a) a.href = localRunnerHref(); };
+  $('inputs') && $('inputs').addEventListener('input', upd);
+  $('topic') && $('topic').addEventListener('input', upd);
+  $('wf') && $('wf').addEventListener('change', () => setTimeout(upd, 0));
 }
 
 function render() {
